@@ -1,0 +1,549 @@
+\documentclass[12pt]{article}
+\usepackage[left=1cm, right=1cm, top=2cm,bottom=1.5cm]{geometry} 
+
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools,xcolor,accents}
+\usepackage{blkarray}
+
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{graphicx}
+\usepackage[figurename=Рис.]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+%%Наименование папки откуда забирать изображения
+\graphicspath{ {./images/} }
+
+%%Изменение формата для ввода доказательства
+\renewcommand{\proofname}{$\square$  \nopunct}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%%Изменение отступа на таблицах
+\addto\captionsrussian{%
+	\renewcommand{\proofname}{$\square$ \nopunct}%
+}
+%% Римские цифры
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%% Для удобства записи
+\newcommand{\MR}{\mathbb{R}}
+\newcommand{\MC}{\mathbb{C}}
+\newcommand{\MQ}{\mathbb{Q}}
+\newcommand{\MN}{\mathbb{N}}
+\newcommand{\MZ}{\mathbb{Z}}
+\newcommand{\MTB}{\mathbb{T}}
+\newcommand{\MTI}{\mathbb{I}}
+\newcommand{\MI}{\mathrm{I}}
+\newcommand{\MCI}{\mathcal{I}}
+\newcommand{\MCR}{\mathcal{R}}
+\newcommand{\MJ}{\mathrm{J}}
+\newcommand{\MH}{\mathrm{H}}
+\newcommand{\MT}{\mathrm{T}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MV}{\mathcal{V}}
+\newcommand{\MA}{\mathcal{A}}
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MF}{\mathcal{F}}
+\newcommand{\ME}{\mathcal{E}}
+\newcommand{\MW}{\mathcal{W}}
+\newcommand{\ML}{\mathcal{L}}
+\newcommand{\MM}{\mathcal{M}}
+\newcommand{\MP}{\mathcal{P}}
+\newcommand{\VN}{\varnothing}
+\newcommand{\VE}{\varepsilon}
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dz}{\, dz}
+\newcommand{\dd}{\, d}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}{Опр:}
+\newtheorem{rem}{Rm:}
+\newtheorem{prop}{Утв.}
+\newtheorem{exrc}{Упр.}
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}
+
+\newenvironment{cusdefn}[1]
+{\renewcommand\thedefn{#1}\defn}
+{\enddefn}
+
+\DeclareRobustCommand{\divby}{%
+	\mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\DeclareRobustCommand{\ndivby}{\mkern-1mu\not\mathrel{\mkern4.5mu\divby}\mkern1mu}
+
+
+%Короткий минус
+\DeclareMathSymbol{\SMN}{\mathbin}{AMSa}{"39}
+%Длинная шапка
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%Функция знака
+\DeclareMathOperator{\sgn}{sgn}
+
+%Функция ранга
+\DeclareMathOperator{\rk}{\text{rk}}
+\DeclareMathOperator{\diam}{\text{diam}}
+
+
+%Обозначение константы
+\DeclareMathOperator{\const}{\text{const}}
+
+\DeclareMathOperator{\codim}{\text{codim}}
+
+\DeclareMathOperator*{\dsum}{\displaystyle\sum}
+\newcommand{\ddsum}[2]{\displaystyle\sum\limits_{#1}^{#2}}
+\newcommand{\ddssum}[2]{\displaystyle\smashoperator{\sum\limits_{#1}^{#2}}}
+\newcommand{\ddlsum}[2]{\displaystyle\smashoperator[l]{\sum\limits_{#1}^{#2}}}
+\newcommand{\ddrsum}[2]{\displaystyle\smashoperator[r]{\sum\limits_{#1}^{#2}}}
+
+%Интеграл в большом формате
+\DeclareMathOperator{\dint}{\displaystyle\int}
+\newcommand{\ddint}[2]{\displaystyle\int\limits_{#1}^{#2}}
+\newcommand{\ssum}[1]{\displaystyle \sum\limits_{n=1}^{\infty}{#1}_n}
+
+\newcommand{\smallerrel}[1]{\mathrel{\mathpalette\smallerrelaux{#1}}}
+\newcommand{\smallerrelaux}[2]{\raisebox{.1ex}{\scalebox{.75}{$#1#2$}}}
+
+\newcommand{\smallin}{\smallerrel{\in}}
+\newcommand{\smallnotin}{\smallerrel{\notin}}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.25}{\ensuremath{\cap}}}}%
+\newcommand*{\medcup}{\mathbin{\scalebox{1.25}{\ensuremath{\cup}}}}%
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3.5}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother
+
+%Промежуточное значение для sup\inf, поскольку они имеют разную высоту
+\newcommand{\newsup}{\mathop{\smash{\mathrm{sup}}}}
+\newcommand{\newinf}{\mathop{\mathrm{inf}\vphantom{\mathrm{sup}}}}
+
+%Скалярное произведение
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle }
+\newcommand{\linsp}[1]{\left\langle #1 \right\rangle }
+\newcommand{\linmer}[2]{\left\langle #1 \vert #2\right\rangle }
+
+%Подпись символов снизу
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+%%Шапка для букв сверху
+\newcommand{\wte}[1]{\widetilde{#1}}
+\newcommand{\wht}[1]{\widehat{#1}}
+\newcommand{\ovl}[1]{\overline{#1}}
+\newcommand{\unl}[1]{\underline{#1}}
+
+
+%%Трансформация Фурье
+\newcommand{\fourt}[1]{\mathcal{F}\left(#1\right)}
+\newcommand{\ifourt}[1]{\mathcal{F}^{-1}\left(#1\right)}
+
+%%Символ вектора
+\newcommand{\vecm}[1]{\overrightarrow{#1\,}}
+
+%%Пространстов матриц
+\newcommand{\matsq}[1]{\operatorname{Mat}_{#1}}
+\newcommand{\mat}[2]{\operatorname{Mat}_{#1, #2}}
+
+%Оператор для действ и мнимых чисел
+\DeclareMathOperator{\IM}{\operatorname{Im}}
+\DeclareMathOperator{\RE}{\operatorname{Re}}
+\DeclareMathOperator{\li}{\operatorname{li}}
+\DeclareMathOperator{\GL}{\operatorname{GL}}
+\DeclareMathOperator{\SL}{\operatorname{SL}}
+\DeclareMathOperator{\Char}{\operatorname{char}}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\ord{ord}
+
+%Оператор для образа
+\DeclareMathOperator{\Ima}{Im}
+
+%Делимость чисел
+\newcommand{\modn}[3]{#1 \equiv #2 \; (\bmod \; #3)}
+\newcommand{\nmodn}[3]{#1 \not\equiv #2 \; (\bmod \; #3)}
+
+%%Взятие в скобки, модули и норму
+\newcommand{\parfit}[1]{\left( #1 \right)}
+\newcommand{\modfit}[1]{\left| #1 \right|}
+\newcommand{\sqparfit}[1]{\left\{ #1 \right\}}
+\newcommand{\normfit}[1]{\left\| #1 \right\|}
+
+%%Функция для обозначения равномерной сходимости по множеству
+\newcommand{\uconv}[1]{\overset{#1}{\rightrightarrows}}
+\newcommand{\uconvm}[2]{\overset{#1}{\underset{#2}{\rightrightarrows}}}
+
+%% Функция для добавления круга сверху множества
+\newcommand{\Circ}[1]{\accentset{\circ}{#1}}
+
+%% Жирное подчеркивание
+\newcommand{\buline}[1]{\textbf{\uline{#1}}}
+
+%%Функция для обозначения нижнего и верхнего интегралов
+\def\upint{\mathchoice%
+	{\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	\int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+%%След матрицы
+\DeclareMathOperator*{\tr}{tr}
+
+\DeclareMathOperator*{\symdif}{\bigtriangleup}
+
+% Верхние\нижние пределы
+\DeclareMathOperator*\lowlim{\underline{lim}}
+\DeclareMathOperator*\uplim{\overline{lim}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+
+%% Переопределение функции хи, чтобы выглядела более приятно
+\makeatletter
+\@ifdefinable\@latex@chi{\let\@latex@chi\chi}
+\renewcommand*\chi{{\@latex@chi\smash[t]{\mathstrut}}} % want only bottom half of \mathstrut
+\makeatletter
+
+\setcounter{MaxMatrixCols}{20}
+
+
+\begin{document}
+\lhead{Действительный анализ}
+\chead{Дьяченко М.И.}
+\rhead{Лекция - 16}
+\section*{Прямые произведения мер. Теоремы Фубини}
+
+Вообще говоря будет две теоремы Фубини, одну из них обычно называют теоремой Тонелли.
+
+\begin{defn}
+	Пусть $S_1, S_2$ - полукольца, тогда назовём их \uwave{прямым произведением} совокупность множеств: 
+	$$
+		S = S_1 \otimes S_2 = \{A_1 \times A_2 \colon A_1 \in S_1, \, A_2 \in S_2 \}
+	$$
+\end{defn}
+\begin{rem}
+	Иногда прямое произведение ещё именуют \uwave{тензорным произведением} двух полуколец.
+\end{rem}
+
+\begin{theorem}
+	Если $S_1, S_2$ - полукольца, то и $S$ тоже полукольцо.
+\end{theorem}
+
+\begin{proof}
+	Проверим по определению:
+	\begin{enumerate}[label=\arabic*)]
+		\item $\VN \times \VN = \VN \Rightarrow \VN \in S$;
+		\item Пусть $A = A_1 \times A_2 \in S$ и $B = B_1 \times B_2 \in S$, тогда:
+		$$
+			A \cap B = (A_1 \times A_2) \cap (B_1 \times B_2) = (\underbrace{A_1 \cap B_1}_{\in S_1}) \times (\underbrace{A_2 \cap B_2}_{\in S_2}) \in S
+		$$
+		\item Пусть $A = A_1 \times A_2 \in S, \, B = B_1 \times B_2 \in S, \, B \subset A$, нужно показать, что с помощью конечного числа элементов $S$ мы можем построить дополнение $B$ до $A$. Отсюда видно, что: $B_1 \subseteq A_1, \, B_2 \subseteq A_2$. По определению полукольца:
+		$$
+			\exists \, C_1, \dots, C_n \in S_1 \colon A_1 = B_1 \sqcup \left(\bigsqcup\limits_{i = 1}^{n}C_i\right)
+		$$
+		$$
+			\exists \, D_1, \dots, D_m \in S_2 \colon A_2 = B_2 \sqcup \left(\bigsqcup\limits_{j = 1}^{m}D_j\right)
+		$$
+		Поэтому будет верно следующее:
+		$$
+			A = A_1 \times A_2 = \left(B_1 \sqcup \left(\bigsqcup\limits_{i = 1}^{n}C_i\right)\right) \times \left(B_2 \sqcup \left(\bigsqcup\limits_{j = 1}^{m}D_j\right)\right) = 
+		$$
+		$$
+			= (\underbrace{B_1 \times B_2}_{ = B})\sqcup \underbrace{\left(\bigsqcup\limits_{i = 1}^{n} \left(C_i \times B_2\right) \right)}_{\in S} \sqcup \underbrace{\left(\bigsqcup\limits_{j = 1}^{m} (B_1 \times D_j)\right)}_{\in S} \sqcup \underbrace{\left(\bigsqcup\limits_{i = 1}^{n}\bigsqcup\limits_{j = 1}^{m}(C_i \times D_j) \right)}_{\in S}
+		$$
+	\end{enumerate}
+	Следовательно, мы получаем утверждение теоремы.
+\end{proof}
+
+\begin{theorem}
+	Пусть $m_1, m_2$ - меры на полукольцах $S_1, S_2$ соответственно, а $S = S_1 \otimes S_2$. Определим для любого $A \in S$ функцию $m(A) = m(A_1 \times A_2) \triangleq  m_1(A_1){\cdot}m_2(A_2)$, тогда $m$ это мера на $S$.
+\end{theorem}
+\begin{proof}
+	Пусть $A_1 \in S_1, \, A_2 \in S_2$ такие, что:
+	$$
+		A_1 \times A_2 = A = \bigsqcup\limits_{k = 1}^{l}A(k) = \bigsqcup\limits_{k = 1}^{l}(A_1(k)\times A_2(k)), \, \forall k = \ovl{1,l}, \, A_1(k) \in S_1, \, A_2(k) \in S_2, \; 
+	$$
+	Поскольку $m_1$ и $m_2$ - конечны и неотрицательны $\Rightarrow m$ - конечна и неотрицательна. Согласно лемме $2$ из лекции $1$, верно следующее:
+	$$
+		\exists \, \{C_i\}_{i = 1}^{N} \subset S_1 \colon \forall k \neq s, \, C_k \cap C_s = \VN, \, \forall k \in \{1, \dotsc, l\}, \, \exists \, \Gamma_1(k) \subset \{1,\dotsc, N\} \colon A_1(k) = \bigsqcup\limits_{i \in \Gamma_1(k)}C_i
+	$$
+	причем $\forall i, \, \exists \, k \colon i \in \Gamma_1(k)$, то есть нет паразитных множеств, как договаривались ранее. Аналогично:
+	$$
+		\exists \, \{D_j\}_{j = 1}^{M} \subset S_2 \colon \forall  k \neq s, \, C_k \cap C_s = \VN, \, \forall k \in \{1, \dotsc, l\}, \, \exists \, \Gamma_2(k) \subset \{1,\dotsc, M\} \colon A_2(k) = \bigsqcup\limits_{j \in \Gamma_2(k)}D_j
+	$$
+	и опять же, нет паразитных множеств. Тогда будет верно:
+	\begin{enumerate}[label=\arabic*)]
+		\item $\forall i, \, C_i \in A_1$;
+		\item $\forall x \in A_1, \, \exists \, i \colon x \in C_i$;
+	\end{enumerate}
+	Следовательно, поскольку $C_i$ попарно не пересекаются, то имеет место представление: $A_1 = \bigsqcup_{i = 1}^{N}C_i$. Аналогично, получим представление для $A_2$: $A_2 = \bigsqcup_{j = 1}^{M}D_j$. Рассмотрим сумму:
+	$$
+		\ddsum{k = 1}{l}m(A(k)) = \ddsum{k = 1}{l}m_1(A_1(k)){\cdot}m_2(A_2(k)) = \ddsum{k = 1}{l}\left(\ddsum{i \in \Gamma_1(k)}{}m_1(C_i)\right){\cdot}\left(\ddsum{j \in \Gamma_2(k)}{}m_2(D_j)\right) = 
+	$$
+	$$
+		= \ddsum{k = 1}{l}\ddsum{i \in \Gamma_1(k)}{}\ddsum{j \in \Gamma_2(k)}{}m_1(C_i){\cdot}m_2(D_j) = (*)
+	$$
+	Заметим, что: 
+	$$
+		\forall (i,j)\colon 1 \leq i \leq N, \, 1 \leq j \leq M, \, \exists! \, k  \colon i \in \Gamma_1(k) \wedge j \in \Gamma_2(k)
+	$$
+	Единственность следует из того, что двух таких не может существовать, иначе было бы непустое пересечение между соответствующими $A(k)$, а существование следует из того, что в $A_1 \times A_2$ образовался бы пропуск в противном случае:
+	$$
+		\exists \, (i_0, j_0) \colon \forall k, \, i_0 \not\in \Gamma_1(k) \vee j_0 \not\in \Gamma_2(k) \Rightarrow \forall (x_1, x_2) \colon x_1 \in C_{i_0}, \, x_2 \in D_{j_0}, \, (x_1, x_2) \not\in A_1 \times A_2
+	$$
+	Следовательно, мы получим:
+	$$
+		(*) = \ddsum{i = 1}{N}\ddsum{j = 1}{M}m_1(C_i){\cdot}m_2(D_j) = \ddsum{i = 1}{N}m_1(C_i){\cdot}\ddsum{j = 1}{M}m_2(D_j) = m_1(A_1){\cdot}m_2(A_2) = m(A)
+	$$
+\end{proof}
+
+\begin{rem}
+	Мы начали с мер на полукольцах вместо $\sigma$-алгебр в силу того, что теорема $1$ справедлива для полуколец, но легко заметить, что даже если $S_1, S_2$ не полукольца, а $\sigma$-алгебры, то всё равно их прямое произведение ничем лучше, чем полукольцом не будет, поэтому мы начинаем всё с полуколец.
+\end{rem}
+\newpage
+\begin{theorem}
+	Пусть $S_1, S_2$ - полукольца, $m_1, m_2$ - $\sigma$-аддитивные меры на $S_1, S_2$ соответственно, $S = S_1 \otimes S_2$ и $\forall A = A_1 \times A_2 \in S, \, m(A_1 \times A_2) = m_1(A_1){\cdot}m_2(A_2)$, тогда $m$ это $\sigma$-аддитивная мера на $S$.
+\end{theorem}
+
+\begin{proof}
+	Пусть $A_1 \in S_1, \, A_2 \in S_2$ такие, что:
+	$$
+		A_1 \times A_2 = A = \bigsqcup\limits_{k = 1}^{\infty}A(k) = \bigsqcup\limits_{k = 1}^{\infty}(A_1(k)\times A_2(k)), \, \forall k, \, A_1(k) \in S_1, \, A_2(k) \in S_2, \; 
+	$$
+	Заметим, что $S_1 \cap A_1$ это полукольцо с единицей $A_1 \Rightarrow m_1$ можно продолжить по Лебегу до $\sigma$-аддитивной меры $\mu_1$, заданной на $\MM_1$. Аналогично $m_2$ можно продолжить по Лебегу до $\mu_2$ на $\MM_2$. Пусть: 
+	$$
+		\forall k, \, \forall x_1 \in A_1, \, f_k(x_1) = m_2(A_2(k)){\cdot}\chi_{A_1(k)}(x_1)
+	$$
+	Понятно, что $f_k(x_1)$ это простая функция. Заметим, что: 
+	$$
+		\forall x_1 \in A_1, \, \bigsqcup\limits_{k \colon x_1 \in A_1(k)} A_2(k) = A_2
+	$$
+	Это верно, поскольку при разных $k$ у нас нет пересечения между $A_1(k)\times A_2(k)$, а $A_1(k)$ могут повторяться при разных $k$ или пересекаться и верно: $(A \sqcup B) \times C = (A \times C) \sqcup (B \times C)$. Тогда:
+	$$
+		m_2(A_2) = \ddsum{k \colon x_1 \in A_1(k)}{}m_2(A_2(k)) \Rightarrow \ddsum{k = 1}{\infty}f_k(x_1) = \ddsum{k \colon x_1 \in A_1(k)}{}m_2(A_2(k)) = m_2(A_2) \Rightarrow
+	$$
+	$$
+		\Rightarrow \ddint{A_1}{}\ddsum{k = 1}{\infty}f_k(x_1)d\mu_1 = m_2(A_2){\cdot}\ddint{A_1}{}d\mu_1 = m_2(A_2){\cdot}m_1(A_1) = m(A)
+	$$
+	По следствию из теоремы Беппо-Леви, поскольку все функции простые и неотрицательные, мы получим:
+	$$
+		m(A) = \ddint{A_1}{}\ddsum{k = 1}{\infty}f_k(x_1)d\mu_1 = \ddsum{k = 1}{\infty}\ddint{A_1}{}f_k(x_1)d\mu_1 = \ddsum{k = 1}{\infty}m_2(A_2(k)){\cdot}m_1(A_1(k)) = \ddsum{k = 1}{\infty}m(A(k))
+	$$
+\end{proof}
+
+\begin{defn}
+	Пусть $(X_1, \MM_1, \mu_1)$ и $(X_2, \MM_2, \mu_2)$ - конечные ИП, тогда \uwave{прямым произведением мер} $\mu_1$ и $\mu_2$ называется мера $\mu_1 \otimes \mu_2$, которая является продолжением по Лебегу меры $m$ заданной на полукольце $S = \MM_1 \otimes \MM_2$ формулой:
+	$$
+		m(A_1 \times A_2) = \mu_1(A_1){\cdot} \mu_2(A_2)
+	$$
+	Аналогично определяется прямое произведение мер для $\sigma$-конечных ИП.
+\end{defn}
+
+\begin{rem}
+	Заметим, что прямое произведение определено не только лишь для множеств, которые есть тензорное произведение одного множества на другое. Это достаточно бедный набор на котором мы получаем обобщенные прямоугольники, то есть, например, круг уже не сможет быть представлен в таком виде и это было бы плохо, если бы меру определяли на подмножествах плоскости, в которых даже не входит круг. 
+	
+	Таким образом, рассматриваемые нами множества есть лишь отправная точка и далее мы переходим с полукольца с еденицей на всю конструкцию меры Лебега: $(X = X_1 \times  X_2, \MM, \mu_1 \otimes \mu_2)$.
+\end{rem}
+\newpage
+\subsection*{Теоремы Фубини}
+
+\begin{defn}
+	Пусть $X = X_1 \times X_2$ и $E \subset X$, тогда: $\forall x_1 \in X_1$, \uwave{сечением} $E$ называется множество:
+	$$
+		E(x_1) = \{x_2 \in X_2 \colon (x_1, x_2) \in E\}
+	$$
+\end{defn}
+
+\begin{theorem}
+	Пусть $(X_1, \MM_1, \mu_1)$ и $(X_2, \MM_2, \mu_2)$ - $\sigma$-конечные ИП. Пусть $(X_1 \times X_2, \MM, \mu_1 \otimes \mu_2)$ это ИП построенное согласно определению $2$, пусть также $\mu_1$ и $\mu_2$ - полные меры (любое подмножество множества меры нуль - измеримое, то есть также имеет меру нуль). Множество $E \in \MM$, $\mu(E) < \infty$, где $\mu = \mu_1 \otimes \mu_2$, тогда:
+	\begin{enumerate}[label=\arabic*)]
+		\item Для почти всех $x_1 \in X_1$, сечение $E(x_1) \in \MM_2$;
+		\item $\mu_2(E(x_1)) \in \ML_{\mu_1}(X_1)$, то есть мера от сечения является интегрируемоей по Лебегу относительно меры $\mu_1$ на $X_1$ функцией;
+		\item $\mu(E) = \int_{X_1}\mu_2(E(x_1))d\mu_1$;
+	\end{enumerate}
+\end{theorem}
+\begin{proof}
+	Пусть $S = \MM_1 \otimes \MM_2$, тогда для множества $E = E_1 \times E_2 \in S$, где верно: 
+	$$
+		\mu(E) < \infty \Rightarrow \mu(E) = \mu_1(E_1){\cdot}\mu_2(E_2) < \infty \Rightarrow \mu_1(E_1) < \infty \wedge \mu_2(E_2) < \infty
+	$$ 
+	утверждение очевидно, поскольку сечение множества $E$ всё время одно и то же:
+	$$
+		A \in S \Rightarrow A = A_1 \times A_2 \Rightarrow A(x_1) = A_2 \vee A(x_1) = \VN 
+	$$
+	где последнее зависит от того, верно ли $x_1 \in A_1$ или нет. Очевидно, что сечение будет измеримым, $\mu_2(E(x_1))$ будет простой: принимает либо значение $0$, либо $\mu_2(E_2)$ - то есть константа. Интеграл:
+	$$
+		\ddint{X_1}{}\mu_2(E(x_1))d\mu_1 = \mu_2(E_2){\cdot}\ddint{A_1}{}d\mu_1 + \ddint{X_1 \setminus A_1}{}0{\cdot}d\mu_1 = \mu_2(E_2){\cdot}\mu_1(E_1) =  \mu(E) 
+	$$
+	Так как обе части равенства линейны по дизъюнктным объединениям, то теорема справедлива и для любого $A \in \MCR(S)$, где $\MCR(S)$ - конечное дизъюнктное объединение множеств из $S$ (минимальное кольцо, содержащее полукольцо $S$). Предположим, что утверждение доказано для множеств: $\{A_i\}_{i = 1}^{\infty}$ таких, что:
+	$$
+		\forall i, \, A_i \in \MM, \; A_1 \subseteq A_2 \subseteq \dotsc, \quad B = \bigcup\limits_{i = 1}^{\infty}A_i, \, \mu(B) < \infty
+	$$
+	Проверим, что результат теоремы справедлив и для множества $B$. Мы имеем:
+	$$
+		\forall x_1 \in X_1, \, B(x_1) = \bigcup\limits_{i = 1}^{\infty}A_i(x_1), \; A_1(x_1) \subset A_2(x_1) \subset \dotsc
+	$$
+	Так как, почти все сечения $A_i(x_1) \in \MM_2$ по условию, то для почти всех $x_1 \in X_1, \, B(x_1) \in \MM_2$. По теореме о непрерывности меры (см. лекцию $4$) будет верно:
+	$$
+		\mu_2(B(x_1)) = \lim\limits_{i \to \infty}\mu_2(A_i(x_1))
+	$$
+	Аналогично, если мы рассматриваем $\mu(B)$, то будет верно:
+	$$
+		\mu(B) = \lim\limits_{i\to \infty}\mu(A_i)
+	$$
+	Используя теорему Беппо-Леви, отсюда мы получаем:
+	$$
+		\mu(B) = \lim\limits_{i \to \infty}\mu(A_i) = \lim\limits_{i \to \infty}\ddint{X_1}{}\mu_2(A_i(x_1))d\mu_1 = \ddint{X_1}{}\lim\limits_{i \to \infty}\mu_2(A_i(x_1))d\mu_1 = \ddint{X_1}{}\mu_2(B(x_1))d\mu_1
+	$$
+	Таким образом пункты $1)$ и $3)$ доказаны для $B$. Поскольку $\mu(B) < \infty$, то $\mu_2(B(x_1)) \in \ML_{\mu_1}(X_1)$. Аналогично проверяется, что если утверждение теоремы верно для множеств: $\{A_i\}_{i = 1}^{\infty}$ таких, что:
+	$$
+		\forall i, \, A_i \in \MM, \; A_1 \supseteq A_2 \supseteq \dotsc,\, \mu(A_1) < \infty, \quad B = \bigcap\limits_{i = 1}^{\infty}A_i
+	$$
+	то утверждение теоремы выполнено и для $B$. Пусть $E \in \MM$ и $\mu(E) < \infty$, тогда по теореме о структуре (лекция $5$ теорема $2$) измеримого по Лебегу множества справедливо представление вида:
+	$$
+		E = \bigcap\limits_{i = 1}^{\infty}\bigcup\limits_{j = 1}^{\infty}A_{i,j} \setminus E_0
+	$$
+	где верны следующие пункты:
+	\begin{enumerate}[label=\arabic*)]
+		\item $\forall i,j, \, A_{i,j} \in \MCR(S)$;
+		\item $\forall i, \, A_{i,1} \subseteq A_{i,2} \subseteq \dotsc$;
+		\item Если $B_i = \bigcup_{j = 1}^{\infty}A_{i,j}$, то $\mu(B_1) < \infty$ и кроме того $B_1 \supseteq B_2 \supseteq \dotsc$;
+		\item $E_0 \in \MM, \, \mu(E_0) = 0$;
+	\end{enumerate}
+	Пусть вначале $E \in \MM$ и $\mu(E) = 0$, тогда: $E = \bigcap_{i = 1}^{\infty}\bigcup_{j = 1}^{\infty}A_{i,j} \setminus E_0$ и выполнены пункты выше. Обозначим множество: $F(E) = \bigcap_{i = 1}^{\infty}\bigcup_{j = 1}^{\infty}A_{i,j}$, тогда:
+	$$
+		\mu(E) = \mu(F(E) \setminus E_0) = \mu(F(E)) - \mu(E_0) = \mu(F(E)) = 0
+	$$
+	По доказанному ранее, для $F(E)$ теорема выполняется: $A_{i,j} \in \MCR(S) \Rightarrow$ теорема выполняется сразу, дальше имеем последовательно две цепочки вложенных множеств (расширяющихся и сужающихся) для которых также выполняется теорема. Следовательно:
+	$$
+		0 = \mu(F(E)) = \ddint{X_1}{}\mu_2(F(E)\,(x_1))d\mu_1
+	$$
+	По следствию из теоремы Чебышева (лекция $10$ следствие $1$), $\mu_2(F(E)\,(x_1)) = 0$ для почти всех $x_1 \in X_1$. Так как $E(x_1) \subset F(E) \, (x_1)$ п.в. на $X_1$ и $F(E)\, (x_1)\in \MM_2$ п.в. на $X_1$, то $E(x_1) \in \MM_2$ п.в. на $X_1$ и в силу полноты меры $\mu_2$ будет верно: $\mu_2(E(x_1)) = 0$ п.в. на $X_1$. Поскольку $\mu_1$ полна, то $\mu_2(E(x_1)) \in \ML_{\mu_1}(X_1)$, поскольку нам не важно как она себя ведёт вне точек, где $\mu_2(E(x_1)) = 0$ и кроме того:
+	$$
+		\ddint{X_1}{}\mu_2(E(x_1))d\mu_1 = 0 = \mu(E)
+	$$
+	Таким образом, для произвольного $E$, $\mu(E) = 0$ условия выполнены. Пусть теперь $E \in \MM$ - произвольное, $\mu(E) < \infty$, напишем представление: $E = F(E) \setminus E_0$, где $\mu(E_0) = 0$. Для $F(E)$ теорема выполняется, для $E_0$ также выполняется $\Rightarrow$ в силу линейности интеграла и меры, теорема выполняется для $E$.
+\end{proof}
+
+\begin{rem}
+	Данное утверждение также иногда изучают в школах называя его принципом Кавальери.
+\end{rem}
+
+\begin{theorem}(\textbf{Фубини-Тонелли})
+	Пусть $(X_1,\MM_1, \mu_1), \, (X_2, \MM_2, \mu_2)$ - $\sigma$-конечные ИП, $\mu_1, \mu_2$ - полные меры, $(X_1 \times X_2, \MM, \mu_1 \otimes \mu_2)$ - ИП в соответствии с определением $2$ и кроме того $f(x_1,x_2)$ - измерима на $(X_1 \times X_2, \MM, \mu_1 \otimes \mu_2)$ и $\forall (x_1,x_2) \in X_1 \times X_2, \, f(x_1, x_2) \geq 0$, тогда:
+	\begin{enumerate}[label=\arabic*)]
+		\item Для почти всех $x_1\in X_1, \, f(x_1,x_2) = \varphi_{x_1}(x_2)$ будет $\mu_2$-измеримой;
+		\item Функция $\Phi(x_1)$:
+		$$
+			\Phi(x_1) = \ddint{X_2}{} \varphi_{x_1}(x_2)d\mu_2
+		$$ 
+		является - $\mu_1$-измеримой функцией;
+		\item Верно равенство:
+		$$
+			\ddint{X_1 \times X_2}{}f(x_1,x_2)d\mu = \ddint{X_1}{}\Phi(x_1)d\mu_1 = \ddint{X_1}{}\left(\; \ddint{X_2}{}f(x_1,x_2)d\mu_2\right)d\mu_1
+		$$
+	\end{enumerate}
+	Разумеется, можно поменять ролями $\mu_1$ и $\mu_2$.
+\end{theorem}
+\begin{proof}
+	Заметим, что в предыдущей теореме: 
+	$$
+		\mu_2(E(x_1)) = \ddint{X_2}{}\chi_{E(x_1)}(x_2)d\mu_2
+	$$
+	тогда она принимает вид: 
+	$$
+		\ddint{X}{}\chi_E(x)d\mu = \mu(E) = \ddint{X_1}{}\ddint{X_2}{}\chi_{E(x_1)}(x_2)d\mu_2 d\mu_1
+	$$
+	Это верно $\forall E \in \MM, \, \mu(E) < \infty \Rightarrow$ в силу линейности интеграла Лебега аналогичное утверждение справедливо и для любой простой функции: $h(x) = \sum_{i = 1}^{n}c_i{\cdot}\chi_{E_i}(x_1,x_2)$. Для $f(x_1,x_2)$ можно построить последовательность простых функций $h_n(x_1,x_2) \geq 0$ таких, что: $h_n(x_1,x_2) \uparrow f(x_1,x_2)$ на $X_1 \times X_2$. Тогда для $h_n$ теорема верна $\Rightarrow$ для любого фиксированного $x_1$:
+	$$
+		\varphi_{x_1}(x_2) = \lim\limits_{n \to \infty}h_n(x_1,x_2) 
+	$$
+	Следовательно, $\varphi_{x_1}(x_2)$ будет $\mu_2$-измеримой (как предел $\mu_2$-измеримых функций). Кроме того, по теореме Беппо-Леви:
+	$$
+		\Phi(x_1) = \lim\limits_{n \to \infty}\ddint{X_2}{}h_n(x_1,x_2)d\mu_2 = \ddint{X_2}{}\lim\limits_{n \to \infty}h_n(x_1,x_2)d\mu_2 = \ddint{X_2}{}\varphi_{x_1}(x_2)d\mu_2
+	$$
+	Ещё раз применив теорему Беппо-Леви в обеих частях, мы получим:
+	$$
+		\ddint{X_1 \times X_2}{}f(x_1,x_2)d\mu = \lim\limits_{n \to \infty}\ddint{X_1 \times X_2}{}h_n(x_1,x_2)d\mu = \lim\limits_{n \to \infty}\ddint{X_1}{}\left(\; \ddint{X_2}{}h_n(x_1,x_2)d\mu_2\right)d\mu_1 = 
+	$$
+	$$
+		= \ddint{X_1}{}\lim\limits_{n \to \infty}\left(\; \ddint{X_2}{}h_n(x_1,x_2)d\mu_2\right)d\mu_1 = \ddint{X_1}{}\ddint{X_2}{}\varphi_{x_1}(x_2)d\mu_2 d\mu_1
+	$$
+	Фактически, теорема Беппо-Леви применяется здесь два раза $\Rightarrow$ получаем требуемое.
+\end{proof}
+\begin{rem}
+	Подчеркнём, что в данном утверждении возможны бесконечные значения, как во внутреннем, так и во внешенем интеграле. Суть теоремы в том, что если функция измеримая и неотрицательная, то неважно как мы будем брать интеграл: сразу по мере произведения или последовательно. 
+	
+	Если отказаться от условия неотрицательности, то эта теорема уже не будет верна. Примеры будут на семинарах. Тем не менее, есть случаи, когда и это можно осуществить.
+\end{rem}
+
+\begin{theorem}(\textbf{Фубини})
+	Пусть $(X_1,\MM_1, \mu_1), \, (X_2, \MM_2, \mu_2)$ - $\sigma$-конечные ИП, $\mu_1, \mu_2$ - полные меры, $(X_1 \times X_2, \MM, \mu_1 \otimes \mu_2)$ - ИП в соответствии с определением $2$ и кроме того $f(x_1,x_2) \in \ML_{\mu}(X_1 \times X_2)$, тогда:
+	\begin{enumerate}[label=\arabic*)]
+		\item Для почти всех $x_1\in X_1, \, f(x_1,x_2) = \varphi_{x_1}(x_2) \in \ML_{\mu_2}(X_2)$;
+		\item Функция $\Phi(x_1)$ интегрируема на $X_1$ по Лебегу относительно $\mu_1$:
+		$$
+			\Phi(x_1) = \ddint{X_2}{} \varphi_{x_1}(x_2)d\mu_2 \in \ML_{\mu_1}(X_1)
+		$$ 
+		\item Верно равенство:
+		$$
+			\ddint{X_1 \times X_2}{}f(x_1,x_2)d\mu = \ddint{X_1}{}\Phi(x_1)d\mu_1 = \ddint{X_1}{}\left(\; \ddint{X_2}{}f(x_1,x_2)d\mu_2\right)d\mu_1
+		$$
+	\end{enumerate}
+	Разумеется, можно поменять ролями $\mu_1$ и $\mu_2$.
+\end{theorem}
+\begin{proof}
+	Если $f(x_1,x_2) = f_+(x_1,x_2) - f_-(x_1,x_2)$, где $f_+(x_1,x_2) = \max\{f(x_1,x_2),0\}$ и $f_+, f_- \geq 0$, то: 
+	$$
+		f\in \ML_\mu(X_1 \times X_2) \Rightarrow f_+, f_- \in \ML_\mu(X_1 \times X_2)
+	$$
+	Тогда по теореме Фубини-Тонелли для $f_+$ будет верно:
+	\begin{enumerate}[label=\arabic*)]
+		\item Для почти всех $x_1\in X_1, \, f_+(x_1,x_2) = \varphi_{x_1}^+(x_2)$ будет $\mu_2$-измеримой;
+		\item Функция $\Phi^+(x_1)$:
+		$$
+			\Phi^+(x_1) = \ddint{X_2}{} \varphi_{x_1}^+(x_2)d\mu_2
+		$$ 
+		является - $\mu_1$-измеримой функцией;
+		\item Верно равенство:
+		$$
+			\ddint{X_1 \times X_2}{}f_+(x_1,x_2)d\mu = \ddint{X_1}{}\Phi^+(x_1)d\mu_1 = \ddint{X_1}{}\left(\; \ddint{X_2}{}f_+(x_1,x_2)d\mu_2\right)d\mu_1
+		$$
+	\end{enumerate}
+	Так как слева у нас конечная величина, то $\Phi^+(x_1) \in \ML_{\mu_1}(X_1) \Rightarrow \varphi_{x_1}^+(x_2)$ почти всюду конечна (относительно $X_1$), то есть $\varphi_{x_1}^+(x_2) \in \ML_{\mu_2}(X_2)$. Таким образом, для $f_+$ теорема проверена, аналогично проверяется для $f_-$, а тогда утверждение справедливо и для $f(x_1,x_2)$.
+\end{proof}
+
+\begin{rem}
+	Напомним, что если $E$ - измеримое множество (то есть $E \in \MM$), $f(x) \in \ML(E)$ то в этом случае:
+	$$
+		\ddint{E}{}f(x)d\mu = \ddint{X}{}f(x){\cdot}\chi_{E}(x)d\mu
+	$$
+	поэтому теорему Фубини можно использовать и для $f(x) \in \ML_\mu(E)$, где $E \in \MM$. Соответственно претерпят некоторую модификацию внутренние интегралы (например, вместо $X_2$ можно будет писать сечения множества $E$).
+\end{rem}
+
+\end{document}

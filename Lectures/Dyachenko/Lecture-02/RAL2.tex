@@ -1,0 +1,581 @@
+\documentclass[12pt]{article}
+\usepackage[left=1cm, right=1cm, top=2cm,bottom=1.5cm]{geometry} 
+
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools,xcolor,accents}
+\usepackage{blkarray}
+
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{graphicx}
+\usepackage[figurename=Рис.]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+%%Наименование папки откуда забирать изображения
+\graphicspath{ {./images/} }
+
+%%Изменение формата для ввода доказательства
+\renewcommand{\proofname}{$\square$  \nopunct}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%%Изменение отступа на таблицах
+\addto\captionsrussian{%
+	\renewcommand{\proofname}{$\square$ \nopunct}%
+}
+%% Римские цифры
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%% Для удобства записи
+\newcommand{\MR}{\mathbb{R}}
+\newcommand{\MC}{\mathbb{C}}
+\newcommand{\MQ}{\mathbb{Q}}
+\newcommand{\MN}{\mathbb{N}}
+\newcommand{\MZ}{\mathbb{Z}}
+\newcommand{\MTB}{\mathbb{T}}
+\newcommand{\MTI}{\mathbb{I}}
+\newcommand{\MI}{\mathrm{I}}
+\newcommand{\MCI}{\mathcal{I}}
+\newcommand{\MJ}{\mathrm{J}}
+\newcommand{\MH}{\mathrm{H}}
+\newcommand{\MT}{\mathrm{T}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MV}{\mathcal{V}}
+\newcommand{\MA}{\mathcal{A}}
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MF}{\mathcal{F}}
+\newcommand{\ME}{\mathcal{E}}
+\newcommand{\MW}{\mathcal{W}}
+\newcommand{\ML}{\mathcal{L}}
+\newcommand{\MP}{\mathcal{P}}
+\newcommand{\VN}{\varnothing}
+\newcommand{\VE}{\varepsilon}
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dz}{\, dz}
+\newcommand{\dd}{\, d}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}{Опр:}
+\newtheorem{rem}{Rm:}
+\newtheorem{prop}{Утв.}
+\newtheorem{exrc}{Упр.}
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}
+
+\newenvironment{cusdefn}[1]
+{\renewcommand\thedefn{#1}\defn}
+{\enddefn}
+
+\DeclareRobustCommand{\divby}{%
+	\mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\DeclareRobustCommand{\ndivby}{\mkern-1mu\not\mathrel{\mkern4.5mu\divby}\mkern1mu}
+
+
+%Короткий минус
+\DeclareMathSymbol{\SMN}{\mathbin}{AMSa}{"39}
+%Длинная шапка
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%Функция знака
+\DeclareMathOperator{\sgn}{sgn}
+
+%Функция ранга
+\DeclareMathOperator{\rk}{\text{rk}}
+\DeclareMathOperator{\diam}{\text{diam}}
+
+
+%Обозначение константы
+\DeclareMathOperator{\const}{\text{const}}
+
+\DeclareMathOperator{\codim}{\text{codim}}
+
+\DeclareMathOperator*{\dsum}{\displaystyle\sum}
+\newcommand{\ddsum}[2]{\displaystyle\sum\limits_{#1}^{#2}}
+\newcommand{\ddssum}[2]{\displaystyle\smashoperator{\sum\limits_{#1}^{#2}}}
+\newcommand{\ddlsum}[2]{\displaystyle\smashoperator[l]{\sum\limits_{#1}^{#2}}}
+\newcommand{\ddrsum}[2]{\displaystyle\smashoperator[r]{\sum\limits_{#1}^{#2}}}
+
+%Интеграл в большом формате
+\DeclareMathOperator{\dint}{\displaystyle\int}
+\newcommand{\ddint}[2]{\displaystyle\int\limits_{#1}^{#2}}
+\newcommand{\ssum}[1]{\displaystyle \sum\limits_{n=1}^{\infty}{#1}_n}
+
+\newcommand{\smallerrel}[1]{\mathrel{\mathpalette\smallerrelaux{#1}}}
+\newcommand{\smallerrelaux}[2]{\raisebox{.1ex}{\scalebox{.75}{$#1#2$}}}
+
+\newcommand{\smallin}{\smallerrel{\in}}
+\newcommand{\smallnotin}{\smallerrel{\notin}}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.25}{\ensuremath{\cap}}}}%
+\newcommand*{\medcup}{\mathbin{\scalebox{1.25}{\ensuremath{\cup}}}}%
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3.5}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother
+
+%Промежуточное значение для sup\inf, поскольку они имеют разную высоту
+\newcommand{\newsup}{\mathop{\smash{\mathrm{sup}}}}
+\newcommand{\newinf}{\mathop{\mathrm{inf}\vphantom{\mathrm{sup}}}}
+
+%Скалярное произведение
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle }
+\newcommand{\linsp}[1]{\left\langle #1 \right\rangle }
+\newcommand{\linmer}[2]{\left\langle #1 \vert #2\right\rangle }
+
+%Подпись символов снизу
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+%%Шапка для букв сверху
+\newcommand{\wte}[1]{\widetilde{#1}}
+\newcommand{\wht}[1]{\widehat{#1}}
+\newcommand{\ovl}[1]{\overline{#1}}
+
+
+%%Трансформация Фурье
+\newcommand{\fourt}[1]{\mathcal{F}\left(#1\right)}
+\newcommand{\ifourt}[1]{\mathcal{F}^{-1}\left(#1\right)}
+
+%%Символ вектора
+\newcommand{\vecm}[1]{\overrightarrow{#1\,}}
+
+%%Пространстов матриц
+\newcommand{\matsq}[1]{\operatorname{Mat}_{#1}}
+\newcommand{\mat}[2]{\operatorname{Mat}_{#1, #2}}
+
+%Оператор для действ и мнимых чисел
+\DeclareMathOperator{\IM}{\operatorname{Im}}
+\DeclareMathOperator{\RE}{\operatorname{Re}}
+\DeclareMathOperator{\li}{\operatorname{li}}
+\DeclareMathOperator{\GL}{\operatorname{GL}}
+\DeclareMathOperator{\SL}{\operatorname{SL}}
+\DeclareMathOperator{\Char}{\operatorname{char}}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\ord{ord}
+
+%Оператор для образа
+\DeclareMathOperator{\Ima}{Im}
+
+%Делимость чисел
+\newcommand{\modn}[3]{#1 \equiv #2 \; (\bmod \; #3)}
+\newcommand{\nmodn}[3]{#1 \not\equiv #2 \; (\bmod \; #3)}
+
+%%Взятие в скобки, модули и норму
+\newcommand{\parfit}[1]{\left( #1 \right)}
+\newcommand{\modfit}[1]{\left| #1 \right|}
+\newcommand{\sqparfit}[1]{\left\{ #1 \right\}}
+\newcommand{\normfit}[1]{\left\| #1 \right\|}
+
+%%Функция для обозначения равномерной сходимости по множеству
+\newcommand{\uconv}[1]{\overset{#1}{\rightrightarrows}}
+\newcommand{\uconvm}[2]{\overset{#1}{\underset{#2}{\rightrightarrows}}}
+
+%% Функция для добавления круга сверху множества
+\newcommand{\Circ}[1]{\accentset{\circ}{#1}}
+
+%%Функция для обозначения нижнего и верхнего интегралов
+\def\upint{\mathchoice%
+	{\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	\int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+%%След матрицы
+\DeclareMathOperator*{\tr}{tr}
+
+\DeclareMathOperator*{\symdif}{\bigtriangleup}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+
+%% Переопределение функции хи, чтобы выглядела более приятно
+\makeatletter
+\@ifdefinable\@latex@chi{\let\@latex@chi\chi}
+\renewcommand*\chi{{\@latex@chi\smash[t]{\mathstrut}}} % want only bottom half of \mathstrut
+\makeatletter
+
+\setcounter{MaxMatrixCols}{20}
+
+\begin{document}
+\lhead{Действительный анализ}
+\chead{Дьяченко М.И.}
+\rhead{Лекция - 2}
+
+\section*{Мера на полукольце. Продолжение меры на мин. кольцо.}
+
+\begin{defn}
+	Пусть $S$ - полукольцо, заданная на $S$ функция $m \colon S \to [0,\infty)$ называется \uwave{мерой} в том и только в том случае, если: 
+	$$ 
+		\forall A, A_1, \dotsc, A_n \in S \colon A = \bigsqcup\limits_{i=1}^{n} A_i \Rightarrow m(A) = \sum\limits_{i=1}^{n} m(A_i)
+	$$
+\end{defn}
+\begin{defn}	
+	Пусть $S$ - полукольцо, заданная на $S$ функция $m \colon S \to [0,\infty)$ называется \uwave{$\sigma$-аддитивной мерой} в том и только в том случае, если: 
+	$$
+		\forall  A, A_1, \dotsc, A_n, \dotsc \in S \colon A = \bigsqcup\limits_{i=1}^{\infty} A_i \Rightarrow m(A) = \sum\limits_{i=1}^{\infty} m(A_i)
+	$$
+\end{defn}
+
+\begin{prop}
+	Пусть $S$ - полукольцо, $m$ - мера на $S$. Пусть $A_0, A_1, \dotsc, A_n \in S$ и $A_0 \subseteq \bigcup\limits_{i=1}^{n}A_i $, тогда:
+	$$
+		m(A_0) \leq \sum\limits_{i=1}^{n}m(A_i)
+	$$
+\end{prop}
+
+\begin{proof}
+	По лемме $2$ из лекции $1$, $\exists \, \{B_j\}_{j=1}^M \subseteq S \colon B_j$ - попарно непересекаются и выполнено:
+	$$
+		\forall i \in \{0,1,\dotsc n\}, \, \exists \, \Omega(i) \subseteq \{1, \dotsc, M\} \colon A_i =\bigsqcup\limits_{j \in \Omega(i)}B_j
+	$$ 
+	При этом $\bigcup\limits_{i=0}^{n} \Omega(i) = \{1,\dotsc,M\}$, так как $A_0 \subseteq \bigcup\limits_{i=1}^n A_i \Rightarrow \Omega(0) \subseteq \bigcup\limits_{i=1}^n \Omega(i)$ поскольку если бы это было не так, то нашелся бы элемент $B_k$, который лежал бы в представлении $A_0$, которая не покрывалась бы никаким $A_i$. Следовательно, получаем: $\bigcup\limits_{i=1}^n \Omega(i) = \{1,\dotsc,M\}$. Таким образом: $$
+		m(A_0) = \sum\limits_{j \in \Omega(0)} m(B_j) \leq \sum\limits_{j=1}^M m(B_j) \leq \sum\limits_{i=1}^n\sum\limits_{j\smallin \Omega(i)} m(B_j) = \sum\limits_{i=1}^n m(A_i)
+	$$
+\end{proof}
+\begin{rem}
+	В общем случае, нельзя распространить ситуацию на случай, когда $A_0$ покрыто счетным объединением $A_i$. В этом случае понадобится сигма-аддитивность.
+\end{rem}
+\begin{rem}
+	Считаем выполненным замечание в конце прошлой лекции про отсутствие лишних множеств.
+\end{rem}
+	
+\begin{prop}
+	Пусть $S$ - полукольцо, $m$ - мера на $S$. Пусть $A, A_1, \dotsc, A_n \in S$ и известно, что $\bigsqcup\limits_{i=1}^{n}A_i \subseteq A$, тогда:
+	$$
+		\sum\limits_{i=1}^{n}m(A_i) \leq m(A)
+	$$
+\end{prop}	
+
+\begin{proof}
+	По лемме $1$ из лекции $1$: 
+	$$
+		\exists \, A_{n+1}, \dotsc, A_l \in S \colon A = \bigsqcup\limits_{i=1}^{l}A_i \Rightarrow m(A) = \sum\limits_{i=1}^{l}m(A_i) \geq \sum\limits_{i=1}^{n} m(A_i)
+	$$
+\end{proof}
+
+\begin{corollary}
+	Пусть $S$ - полукольцо, $m$ - мера на $S$. Пусть $A, A_1, \dotsc, A_n, \dotsc \in S$ и $\bigsqcup\limits_{i=1}^{\infty}A_i \subseteq A$, тогда:
+	$$
+		\sum\limits_{i=1}^{\infty}m(A_i) \leq m(A)
+	$$
+\end{corollary}
+
+\begin{proof}
+	$\forall N, \, \bigsqcup\limits_{i=1}^N A_i \subseteq A \Rightarrow$ по утв. $2$ получим: $\sum\limits_{i=1}^N m(A_i) \leq m(A)$, переходим к пределу $N \to \infty$ и устанавливаем утверждение.
+\end{proof}
+\begin{rem}
+	Для сигма-аддитивности меры, нам не хватает всегда обратного неравенства.
+\end{rem}
+
+\newpage
+
+\section*{Классическая мера Лебега}
+Пусть $n \in \mathbb{N}$ и выполнено следующее:
+$$
+	[a,b] = \prod\limits_{j=1}^{n}[a_j,b_j] \subset \mathbb{R}^n, \quad S = \varnothing \sqcup \{\, \{\alpha,\beta\} = \prod\limits_{j=1}^{n}\{\alpha_j,\beta_j\} \subseteq [a,b] \,\}
+$$
+где $S$ это полукольцо. Определим функцию на всевозможных промежутках: 
+$$
+	m(\{\alpha,\beta\}) = m_n(\{\alpha,\beta\}) =  \prod\limits_{j=1}^n(\beta_j - \alpha_j)
+$$ 
+Неотрицательность функции $m$ - очевидна.
+
+\begin{theorem}
+	Заданная функция $m(\{\alpha,\beta\}) = m_n(\{\alpha,\beta\}) =  \prod\limits_{j=1}^n(\beta_j - \alpha_j)$ это мера на $S$. 
+\end{theorem}
+\begin{proof}
+	Индукцией по $\text{dim}(\mathbb{R}^n) = n$. Пусть $\{\alpha,\beta\} = \bigsqcup\limits_{k=1}^{r}\{\alpha(k),\beta(k)\} $. 
+	
+	\uline{База}: Если $n = 1$, то можно занумеровать (в силу конечности промежутков) промежутки так, чтобы: 
+	$$
+		\alpha = \alpha (1) \leq \beta(1) = \alpha(2) \leq \dotsc \leq \beta(r) = \beta 
+	$$
+	Поэтому:
+	$$
+		m_1(\{\alpha,\beta\}) = \beta - \alpha = \sum\limits_{k=1}^r (\beta(k) - \alpha(k)) = \sum\limits_{k=1}^{r} m_1(\{\alpha(k),\beta(k)\})
+	$$
+	
+	\uline{Шаг}: Пусть $n>1$ и утверждение доказано для меры $m_{n-1}$. Для множеств $F \subseteq \mathbb{R}^n$ определим сечение множества $F$ следующим образом: 
+	$$
+		E_{n,t}(F) = \{\, (x_1, \dotsc, x_{n-1}) \colon (x_1, \dotsc, x_{n-1}, t) \in F \,\}
+	$$
+	Это по сути просто сечение множества $F$. Заметим: 
+	$$
+		\forall \{\alpha,\beta\}, \, E_{n,t}(\{\alpha,\beta\})  = 
+		\begin{cases} 
+			\prod\limits_{j=1}^{n-1} \{\alpha_j, \beta_j\}, & t \in \{\alpha_n, \beta_n\};\\
+			\varnothing, & \text{иначе};
+		\end{cases}
+	$$ 
+	Тогда:
+	$$
+		\{\alpha,\beta\} = \bigsqcup\limits_{k=1}^{r}\{\alpha(k),\beta(k)\} \Rightarrow \forall t \in \{\alpha_n, \beta_n\}, \, E_{n,t}(\{\alpha,\beta\}) = \bigsqcup\limits_{k=1}^{r} E_{n,t}(\{\alpha(k),\beta(k)\})  
+	$$
+	Следовательно, рассматривая $n$-мерную функцию от интересующего промежутка, мы получим:
+	$$
+		m_n(\{\alpha,\beta\}) = \prod\limits_{j=1}^n (\beta_j - \alpha_j) = \int\limits_{\alpha_n}^{\beta_n} m_{n-1}\left( E_{n,t}(\{\alpha,\beta\}) \right)dt = 
+		\int\limits_{\alpha_n}^{\beta_n} \sum\limits_{k=1}^r m_{n-1}\left( E_{n,t}(\{\alpha(k),\beta(k)\}) \right)dt = 
+	$$
+	$$ 
+		= \sum\limits_{k=1}^r \int\limits_{\alpha_n}^{\beta_n} m_{n-1}\left( E_{n,t}(\{\alpha(k),\beta(k)\}) \right)dt = \sum\limits_{k=1}^r \int\limits_{\alpha_n(k)}^{\beta_n(k)}\prod\limits_{j=1}^{n-1} \left(\beta_j(k) - \alpha_j(k)\right)dt = 
+	$$
+	$$
+		= \sum\limits_{k=1}^r \prod\limits_{j=1}^{n-1}  \left( \beta_j(k) - \alpha_j(k) \right){\cdot}(\beta_n(k) - \alpha_n(k))= \sum\limits_{k=1}^r \prod\limits_{j=1}^{n}  \left( \beta_j(k) - \alpha_j(k) \right) = \sum\limits_{k=1}^r m_n\left(\{\alpha(k),\beta(k)\}\right) 
+	$$
+	Следовательно, $m$ - это мера. Также заметим, что интегрируемость по Риману следует из кусочно-постоянности подынтегральной функции.
+\end{proof}
+
+\begin{theorem}
+	Функция $m$ - $\sigma$-аддитвная мера на $S$.
+\end{theorem}
+\begin{proof}
+	Пусть верно, что: 
+	$$
+		\{\alpha, \beta\} = \displaystyle \bigsqcup\limits_{k = 1}^{\infty} \{\alpha(k), \beta(k)\}
+	$$ 
+	Предположим, что задано $\VE > 0$, тогда подберем $n$-мерный отрезок $[\alpha^\prime, \beta^\prime]$ такой, что: 
+	$$
+		[\alpha^\prime, \beta^\prime] \subset \{\alpha, \beta\} \colon m\left(\{\alpha,\beta\}\right) < m([\alpha^\prime, \beta^\prime]) + \dfrac{\VE}{2}
+	$$
+	Это можно сделать в силу определения меры $m$, если уменьшить все координаты немного, мера тоже уменьшиться не сильно. Кроме того, $\forall k$ подберем $n$-мерные интервалы $(\alpha^\prime(k), \beta^\prime(k))$ такие, что:
+	$$
+		\forall k \geq 1, \, (\alpha^\prime(k), \beta^\prime(k)) \supset \{\alpha(k), \beta(k)\} \colon m\left(\left(\alpha^\prime(k), \beta^\prime(k)\right)\right) < m\left(\{\alpha(k),\beta(k)\}\right) + \dfrac{\VE}{2^{k+1}}
+	$$
+	Тогда, отрезок: 
+	$$
+		[\alpha^\prime, \beta^\prime]\subseteq \{\alpha, \beta\} = \bigsqcup\limits_{k = 1}^{\infty}\{\alpha(k),\beta(k)\} \subseteq \bigcup\limits_{k = 1}^{\infty}\left(\alpha^\prime(k),\beta^\prime(k)\right)
+	$$ 
+	покрыт счетной системой интервалов, следовательно по лемме Гейне-Бореля будет верно следующее:
+	$$
+		\exists \, M \colon [\alpha^\prime, \beta^\prime] \subset \bigcup\limits_{k = 1}^{M}\left(\alpha^\prime(k),\beta^\prime(k)\right)
+	$$
+	По утверждению $1$, мы получаем, что:
+	$$
+		m\left([\alpha^\prime,\beta^\prime]\right) \leq \sum\limits_{k = 1}^{M}m\left(\left(\alpha^\prime(k),\beta^\prime(k)\right)\right) 
+	$$
+	Соединяя всё в одно, получим:
+	$$
+		m\left(\{\alpha,\beta\}\right) < m([\alpha^\prime, \beta^\prime]) + \dfrac{\VE}{2} \leq \sum\limits_{k = 1}^{M}m\left(\left(\alpha^\prime(k),\beta^\prime(k)\right)\right) + \dfrac{\VE}{2} < 
+	$$
+	$$
+		< \sum\limits_{k = 1}^{M}\left(m\left(\{\alpha(k),\beta(k)\}\right) + \dfrac{\VE}{2^{k+1}}\right) + \dfrac{\VE}{2} < \VE + \sum\limits_{k = 1}^{\infty}m\left(\{\alpha(k),\beta(k)\}\right) 
+	$$
+	Поскольку $\VE > 0$ - произвольное, то мы получаем, что:
+	$$
+		m\left(\{\alpha,\beta\}\right) \leq \sum\limits_{k = 1}^{\infty}m\left(\{\alpha(k),\beta(k)\}\right) 
+	$$
+	Обратное неравенство следует напрямую из следствия $1$.
+\end{proof}
+
+\newpage
+\section*{Продолжение меры на минимальное кольцо}
+\begin{defn}
+	Пусть $S$ - полукольцо, $m$ - мера на $S$ и $R(S)$ - минимальное кольцо, содержащее $S$. Тогда, если множество $A \in R(S)$ и $A = \bigsqcup\limits_{i = 1}^{n}B_i, \, B_i \in S$, то положим:
+	$$
+		\nu(A) = \sum\limits_{i = 1}^{n}m(B_i)
+	$$
+	такая функция называeтся \uwave{продолженной мерой} на $R(S)$ или \uwave{продолжением меры} $m$ на $R(S)$.
+\end{defn}
+\begin{rem}
+	Неотрицательность функции немедленно следует из неотрицательности $m$. Необходимо проверить, что функция $\nu$ корректно определена и не зависит от выбора множеств.
+\end{rem}
+\begin{prop}
+	Функция $\nu$ - корректно определена.
+\end{prop}
+\begin{proof}
+	Пусть $\bigsqcup\limits_{i = 1}^{n}B_i = A = \bigsqcup\limits_{j = 1}^{m} C_j$, где все $B_i, C_j \in S$. По сути нам надо проверить, что определение функции не будет зависеть от способа представления. Определим множества $D_{i,j} = B_i \cap C_j, \, i = \overline{1,n}, \, j = \overline{1,m}$, они все по определению полукольца принадлежат множеству $S$. Мы знаем, что: 
+	$$
+		\forall i, \, B_i = B_i \cap A = B_i \cap \bigsqcup\limits_{j = 1}^{m} C_j  = \bigsqcup\limits_{j = 1}^m D_{i,j}
+	$$
+	Аналогично:
+	$$
+		\forall j, \, C_j = C_j \cap A = C_j \cap \bigsqcup\limits_{i = 1}^{n} B_i  = \bigsqcup\limits_{i = 1}^n D_{i,j}
+	$$
+	Тогда, мы получим следующее:
+	$$
+		\sum\limits_{i = 1}^{n}m(B_i) = \sum\limits_{i = 1}^{n}\sum\limits_{j = 1}^m m(D_{i,j}) = \sum\limits_{j = 1}^{m}\sum\limits_{i = 1}^n m(D_{i,j}) = \sum\limits_{j = 1}^{m}m(C_j)
+	$$
+	Следовательно, функция $\nu$ определена корректно.
+\end{proof}
+\begin{theorem}
+	Функция $\nu$ - это мера на $R(S)$.
+\end{theorem}
+\begin{proof}
+	Пусть есть некое множество: $A = \bigsqcup\limits_{k = 1}^{r}A_k$, где $A_k \in R(S)$, тогда:
+	$$
+		\forall k, \, A_k = \bigsqcup\limits_{i = 1}^{i_k} B_{k,i}, \, B_{k,i} \in S
+	$$
+	по определению $R(S)$, отсюда будет вытекать следующее:
+	$$
+		A = \bigsqcup\limits_{k = 1}^{r} \bigsqcup\limits_{i = 1}^{i_k}B_{k,i} \Rightarrow \nu(A) = \sum\limits_{k = 1}^{r}\sum\limits_{i = 1}^{i_k}m(B_{k,i}) = \sum\limits_{k = 1}^r \nu(A_k)
+	$$
+	где равенства справедливы в силу корректности и определения функции $\nu$.
+\end{proof}
+\newpage
+\begin{theorem}
+	Если исходная мера $m$ была $\sigma$-аддитивной на $S$, то мера $\nu$ будет $\sigma$-аддитивной на $R(S)$.
+\end{theorem}
+\begin{rem}
+	Таким образом, продолжение $\sigma$-аддитивной меры также является  $\sigma$-аддитивной мерой. 
+\end{rem}
+\begin{proof}
+	Пусть $A, A_1, \dotsc, A_n, \dotsc \in R(S)$ и верно, что $A = \bigsqcup\limits_{n = 1}^{\infty}A_n$. Тогда, по определению $R(S)$:
+	$$
+		A = \bigsqcup\limits_{j = 1}^m B_j, \, B_j \in S,\; \forall n, \, A_n = \bigsqcup\limits_{l = 1}^{l_n}C_{n,l},\, C_{n,l} \in S
+	$$
+	Рассмотрим следующий набор множеств: $\forall j, n, l, \, D_{j,n,l} = B_j \cap C_{n,l} \in S$, где принадлежность следует из того, что $S$ - полукольцо. В виду имеющегося равенства для $A$, имеем:
+	$$
+		A = \bigsqcup\limits_{n = 1}^{\infty}A_n = \bigsqcup\limits_{n = 1}^{\infty}\bigsqcup\limits_{l = 1}^{l_n}C_{n,l} = \bigsqcup\limits_{j = 1}^m B_j \Rightarrow \forall j, \, B_j = \bigsqcup\limits_{n = 1}^{\infty}\bigsqcup\limits_{l = 1}^{l_n} D_{j,n,l}, \; \forall n,l, \, C_{n,l} = \bigsqcup\limits_{j = 1}^m D_{j,n,l}
+	$$
+	Тогда, по определению $\nu$ и в силу $\sigma$-аддитивности $m$ на $S$ получим:
+	$$
+		\nu(A) = \sum\limits_{j = 1}^{m}m(B_j) = \sum\limits_{j = 1}^m \sum\limits_{n = 1}^{\infty}\sum\limits_{l = 1}^{l_n}m(D_{j,n,l})
+	$$
+	Поскольку слагаемые неотрицательны, то кратный ряд можно переставлять и сумма от этого не изменится, следовательно мы получим:
+	$$
+		\sum\limits_{j = 1}^m \sum\limits_{n = 1}^{\infty}\sum\limits_{l = 1}^{l_n}m(D_{j,n,l}) = \sum\limits_{n = 1}^{\infty} \sum\limits_{l = 1}^{l_n}\sum\limits_{j = 1}^m m(D_{j,n,l}) =  \sum\limits_{n = 1}^{\infty} \sum\limits_{l = 1}^{l_n} m(C_{n,l}) = \sum\limits_{n = 1}^{\infty} \nu(A_n)
+	$$
+	Откуда получаем требуемое.
+\end{proof}
+\begin{rem}
+	Если множество $A \in S$, то $\nu(A) = m(A)$. Это вытекает из корректности меры $\nu$.
+\end{rem}
+\begin{prop}
+	Пусть $R$ - кольцо и $\nu$ - $\sigma$-аддитивная мера на $R$, тогда, если $A, A_1, \dotsc, A_n, \dotsc \in R$ и кроме того множество $A \subseteq \bigcup\limits_{i = 1}^{\infty}A_i$, то будет верно:
+	$$
+		\nu(A) \leq \sum\limits_{i = 1}^{\infty}\nu(A_i)
+	$$
+	где справа допускается бесконечное значение.
+\end{prop}
+\begin{proof}
+	Введем множества: 
+	$$
+		B_1 = A_1 \cap A, \quad \forall i > 1, \, B_i = \left(A_i \setminus \bigcup\limits_{j = 1}^{i - 1}A_j\right) \cap A
+	$$
+	Тогда $B_i \in R$, поскольку $R$ - кольцо и все операции выдерживает. Поскольку $B_i \subset A_i$, то будет верно: 
+	$$
+		\forall i, \, \nu(A_i) = \nu(B_i) + \nu(A_i \setminus B_i), \quad \nu(A_i \setminus B_i) \geq 0 \Rightarrow \forall i, \,  \nu(A_i) = \nu(B_i) + \nu(A_i \setminus B_i) \geq \nu(B_i)
+	$$ 
+	Кроме того, $A = \bigsqcup\limits_{i = 1}^{\infty}B_i$ потому что мы выбросили все лишние точки, которые нам мешали с точки зрения наличия дизъюнктности, а затем ещё и пересекали с $A$ $\Rightarrow$ по $\sigma$-аддитивности получим:
+	$$
+		\nu(A) = \sum\limits_{i = 1}^{\infty}\nu(B_i) \leq \sum\limits_{i = 1}^{\infty}\nu(A_i)
+	$$
+\end{proof}
+\newpage
+\section*{Мера Лебега и Жордана}
+Пусть $S$ - полукольцо с единицей $E$, $m$ - $\sigma$-аддитивная мера на $S$, $R(S)$ - минимальная алгебра, содержащая $S$, $\nu$ - продолжение $m$ на $R(S)$ (поскольку $R(S)$ это алгебра $\Rightarrow R(S)$ это кольцо).
+\begin{rem}
+	Если мера не обладает $\sigma$-аддитивностью, то возможности её продолжения исчерпываются $R(S)$ и дальше обсуждать особенно нечего. Но популярные меры в основном обладают $\sigma$-аддитивностью и поэтому можно будет распространить меру на более широкий класс.
+\end{rem}
+
+\begin{defn}
+	В рамках условий выше, если $A \subseteq E$, то определим \uwave{внешнюю меру Лебега}:
+	$$
+		\mu^*(A) = \inf\limits_{\MI(A)}\sum\limits_{n = 1}^{\infty}m(A_n) ,\, \MI(A) = \left\{A_1, \dotsc, A_n, \dotsc \in S \colon A \subseteq \bigcup\limits_{n = 1}^{\infty}A_n \right\} 
+	$$
+\end{defn}
+\begin{defn}
+	В рамках условий выше, если $A \subseteq E$, то определим \uwave{внешнюю меру Жордана}:
+	$$
+	\mu_J^*(A) = \inf\limits_{\MI(A)}\sum\limits_{i = 1}^{n}m(A_i) ,\, \MI(A) = \left\{A_1, \dotsc, A_n \in S \colon A \subseteq \bigcup\limits_{i = 1}^{n}A_i \right\} 
+	$$
+\end{defn}
+\begin{rem}
+	Заметим, что:
+	$$
+		\forall A \subseteq E, \, \mu^*(A) \leq \mu_J^*(A) \leq m(E)
+	$$
+	где последнее неравенство верно в силу того, что в обеих метриках берется нижняя грань множеств, покрывающих $A$. Первое неравенство верно в силу того, что нижняя грань в мере Лебега берется по большему множеству $\Rightarrow$ оно точно не может быть больше, чем нижняя грань по меньшему.
+\end{rem}
+\begin{prop}
+	Если $A \in R(S)$, то $\mu^*(A) = \mu_J^*(A) = \nu(A)$.
+\end{prop}
+\begin{proof}
+	Проверим для Лебега, для Жордана - аналогично. С одной стороны, так как $A \in R(S)$, то 
+	$$
+		A = \bigsqcup\limits_{i = 1}^K A_i, \, A_i \in S \Rightarrow \mu^*(A) \leq \sum\limits_{i = 1}^{K} m(A_i) = \nu(A)
+	$$
+	Предположим, что $A \subseteq \bigcup\limits_{i = 1}^{\infty}A_i$, где все $A_i \in S \subseteq R(S)$, тогда по утверждению $4$:
+	$$
+		\nu(A) \leq \sum\limits_{i = 1}^{\infty}\nu(A_i) = \sum\limits_{i = 1}^{\infty}m(A_i)
+	$$
+	где последнее равенство верно в силу того, что все $A_i \in S$. Переходя справа к нижней грани, мы получим, что $\nu(A) \leq \mu^*(A)$.
+\end{proof}
+
+\begin{prop}
+	Величины внешних мер Лебега и Жордана не изменятся, если:
+	$$
+		\MI(A) = \left\{A_1, \dotsc, A_n, \dotsc \in S \colon A \subseteq \bigsqcup\limits_{n = 1}^{\infty}A_n \right\} 
+	$$
+	для меры Лебега и 
+	$$
+		\MI(A) = \left\{A_1, \dotsc, A_n \in S \colon A \subseteq \bigsqcup\limits_{i = 1}^{n}A_i \right\} 
+	$$
+	для меры Жордана.
+\end{prop}
+\begin{proof}
+	Докажем для внешней меры Лебега (доказательство для меры Жордана почти идентично). Пусть $A \subseteq E$ и определим:
+	$$
+		\overline{\mu}^*(A) = \inf\limits_{\MI(A)}\sum\limits_{n = 1}^{\infty}m(A_n), \, \MI(A) = \left\{A_1, \dotsc, A_n, \dotsc \in S \colon A \subseteq \bigsqcup\limits_{n = 1}^{\infty}A_n \right\} 
+	$$
+	Очевидно, что $\mu^*(A) \leq \overline{\mu}^*(A)$, просто потому, что покрытие в первом случае более богатое. Предположим, что $A \subset \bigcup\limits_{i = 1}^{\infty}A_i, \, A_i \in S \Rightarrow A_i \in R(S)$. Тогда определим множества:
+	$$
+		B_1 = A_1, B_2 = A_2 \setminus A_1, \dotsc, B_n = A_n \setminus \bigcup\limits_{j = 1}^{n-1}A_j, \dotsc \Rightarrow \forall i,\, B_i \in R(S) \Rightarrow \forall i,\, B_i = \bigsqcup\limits_{j = 1}^{j_i}C_{i,j}, \, C_{i,j} \in S
+	$$
+	Кроме того, будет верно: 
+	$$
+		\bigcup\limits_{i = 1}^{\infty}A_i = \bigsqcup\limits_{i = 1}^{\infty} B_i = \bigsqcup\limits_{i = 1}^{\infty}\bigsqcup\limits_{j = 1}^{j_i}C_{i,j} 
+	$$
+	При этом, поскольку $\forall i, \, B_i \subseteq A_i$, то (см. утверждение $4$) будет верно следующее:
+	$$
+		\sum\limits_{i = 1}^{\infty}m(A_i) = \sum\limits_{i = 1}^{\infty}\nu(A_i) \geq \sum\limits_{i = 1}^{\infty}\nu(B_i) = \sum\limits_{i = 1}^{\infty}\sum\limits_{j = 1}^{j_i}m(C_{i,j})
+	$$
+	Следовательно, поскольку выполнено:
+	$$
+		A \subseteq \bigcup\limits_{n = 1}^{\infty}A_n = \bigsqcup\limits_{n = 1}^{\infty} B_n = \bigsqcup\limits_{n = 1}^{\infty}\bigsqcup\limits_{j = 1}^{j_n}C_{n,j} \wedge \sum\limits_{n = 1}^{\infty}\sum\limits_{j = 1}^{j_n}m(C_{n,j}) \leq \sum\limits_{n = 1}^{\infty}m(A_n)
+	$$
+	то переходя к точной нижней грани, мы получим, что $\overline{\mu}^*(A) \leq \mu^*(A)$.
+\end{proof}
+
+Приведём здесь пару определений из задачника (Ульянов, Бахвалов и другие).
+\begin{defn}
+	Мера $m$ на полукольце $S$ с единицей $E$ называется \uwave{конечной}, если $m(E) < \infty$.
+\end{defn}
+
+\begin{defn}
+	Мера $m$ на полукольце $S$ называется \uwave{$\sigma$-конечной}, если существует такое множество $X$, что $A \subseteq X$ для каждого $A \in S$ (вообще говоря, $X \not\in S$, то есть $X$ не единица $S$), причём $X$ может быть представлено в виде:
+	$$
+		X = \bigsqcup\limits_{n = 1}^{\infty}A_n
+	$$
+	где $A_n \in S$ и $m(A_n) < \infty$ при всех $n$.
+\end{defn}
+\begin{rem}
+	Конечная мера является частным случаем $\sigma$-конечной.
+\end{rem}
+
+\end{document}

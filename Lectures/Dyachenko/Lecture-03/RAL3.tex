@@ -1,0 +1,551 @@
+\documentclass[12pt]{article}
+\usepackage[left=1cm, right=1cm, top=2cm,bottom=1.5cm]{geometry} 
+
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools,xcolor,accents}
+\usepackage{blkarray}
+
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{graphicx}
+\usepackage[figurename=Рис.]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+%%Наименование папки откуда забирать изображения
+\graphicspath{ {./images/} }
+
+%%Изменение формата для ввода доказательства
+\renewcommand{\proofname}{$\square$  \nopunct}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%%Изменение отступа на таблицах
+\addto\captionsrussian{%
+	\renewcommand{\proofname}{$\square$ \nopunct}%
+}
+%% Римские цифры
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%% Для удобства записи
+\newcommand{\MR}{\mathbb{R}}
+\newcommand{\MC}{\mathbb{C}}
+\newcommand{\MQ}{\mathbb{Q}}
+\newcommand{\MN}{\mathbb{N}}
+\newcommand{\MZ}{\mathbb{Z}}
+\newcommand{\MTB}{\mathbb{T}}
+\newcommand{\MTI}{\mathbb{I}}
+\newcommand{\MI}{\mathrm{I}}
+\newcommand{\MCI}{\mathcal{I}}
+\newcommand{\MCR}{\mathcal{R}}
+\newcommand{\MJ}{\mathrm{J}}
+\newcommand{\MH}{\mathrm{H}}
+\newcommand{\MT}{\mathrm{T}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MV}{\mathcal{V}}
+\newcommand{\MA}{\mathcal{A}}
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MF}{\mathcal{F}}
+\newcommand{\ME}{\mathcal{E}}
+\newcommand{\MW}{\mathcal{W}}
+\newcommand{\ML}{\mathcal{L}}
+\newcommand{\MM}{\mathcal{M}}
+\newcommand{\MP}{\mathcal{P}}
+\newcommand{\VN}{\varnothing}
+\newcommand{\VE}{\varepsilon}
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dz}{\, dz}
+\newcommand{\dd}{\, d}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}{Опр:}
+\newtheorem{rem}{Rm:}
+\newtheorem{prop}{Утв.}
+\newtheorem{exrc}{Упр.}
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}
+
+\newenvironment{cusdefn}[1]
+{\renewcommand\thedefn{#1}\defn}
+{\enddefn}
+
+\DeclareRobustCommand{\divby}{%
+	\mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\DeclareRobustCommand{\ndivby}{\mkern-1mu\not\mathrel{\mkern4.5mu\divby}\mkern1mu}
+
+
+%Короткий минус
+\DeclareMathSymbol{\SMN}{\mathbin}{AMSa}{"39}
+%Длинная шапка
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%Функция знака
+\DeclareMathOperator{\sgn}{sgn}
+
+%Функция ранга
+\DeclareMathOperator{\rk}{\text{rk}}
+\DeclareMathOperator{\diam}{\text{diam}}
+
+
+%Обозначение константы
+\DeclareMathOperator{\const}{\text{const}}
+
+\DeclareMathOperator{\codim}{\text{codim}}
+
+\DeclareMathOperator*{\dsum}{\displaystyle\sum}
+\newcommand{\ddsum}[2]{\displaystyle\sum\limits_{#1}^{#2}}
+\newcommand{\ddssum}[2]{\displaystyle\smashoperator{\sum\limits_{#1}^{#2}}}
+\newcommand{\ddlsum}[2]{\displaystyle\smashoperator[l]{\sum\limits_{#1}^{#2}}}
+\newcommand{\ddrsum}[2]{\displaystyle\smashoperator[r]{\sum\limits_{#1}^{#2}}}
+
+%Интеграл в большом формате
+\DeclareMathOperator{\dint}{\displaystyle\int}
+\newcommand{\ddint}[2]{\displaystyle\int\limits_{#1}^{#2}}
+\newcommand{\ssum}[1]{\displaystyle \sum\limits_{n=1}^{\infty}{#1}_n}
+
+\newcommand{\smallerrel}[1]{\mathrel{\mathpalette\smallerrelaux{#1}}}
+\newcommand{\smallerrelaux}[2]{\raisebox{.1ex}{\scalebox{.75}{$#1#2$}}}
+
+\newcommand{\smallin}{\smallerrel{\in}}
+\newcommand{\smallnotin}{\smallerrel{\notin}}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.25}{\ensuremath{\cap}}}}%
+\newcommand*{\medcup}{\mathbin{\scalebox{1.25}{\ensuremath{\cup}}}}%
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3.5}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother
+
+%Промежуточное значение для sup\inf, поскольку они имеют разную высоту
+\newcommand{\newsup}{\mathop{\smash{\mathrm{sup}}}}
+\newcommand{\newinf}{\mathop{\mathrm{inf}\vphantom{\mathrm{sup}}}}
+
+%Скалярное произведение
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle }
+\newcommand{\linsp}[1]{\left\langle #1 \right\rangle }
+\newcommand{\linmer}[2]{\left\langle #1 \vert #2\right\rangle }
+
+%Подпись символов снизу
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+%%Шапка для букв сверху
+\newcommand{\wte}[1]{\widetilde{#1}}
+\newcommand{\wht}[1]{\widehat{#1}}
+\newcommand{\ovl}[1]{\overline{#1}}
+
+
+%%Трансформация Фурье
+\newcommand{\fourt}[1]{\mathcal{F}\left(#1\right)}
+\newcommand{\ifourt}[1]{\mathcal{F}^{-1}\left(#1\right)}
+
+%%Символ вектора
+\newcommand{\vecm}[1]{\overrightarrow{#1\,}}
+
+%%Пространстов матриц
+\newcommand{\matsq}[1]{\operatorname{Mat}_{#1}}
+\newcommand{\mat}[2]{\operatorname{Mat}_{#1, #2}}
+
+%Оператор для действ и мнимых чисел
+\DeclareMathOperator{\IM}{\operatorname{Im}}
+\DeclareMathOperator{\RE}{\operatorname{Re}}
+\DeclareMathOperator{\li}{\operatorname{li}}
+\DeclareMathOperator{\GL}{\operatorname{GL}}
+\DeclareMathOperator{\SL}{\operatorname{SL}}
+\DeclareMathOperator{\Char}{\operatorname{char}}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\ord{ord}
+
+%Оператор для образа
+\DeclareMathOperator{\Ima}{Im}
+
+%Делимость чисел
+\newcommand{\modn}[3]{#1 \equiv #2 \; (\bmod \; #3)}
+\newcommand{\nmodn}[3]{#1 \not\equiv #2 \; (\bmod \; #3)}
+
+%%Взятие в скобки, модули и норму
+\newcommand{\parfit}[1]{\left( #1 \right)}
+\newcommand{\modfit}[1]{\left| #1 \right|}
+\newcommand{\sqparfit}[1]{\left\{ #1 \right\}}
+\newcommand{\normfit}[1]{\left\| #1 \right\|}
+
+%%Функция для обозначения равномерной сходимости по множеству
+\newcommand{\uconv}[1]{\overset{#1}{\rightrightarrows}}
+\newcommand{\uconvm}[2]{\overset{#1}{\underset{#2}{\rightrightarrows}}}
+
+%% Функция для добавления круга сверху множества
+\newcommand{\Circ}[1]{\accentset{\circ}{#1}}
+
+%%Функция для обозначения нижнего и верхнего интегралов
+\def\upint{\mathchoice%
+	{\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	\int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+%%След матрицы
+\DeclareMathOperator*{\tr}{tr}
+
+\DeclareMathOperator*{\symdif}{\bigtriangleup}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+
+%% Переопределение функции хи, чтобы выглядела более приятно
+\makeatletter
+\@ifdefinable\@latex@chi{\let\@latex@chi\chi}
+\renewcommand*\chi{{\@latex@chi\smash[t]{\mathstrut}}} % want only bottom half of \mathstrut
+\makeatletter
+
+\setcounter{MaxMatrixCols}{20}
+
+\begin{document}
+\lhead{Действительный анализ}
+\chead{Дьяченко М.И.}
+\rhead{Лекция - 3}
+\section*{Мера Лебега и Жордана}
+Пусть $S$ - полукольцо с единицей $E$, $m$ - $\sigma$-аддитивная мера на $S$, $\MCR(S)$ - минимальная алгебра, содержащая $S$, $\nu$ - продолжение $m$ на $\MCR(S)$ (поскольку $\MCR(S)$ это алгебра $\Rightarrow \MCR(S)$ это кольцо).
+
+\begin{defn}
+	В рамках условий выше, если $A \subseteq E$, то определим \uwave{внешнюю меру Лебега}:
+	$$
+	\mu^*(A) = \inf\limits_{\MI(A)}\sum\limits_{n = 1}^{\infty}m(A_n) ,\, \MI(A) = \left\{A_1, \dotsc, A_n, \dotsc \in S \colon A \subseteq \bigcup\limits_{n = 1}^{\infty}A_n \right\} 
+	$$
+\end{defn}
+\begin{defn}
+	В рамках условий выше, если $A \subseteq E$, то определим \uwave{внешнюю меру Жордана}:
+	$$
+	\mu_J^*(A) = \inf\limits_{\MI(A)}\sum\limits_{i = 1}^{n}m(A_i) ,\, \MI(A) = \left\{A_1, \dotsc, A_n \in S \colon A \subseteq \bigcup\limits_{i = 1}^{n}A_i \right\} 
+	$$
+\end{defn}
+\begin{theorem}
+	Если $A, A_1, \dotsc, A_n, \dotsc \subseteq E$ и кроме того $A \subseteq \bigcup\limits_{n = 1}^{\infty}A_n$, то верно:
+	$$
+		\mu^*(A) \leq \sum\limits_{n = 1}^{\infty} \mu^*(A_n)
+	$$
+	справа допускается бесконечное значение. Для внешней меры Жордана, аналогичное неравенство справедливо для случая, когда $A \subseteq \bigcup\limits_{k = 1}^{n}A_k$.
+\end{theorem}
+\begin{proof}
+	Установим неравенство для внешней меры Лебега. Если сумма справа равна $\infty$, то утверждение очевидно. Пусть сумма конечна и задано некоторое $\VE > 0$, тогда по определению:
+	$$
+		\forall n, \, \exists \, \{C_{n,i}\}_{i = 1}^{\infty} \subset S \colon A_n \subseteq \bigcup\limits_{i = 1}^{\infty} C_{n,i}, \, \sum\limits_{i = 1}^{\infty}m(C_{n,i}) < \mu^*(A_n) + \dfrac{\VE}{2^n}
+	$$
+	Тогда будет верно: 
+	$$
+		A \subseteq \bigcup\limits_{n = 1}^{\infty}A_n \subseteq \bigcup\limits_{n = 1}^{\infty}\bigcup\limits_{i = 1}^{\infty} C_{n,i} \Rightarrow \mu^*(A) \leq \sum\limits_{n = 1}^{\infty} \sum\limits_{i = 1}^{\infty}m(C_{n,i}) < \sum\limits_{n = 1}^{\infty} \left(\mu^*(A_n) + \dfrac{\VE}{2^n}\right) = \VE + \sum\limits_{n = 1}^{\infty} \mu^*(A_n)
+	$$ 
+	Так как $\VE > 0$ - произвольное, то отсюда вытекает утверждение теоремы.
+\end{proof}
+\begin{corollary}
+	Если $A, B \subseteq E$, то справедлива следующаяя оценка:
+	$$
+		|\mu^*(A) - \mu^*(B)| \leq \mu^*(A\Delta B)
+	$$
+	Для $\mu^*_J$ - аналогично.
+\end{corollary}
+\begin{proof}
+	Очевидно, что $A \subseteq (A \Delta B) \cup B \Rightarrow $ по предыдущей теореме будет верно:
+	$$
+		\mu^*(A) \leq \mu^*(A \Delta B) + \mu^*(B) \Leftrightarrow \mu^*(A) - \mu^*(B) \leq \mu^*(A\Delta B)
+	$$
+	Поскольку $A$ и $B$ равноправны, то тоже самое можно было бы написать в варианте $B \subseteq (A \Delta B) \cup A$: 
+	$$
+		\mu^*(B) \leq \mu^*(A \Delta B) + \mu^*(A) \Leftrightarrow \mu^*(A) - \mu^*(B) \geq -\mu^*(A\Delta B)
+	$$
+	Отсюда следует утверждение следствия.
+\end{proof}
+\newpage
+\section*{Продолжение мер по Лебегу и Жордану}
+\begin{defn}
+	Пусть $A \subseteq E$. Тогда скажем, что $A \in \MM$ или $A$ \uwave{измеримо по Лебегу} в том и только в том случае, когда:
+	$$
+		\forall \VE > 0, \, \exists \, A_\VE \in \MCR(S) \colon \mu^*(A \Delta A_\VE) < \VE
+	$$
+\end{defn}
+
+\begin{defn}
+	Пусть $A \subseteq E$. Тогда скажем, что $A \in \MM_J$ или $A$ \uwave{измеримо по Жордану} в том и только в том случае, когда:
+	$$
+		\forall \VE > 0, \, \exists \, A_\VE \in \MCR(S) \colon \mu_J^*(A \Delta A_\VE) < \VE
+	$$
+\end{defn}
+\begin{rem}
+	Очевидно, что если $A \in \MCR(S) \Rightarrow A \in \MM, \, A \in \MM_J$, поскольку оно само себя и аппроксимирует. Кроме того, так как:
+	$\forall B, \, \mu^*(B) \leq \mu^*_J(B)$, то $\MM_J \subseteq \MM$.
+\end{rem}
+
+\begin{theorem}
+	$\MM$ - алгебра ($\MM_J$ - алгебра).
+\end{theorem}
+\begin{proof}
+	Докажем теорему для $\MM$, поскольку для $\MM_J$ оно полностью аналогичное. Пусть $A,B \in \MM$. Тогда:
+	$$
+		\forall \VE > 0,\,\exists \, A_\VE, B_\VE \in \MCR(S) \colon \mu^*(A \Delta A_\VE) < \dfrac{\VE}{2} \wedge \mu^*(B \Delta B_\VE) < \dfrac{\VE}{2}
+	$$
+	Имеет место следующее включение: 
+	$$
+		(A \cap B) \Delta (A_\VE \cap B_\VE) \subseteq (A \Delta A_\VE) \cup (B \Delta B_\VE	)
+	$$
+	где $(A_\VE \cap B_\VE) \in \MCR(S)$ поскольку $\MCR(S)$ - кольцо и выдерживает такие операции. Включение верно так, как если $a \in (A \cap B) \Delta (A_\VE \cap B_\VE)$, то точка либо принадлежит одновременно и $A$, и $B$, и не принадлежит хотя бы одному из $A_\VE$ или $B_\VE$, либо $a \in (A_\VE \cap B_\VE)$ и не принадлежат хотя бы одному из $A$ или $B$. Аналогично, рассмотрим симметрическую разность:
+	$$
+		(A \Delta B) \Delta (A_\VE \Delta B_\VE) \subseteq (A \Delta A_\VE) \cup (B \Delta B_\VE	)
+	$$
+	где $(A_\VE \Delta B_\VE) \in \MCR(S)$ поскольку $\MCR(S)$ - кольцо и выдерживает такие операции. Включение верно так, как если $a \in (A \Delta B) \Delta (A_\VE \Delta B_\VE)$, то точка либо принадлежит ровно одному из четерых составляющих множеств: $A, B, A_\VE, B_\VE$, либо ровно трем множествам, например, если $A \cap B \cap A_\VE \neq \VN$. И тогда точка будет точно принадлежать множеству $(A \Delta A_\VE) \cup (B \Delta B_\VE)$. Следовательно по теореме $1$:
+	$$
+		\mu^*((A \cap B) \Delta (A_\VE \cap B_\VE)) \leq \mu^*(A \Delta A_\VE ) + \mu^*(B \Delta B_\VE) < \VE
+	$$
+	Аналогично, получаем:
+	$$
+		\mu^*((A \Delta B) \Delta (A_\VE \Delta B_\VE)) \leq \mu^*(A \Delta A_\VE ) + \mu^*(B \Delta B_\VE) < \VE
+	$$
+	Отсюда $\MM$ - кольцо, а поскольку $E \in \MM$, так как $\MCR(S)$ - минимальная алгебра, $E \in \MCR(S)$ и единицей можно аппроксимировать саму себя $\Rightarrow \MM$ - алгебра. Аналогично для меры Жордана.
+\end{proof}
+\begin{theorem}
+	$\mu^*$ - мера на $\MM$ ($\mu^*_J$ - мера на $\MM_J$).
+\end{theorem}
+\begin{proof}
+	Пусть $A = B \bigsqcup C, \, B,C \in \MM \Rightarrow A \in \MM$ (поскольку $\MM$ это алгебра). Тогда по теореме $1$:
+	$$
+		\mu^*(A) \leq \mu^*(B) + \mu^*(C)
+	$$
+	Пусть $\VE > 0$, поскольку $B, C \in \MM$, то по определению:
+	$$
+		\exists \, B_\VE, C_\VE \in \MCR(S) \colon \mu^*(B \Delta B_\VE) < \dfrac{\VE}{6}, \, \mu^*(C \Delta C_\VE) < \dfrac{\VE}{6} 
+	$$
+	Заметим, что $A \Delta (B_\VE \cup C_\VE) \in \MCR(S)$ и выполнено:
+	$$
+		A \Delta (B_\VE \cup C_\VE) \subseteq (B \Delta B_\VE) \cup (C \Delta C_\VE)
+	$$ 
+	поскольку $A = B \bigsqcup C$. Немного сложнее понять про $B_\VE \cap C_\VE \in \MCR(S)$:
+	$$
+		B_\VE \cap C_\VE \subseteq (B \Delta B_\VE) \cup (C \Delta C_\VE)
+	$$
+	Если $a \in B_\VE \cap C_\VE$, то эта точка не могла бы быть одновременно и в $B$, и в $C$, иначе они бы пересекались, но $B \cap C = \VN$. Тогда, если $a \in B \cap B_\VE$, то $a \in C \Delta C_\VE$ и аналогично для $a \in C \cap C_\VE$. Отсюда, по теореме $1$ снова получаем:
+	$$
+		\mu^*(A \Delta (B_\VE \cup C_\VE)) \leq \mu^*(B \Delta B_\VE) + \mu^*(C \Delta C_\VE) < \dfrac{\VE}{3}
+	$$
+	$$
+		\mu^*(B_\VE \cap C_\VE) = \nu(B_\VE \cap C_\VE) \leq \mu^*(B \Delta B_\VE) + \mu^*(C \Delta C_\VE) < \dfrac{\VE}{3} 
+	$$
+	где равенство слева верно в силу того, что $B_\VE \cap C_\VE \in \MCR(S)$ и утверждения $5$ лекции $2$. Используя следствие $1$, мы получим:
+	$$
+		\mu^*(A) \geq \mu^*(B_\VE \cup C_\VE) - \mu^*(A \Delta (B_\VE \cup C_\VE)) = \nu(B_\VE \cup C_\VE) - \mu^*(A \Delta (B_\VE \cup C_\VE)) \geq \nu(B_\VE \cup C_\VE) - \dfrac{\VE}{3}
+	$$
+	Поскольку $B_\VE \cup C_\VE = B_\VE \sqcup (C_\VE \setminus (B_\VE \cap C_\VE))$, то можно видеть, что:
+	$$
+		\nu(B_\VE \cup C_\VE) = \nu(B_\VE) + \nu(C_\VE \setminus(B_\VE \cap C_\VE)) = \nu(B_\VE) + \nu(C_\VE) - \nu(B_\VE \cap C_\VE)
+	$$
+	где равенство верно по определению меры $\nu$ на $\MCR(S)$. Тогда:
+	$$
+		\mu^*(A) \geq \nu(B_\VE \cup C_\VE) - \dfrac{\VE}{3} = \nu(B_\VE) + \nu(C_\VE) - \nu(B_\VE \cap C_\VE) - \dfrac{\VE}{3} \geq \nu(B_\VE) + \nu(C_\VE) - \dfrac{2\VE}{3}
+	$$	
+	Вернемся обратно к внешней мере и воспользуемся следствием $1$:
+	$$
+		\mu^*(A) \geq \nu(B_\VE) + \nu(C_\VE) - \dfrac{2\VE}{3} = \mu^*(B_\VE) + \mu^*(C_\VE) - \dfrac{2\VE}{3} \geq
+	$$
+	$$
+		\geq \mu^*(B) - \mu^*(B \Delta B_\VE) + \mu^*(C) - \mu^*(C \Delta C_\VE) - \dfrac{2\VE}{3} \geq  \mu^*(B) +  \mu^*(C) - \VE
+	$$
+	Поскольку $\VE > 0$ - произвольное, отсюда вытекает, что:
+	$$
+		\mu^*(A) \geq \mu^*(B) + \mu^*(C) \Rightarrow \mu^*(A) = \mu^*(B) + \mu^*(C)
+	$$
+	Таким образом, для двух множеств доказана аддитивность. Если задано множество $A$:
+	$$
+		A = \bigsqcup\limits_{k = 1}^n A_k, \, A_k \in \MM \Rightarrow A = \left(\bigsqcup\limits_{k = 2}^n A_k\right) \bigsqcup A_1 , \,  A_1 \in \MM, \bigsqcup\limits_{k = 2}^n A_k \in \MM \Rightarrow \mu^*(A) = \mu^*(A_1) + \mu^*\left(\bigsqcup\limits_{k = 2}^n A_k\right)
+	$$
+	Продолжая этот процесс, получим в итоге, что:
+	$$
+		\mu^*(A) = \mu^*(A_1) + \mu^*\left(\bigsqcup\limits_{k = 2}^n A_k\right) = \dotsc = \sum\limits_{k = 1}^n \mu^*(A_k)
+	$$
+\end{proof}
+\textbf{\uline{Обозначение}}: Для $A \in \MM$ положим $\mu(A) = \mu^*(A)$ и назовем $\mu$ - \uwave{мерой Лебега}.
+
+\textbf{\uline{Обозначение}}: Для $A \in \MM_J$ положим $\mu_J(A) = \mu_J^*(A)$ и назовем $\mu_J$ - \uwave{мерой Жордана}.
+
+\begin{theorem}
+	Множество $\MM$ - $\sigma$-алгебра (для $\MM_J$ - не верно).
+\end{theorem}
+\begin{proof}
+	Пусть $A_1, \dotsc, A_n, \dotsc \in \MM$ и $A = \bigcup\limits_{n = 1}^{\infty}A_n$, надо проверить, что $A \in \MM$. Введем множества :
+	$$
+		B_1 = A_1, \, \forall i > 1, \, B_i = A_i \setminus \bigcup\limits_{j = 1}^{i - 1}A_j
+	$$
+	Тогда все элементы $B_i \in \MM$, потому что $\MM$ - алгебра, при этом $A = \bigsqcup\limits_{n = 1}^{\infty}B_n$. Заметим, что тогда:
+	$$
+		\forall N, \, \bigsqcup\limits_{n = 1}^{N}B_n \subseteq A \Rightarrow \mu^*(A) \geq \mu^*\left( \bigsqcup\limits_{n = 1}^{N}B_n\right) = \sum\limits_{n = 1}^N \mu^*(B_n)  \Rightarrow \sum\limits_{n = 1}^{\infty} \mu^*(B_n) < \infty
+	$$
+	где равенство выше верно в силу аддитивности внешней меры (доказали выше, что это мера на $\MM$), а сходимость ряда следует из того, что неравенство верно для любого $N$. Теперь, если задано $\VE > 0$, то подберем номер $N$ таким образом, что:
+	$$
+		\sum\limits_{n = N+1}^{\infty} \mu^*(B_n) < \dfrac{\VE}{2}
+	$$
+	Поскольку $\MM$ - алгебра, то воспользовавшись определнием измеримости по Лебегу получим: 
+	$$
+		\bigsqcup\limits_{n = 1}^{N}B_n \in \MM \Rightarrow \exists \, C_\VE \in \MCR(S) \colon \mu^*\left(\left(\bigsqcup\limits_{n = 1}^{N}B_n\right)\Delta C_\VE \right) < \dfrac{\VE}{2}
+	$$
+	Рассмотрим $A \Delta C_\VE$, будет верно:
+	$$
+		A \Delta C_\VE \subseteq \left(\left(\bigsqcup\limits_{n = 1}^{N}B_n\right)\Delta C_\VE \right) \bigcup \left(\bigsqcup\limits_{n = N+ 1}^{\infty}B_n\right)
+	$$
+	Тогда по теореме $1$ утверждается, что:
+	$$
+ 		\mu^*(A \Delta C_\VE) \leq \mu^*\left(\left(\bigsqcup\limits_{n = 1}^{N}B_n\right)\Delta C_\VE \right) + \sum\limits_{n = N+1}^{\infty} \mu^*(B_n) < \VE
+	$$
+	Поскольку $\VE > 0$ - произвольное, то $A \in \MM$ по определению  $\Rightarrow \MM$ является $\sigma$-алгеброй.
+\end{proof}
+\begin{theorem}
+	$\mu$ это $\sigma$-аддитивная мера на $\MM$.
+\end{theorem}
+\begin{proof}
+	Пусть $A =  \bigsqcup\limits_{n = 1}^{\infty}A_n, \, \forall n, \, A_n \in \MM$. Тогда, по теореме $1$:
+	$$
+		\mu(A) \leq \sum\limits_{n = 1}^{\infty}\mu(A_n)
+	$$
+	С другой стороны, так как $\mu$ это просто мера, то согласно следствию $1$ из лекции $2$ вытекает обратное неравенство:
+	$$
+		\mu(A) \geq \sum\limits_{n = 1}^{\infty}\mu(A_n)
+	$$
+\end{proof}
+\begin{theorem}
+	Если $A \in \MM_J$, то $\mu(A) = \mu_J(A)$.
+\end{theorem}
+\begin{rem}
+	В общем случае, для внешних мерах это не так.
+\end{rem}
+\begin{proof}
+	Всегда $\mu^*(A) \leq \mu_J^*(A) \Rightarrow \mu(A) \leq \mu_J(A)$. Подберем для заданного $\VE > 0$ множество $A_\VE \in \MCR(S)$:
+	$$
+		\mu_J^*(A \Delta A_\VE) = \mu_J(A \Delta A_\VE) < \dfrac{\VE}{2} \Rightarrow \mu(A \Delta A_\VE) = \mu^*(A \Delta A_\VE) < \dfrac{\VE}{2}
+	$$
+	Поэтому $\mu_J(A) \leq \mu_J(A_\VE) + \dfrac{\VE}{2}$ по следствию $1$, тогда:
+	$$
+		\mu_J(A) \leq \mu_J(A_\VE) + \dfrac{\VE}{2} = \nu(A_\VE) + \dfrac{\VE}{2} = \mu(A_\VE) + \dfrac{\VE}{2} < \mu(A) + \dfrac{\VE}{2} + \dfrac{\VE}{2} = \mu(A) + \VE
+	$$
+	где равенство верно в силу утверждения $5$ лекции $2$. Так как $\VE > 0$ - произвольное, то $\mu_J(A) \leq \mu(A)$.
+\end{proof}
+\begin{corollary}
+	Мера Жордана $\mu_J$ $\sigma$-аддитивна на $\MM_J$.
+\end{corollary}
+\begin{proof}
+	Поскольку $\mu = \mu_J$, а мера Лебега $\sigma$-аддитивна.
+\end{proof}
+\begin{defn}
+	Если полукольцо и мера равны соответственно:
+	$$
+		S = \left\{ \{\alpha,\beta\} \colon \{\alpha, \beta\} \subseteq [a,b] = \prod\limits_{j = 1}^m [a_j, b_j]  \right\} \wedge m(\{\alpha,\beta\}) = \prod\limits_{j = 1}^n(\beta_j - \alpha_j)
+	$$
+	то получившиеся продолжением $m$ по Лебегу и по Жордану меры на $\MM$ и $\MM_J$ будем называть \uwave{классическими мерами Лебега} и \uwave{Жордана} соответственно.
+\end{defn} 
+\begin{rem}
+	Классические меры Лебега и Жордана инвариантны относительно сдвигов, точнее:
+	$$
+		A \subseteq [a,b] \subset R^n, \, t \in R^n \colon A + t = \{x +t \colon x\in A\}\subseteq[a,b] \Rightarrow A\in \MM \Leftrightarrow A + t \in \MM
+	$$
+	причем, если $\in$, то $\mu(A) = \mu(A+t)$. Это вытекает из соответствующего свойства функции $m$ на $S$.
+\end{rem}
+\newpage
+\section*{Меры Лебега-Стильтьеса}
+
+Ограничимся случаем $\MR^1$. Пусть $\varphi$ - неубывающая, ограниченная, непрерывная слева функция на $\MR$. Формально определим:
+$$
+	\varphi(-\infty) = \lim\limits_{x \to - \infty}\varphi(x), \quad 	\varphi(+\infty) = \lim\limits_{x \to + \infty}\varphi(x)
+$$
+они существуют в силу ограниченности и монотонности. Пусть также:
+$$
+	S = \VN \sqcup \left\{[a,b) \colon -\infty \leq a \leq b \leq + \infty \wedge [-\infty,b) = (-\infty,b) \right\}
+$$
+Тогда $S$ - полукольцо с единицей: $E = (-\infty, +\infty)$. Определим функцию $m \colon S \to [0, +\infty)$ следующим образом:
+$$
+	m([\alpha,\beta)) = \varphi(b) - \varphi(a)
+$$
+\begin{theorem}
+	$m$ это $\sigma$-аддитивная мера на $S$.
+\end{theorem}
+\begin{proof}
+	Проверим,что $m$ - мера. Если $[a,b) = \bigsqcup\limits_{k = 1}^n[a_k, b_k)$, то можно считать, что:
+	$$
+		a = a_1 < b_1 = a_2 < b_2 = a_3 < \dotsc < b_n = b \Rightarrow
+	$$
+	$$
+		\Rightarrow m([a,b)) = \varphi(b) - \varphi(a) = \sum\limits_{k = 1}^n \left(\varphi(b_k) - \varphi(a_k)\right) = \sum\limits_{k = 1}^nm([a_k,b_k)
+	$$
+	следовательно $m$ это просто мера. 
+	
+	Пусть $[a,b) = \bigsqcup\limits_{n = 1}^{\infty}[a_n, b_n)$. Так как $m$ - мера, то по следствию $1$ лекции $2$ мы получим:
+	$$
+		\sum\limits_{n = 1}^{\infty}m([a_n, b_n)) \leq m([a,b))
+	$$
+	Докажем обратное неравенство. Пусть вначале $- \infty < a <b < + \infty$ и задан некоторый $\VE > 0$, тогда в силу непрерывности слева функции $\varphi(x)$: 
+	$$
+		\exists \, b^\prime \in [a,b) \colon \varphi(b) < \varphi(b^\prime) + \dfrac{\VE}{2}
+	$$
+	Аналогично, пользуясь непрерывностью слева:
+	$$
+		\forall n, \, \exists \, a_n^\prime < a_n \colon \varphi(a_n) < \varphi(a_n^\prime) + \dfrac{\VE}{2^{n+1}}	
+	$$
+	Заметим: 
+	$$
+		[a,b^\prime] \subseteq [a,b) = \displaystyle \bigsqcup\limits_{n = 1}^{\infty}[a_n, b_n) \subseteq \bigcup\limits_{n = 1}^{\infty}(a_n^\prime, b_n) \Rightarrow \exists \, N \colon [a,b^\prime) \subseteq [a,b^\prime] \subseteq \bigcup\limits_{n = 1}^{N}(a_n^\prime, b_n)\subseteq \bigcup\limits_{n = 1}^{N}[a_n^\prime, b_n)
+	$$
+	где справа верно в силу компактности $[a,b^\prime]$. По утверждению $1$ лекции $2$ мы имеем следующее:
+	$$
+		m([a,b^\prime)) \leq \sum\limits_{n = 1}^N m([a_n^\prime, b_n))
+	$$
+	Таким образом:
+	$$
+		m([a,b)) - \dfrac{\VE}{2} = \varphi(b) - \varphi(a) - \dfrac{\VE}{2} < \varphi(b^\prime) - \varphi(a) = m([a,b^\prime)) \leq \sum\limits_{n = 1}^N m([a_n^\prime, b_n)) =
+	$$
+	$$
+		= \sum\limits_{n = 1}^N (\varphi(b_n) - \varphi(a_n^\prime)) < \sum\limits_{n = 1}^N (\varphi(b_n) - \varphi(a_n) + \dfrac{\VE}{2^{n+1}}) \leq \sum\limits_{n = 1}^N m([a_n,b_n)) + \dfrac{\VE}{2} \leq \sum\limits_{n = 1}^{\infty} m([a_n,b_n)) + \dfrac{\VE}{2}
+	$$
+	Следовательно:
+	$$
+		m([a,b)) < \sum\limits_{n = 1}^{\infty} m([a_n,b_n)) + \VE
+	$$
+	Поскольку $\VE > 0$ - произвольное, то:
+	$$
+		m([a,b)) \leq \sum\limits_{n = 1}^{\infty} m([a_n,b_n))
+	$$
+	Пусть $ -\infty = a < b < \infty$ и $(-\infty,b) = \bigsqcup\limits_{n = 1}^{\infty}[a_n, b_n)$ тогда:
+	$$
+		\forall k < b, \, [k,b) = \bigsqcup\limits_{n = 1}^{\infty}\left([a_n, b_n) \cap [k,b) \right)
+	$$
+	По определению $\varphi(-\infty)$ имеем: 
+	$$
+		m((-\infty,b)) = \varphi(b) - \varphi(-\infty) = \lim\limits_{k \to -\infty}\left(\varphi(b) - \varphi(k)\right) = \lim\limits_{k \to -\infty}m([k,b)) \leq 
+	$$
+	$$
+		\leq \lim\limits_{k \to -\infty} \sum\limits_{n = 1}^{\infty}m\left([a_n, b_n) \cap [k,b) \right) \leq \lim\limits_{k \to -\infty} \sum\limits_{n = 1}^{\infty}m([a_n,b_n)) = \sum\limits_{n = 1}^{\infty}m([a_n,b_n))
+	$$
+	где первое неравенство следует из доказанного выше. Аналогично для $b = +\infty$.
+\end{proof}
+
+\begin{defn}
+	\uwave{Мерой Лебега-Стильтьеса}, построенной по $\varphi(x)$ называется Лебеговское продолжение меры $m$.
+\end{defn}
+
+\end{document}

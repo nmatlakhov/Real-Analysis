@@ -1,0 +1,562 @@
+\documentclass[12pt]{article}
+\usepackage[left=1cm, right=1cm, top=2cm,bottom=1.5cm]{geometry} 
+
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools,xcolor,accents}
+\usepackage{blkarray}
+
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{graphicx}
+\usepackage[figurename=Рис.]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+%%Наименование папки откуда забирать изображения
+\graphicspath{ {./images/} }
+
+%%Изменение формата для ввода доказательства
+\renewcommand{\proofname}{$\square$  \nopunct}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%%Изменение отступа на таблицах
+\addto\captionsrussian{%
+	\renewcommand{\proofname}{$\square$ \nopunct}%
+}
+%% Римские цифры
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%% Для удобства записи
+\newcommand{\MR}{\mathbb{R}}
+\newcommand{\MC}{\mathbb{C}}
+\newcommand{\MQ}{\mathbb{Q}}
+\newcommand{\MN}{\mathbb{N}}
+\newcommand{\MZ}{\mathbb{Z}}
+\newcommand{\MTB}{\mathbb{T}}
+\newcommand{\MTI}{\mathbb{I}}
+\newcommand{\MI}{\mathrm{I}}
+\newcommand{\MCI}{\mathcal{I}}
+\newcommand{\MCR}{\mathcal{R}}
+\newcommand{\MJ}{\mathrm{J}}
+\newcommand{\MH}{\mathrm{H}}
+\newcommand{\MT}{\mathrm{T}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MV}{\mathcal{V}}
+\newcommand{\MA}{\mathcal{A}}
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MF}{\mathcal{F}}
+\newcommand{\ME}{\mathcal{E}}
+\newcommand{\MW}{\mathcal{W}}
+\newcommand{\ML}{\mathcal{L}}
+\newcommand{\MM}{\mathcal{M}}
+\newcommand{\MP}{\mathcal{P}}
+\newcommand{\VN}{\varnothing}
+\newcommand{\VE}{\varepsilon}
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dz}{\, dz}
+\newcommand{\dd}{\, d}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}{Опр:}
+\newtheorem{rem}{Rm:}
+\newtheorem{prop}{Утв.}
+\newtheorem{exrc}{Упр.}
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}
+
+\newenvironment{cusdefn}[1]
+{\renewcommand\thedefn{#1}\defn}
+{\enddefn}
+
+\DeclareRobustCommand{\divby}{%
+	\mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\DeclareRobustCommand{\ndivby}{\mkern-1mu\not\mathrel{\mkern4.5mu\divby}\mkern1mu}
+
+
+%Короткий минус
+\DeclareMathSymbol{\SMN}{\mathbin}{AMSa}{"39}
+%Длинная шапка
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%Функция знака
+\DeclareMathOperator{\sgn}{sgn}
+
+%Функция ранга
+\DeclareMathOperator{\rk}{\text{rk}}
+\DeclareMathOperator{\diam}{\text{diam}}
+
+
+%Обозначение константы
+\DeclareMathOperator{\const}{\text{const}}
+
+\DeclareMathOperator{\codim}{\text{codim}}
+
+\DeclareMathOperator*{\dsum}{\displaystyle\sum}
+\newcommand{\ddsum}[2]{\displaystyle\sum\limits_{#1}^{#2}}
+\newcommand{\ddssum}[2]{\displaystyle\smashoperator{\sum\limits_{#1}^{#2}}}
+\newcommand{\ddlsum}[2]{\displaystyle\smashoperator[l]{\sum\limits_{#1}^{#2}}}
+\newcommand{\ddrsum}[2]{\displaystyle\smashoperator[r]{\sum\limits_{#1}^{#2}}}
+
+%Интеграл в большом формате
+\DeclareMathOperator{\dint}{\displaystyle\int}
+\newcommand{\ddint}[2]{\displaystyle\int\limits_{#1}^{#2}}
+\newcommand{\ssum}[1]{\displaystyle \sum\limits_{n=1}^{\infty}{#1}_n}
+
+\newcommand{\smallerrel}[1]{\mathrel{\mathpalette\smallerrelaux{#1}}}
+\newcommand{\smallerrelaux}[2]{\raisebox{.1ex}{\scalebox{.75}{$#1#2$}}}
+
+\newcommand{\smallin}{\smallerrel{\in}}
+\newcommand{\smallnotin}{\smallerrel{\notin}}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.25}{\ensuremath{\cap}}}}%
+\newcommand*{\medcup}{\mathbin{\scalebox{1.25}{\ensuremath{\cup}}}}%
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3.5}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother
+
+%Промежуточное значение для sup\inf, поскольку они имеют разную высоту
+\newcommand{\newsup}{\mathop{\smash{\mathrm{sup}}}}
+\newcommand{\newinf}{\mathop{\mathrm{inf}\vphantom{\mathrm{sup}}}}
+
+%Скалярное произведение
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle }
+\newcommand{\linsp}[1]{\left\langle #1 \right\rangle }
+\newcommand{\linmer}[2]{\left\langle #1 \vert #2\right\rangle }
+
+%Подпись символов снизу
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+%%Шапка для букв сверху
+\newcommand{\wte}[1]{\widetilde{#1}}
+\newcommand{\wht}[1]{\widehat{#1}}
+\newcommand{\ovl}[1]{\overline{#1}}
+\newcommand{\unl}[1]{\underline{#1}}
+
+
+%%Трансформация Фурье
+\newcommand{\fourt}[1]{\mathcal{F}\left(#1\right)}
+\newcommand{\ifourt}[1]{\mathcal{F}^{-1}\left(#1\right)}
+
+%%Символ вектора
+\newcommand{\vecm}[1]{\overrightarrow{#1\,}}
+
+%%Пространстов матриц
+\newcommand{\matsq}[1]{\operatorname{Mat}_{#1}}
+\newcommand{\mat}[2]{\operatorname{Mat}_{#1, #2}}
+
+%Оператор для действ и мнимых чисел
+\DeclareMathOperator{\IM}{\operatorname{Im}}
+\DeclareMathOperator{\RE}{\operatorname{Re}}
+\DeclareMathOperator{\li}{\operatorname{li}}
+\DeclareMathOperator{\GL}{\operatorname{GL}}
+\DeclareMathOperator{\SL}{\operatorname{SL}}
+\DeclareMathOperator{\Char}{\operatorname{char}}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\ord{ord}
+
+%Оператор для образа
+\DeclareMathOperator{\Ima}{Im}
+
+%Делимость чисел
+\newcommand{\modn}[3]{#1 \equiv #2 \; (\bmod \; #3)}
+\newcommand{\nmodn}[3]{#1 \not\equiv #2 \; (\bmod \; #3)}
+
+%%Взятие в скобки, модули и норму
+\newcommand{\parfit}[1]{\left( #1 \right)}
+\newcommand{\modfit}[1]{\left| #1 \right|}
+\newcommand{\sqparfit}[1]{\left\{ #1 \right\}}
+\newcommand{\normfit}[1]{\left\| #1 \right\|}
+
+%%Функция для обозначения равномерной сходимости по множеству
+\newcommand{\uconv}[1]{\overset{#1}{\rightrightarrows}}
+\newcommand{\uconvm}[2]{\overset{#1}{\underset{#2}{\rightrightarrows}}}
+
+%% Функция для добавления круга сверху множества
+\newcommand{\Circ}[1]{\accentset{\circ}{#1}}
+
+%% Жирное подчеркивание
+\newcommand{\buline}[1]{\textbf{\uline{#1}}}
+
+%%Функция для обозначения нижнего и верхнего интегралов
+\def\upint{\mathchoice%
+	{\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	\int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+%%След матрицы
+\DeclareMathOperator*{\tr}{tr}
+
+\DeclareMathOperator*{\symdif}{\bigtriangleup}
+
+% Верхние\нижние пределы
+\DeclareMathOperator*\lowlim{\underline{lim}}
+\DeclareMathOperator*\uplim{\overline{lim}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+
+%% Переопределение функции хи, чтобы выглядела более приятно
+\makeatletter
+\@ifdefinable\@latex@chi{\let\@latex@chi\chi}
+\renewcommand*\chi{{\@latex@chi\smash[t]{\mathstrut}}} % want only bottom half of \mathstrut
+\makeatletter
+
+\setcounter{MaxMatrixCols}{20}
+
+
+\begin{document}
+\lhead{Действительный анализ}
+\chead{Дьяченко М.И.}
+\rhead{Лекция - 10}
+\section*{Предельный переход под знаком интеграла Лебега}
+
+\begin{theorem}(\textbf{теорема Фату})
+	Пусть $\{f_n(x)\}_{n = 1}^{\infty}$ - измеримы и неотрицательны на $X$, предположим, что $\mu$ - полна и функция $f_n(x) \xrightarrow{as, X} f(x)$, где $f(x) \geq 0$ на $X$, тогда:
+	$$
+	\ddint{X}{}f(x)d\mu \leq \lowlim\limits_{n \to \infty}\ddint{X}{}f_n(x)d\mu
+	$$
+\end{theorem}
+
+\textbf{Пример}: Рассмотрим последовательность функций: $f_n(x) = n{\cdot}\chi_{(0,\frac{1}{n})}(x)$. Будем рассматривать всё на отрезке $[0,1]$ и мера Лебега в данном случае - классическая. Тогда:
+$$
+	\forall x \in [0,1], \, f_n(x) \xrightarrow[n \to \infty]{} f(x) = 0
+$$
+В то же самое время, интеграл от этой функции на отрезке $[0,1]$ равен $1$:
+$$
+	\forall n, \, \ddint{[0,1]}{}f_n(x)d\mu = 1 \neq \ddint{[0,1]}{}f(x)d\mu = \ddint{[0,1]}{}0d\mu = 0
+$$
+
+\subsection*{Теорема Лебега}
+\begin{theorem}(\textbf{Лебега})
+	Пусть $F(x) \in \ML(X)$, $F(x) \geq 0$ на $X$, а $\{f_n(x)\}_{n = 1}^{\infty}$ - измеримые функции:
+	$$
+		\forall n, \, \forall x \in X, \, |f_n(x)| \leq F(x)
+	$$
+	Пусть $\mu$ - полна и $f_n(x) \xrightarrow{as, X} f(x)$, тогда $f(x) \in \ML(X)$ и кроме того:
+	$$
+		\ddint{X}{}f(x)d\mu = \lim\limits_{n \to \infty}\ddint{X}{}f_n(x)d\mu
+	$$
+\end{theorem}
+\begin{proof}
+	Прежде всего заметим, что: $|f(x)| \leq F(x)$ п.в. $\Rightarrow f(x) \in \ML(X)$. Далее, определим множество $E$:
+	$$
+		E = \{x \in X \colon f_n(x) \to f(x)\} \Rightarrow \mu(X \setminus E) = 0 \Rightarrow \ddint{X}{}f(x)d\mu = \ddint{E}{}f(x)d\mu
+	$$
+	Рассмотрим последовательности на $X$:
+	$$
+		F(x) + f_n(x) \geq 0, \quad  F(x) - f_n(x) \geq 0 
+	$$
+	$$
+		\forall x \in E,\, \lim\limits_{n \to \infty}(F(x) + f_n(x)) = F(x) + f(x), \quad \lim\limits_{n \to \infty}(F(x) - f_n(x)) = F(x) - f(x)
+	$$
+	Следовательно, по теореме Фату мы имеем следующие неравенства:
+	$$
+		\ddint{E}{}(F(x) + f(x))d\mu \leq \lowlim\limits_{n \to \infty}\ddint{E}{}(F(x) + f_n(x))d\mu \Rightarrow \ddint{E}{}f(x)d\mu \leq \lowlim\limits_{n \to \infty}\ddint{E}{}f_n(x)d\mu
+	$$
+	$$
+		\ddint{E}{}(F(x) - f(x))d\mu \leq \lowlim\limits_{n \to \infty}\ddint{E}{}(F(x) - f_n(x))d\mu \Rightarrow 
+	$$
+	$$
+		\Rightarrow  \ddint{E}{}F(x)d\mu - \ddint{E}{}f(x)d\mu \leq \ddint{E}{}F(x)d\mu + \lowlim\limits_{n \to \infty}\ddint{E}{}(-f_n(x))d\mu = \ddint{E}{}F(x)d\mu - \uplim\limits_{n \to \infty}\ddint{E}{}f_n(x)d\mu \Rightarrow
+	$$
+	$$
+		\Rightarrow \ddint{E}{}f(x)d\mu \geq \uplim\limits_{n \to \infty}\ddint{E}{}f_n(x)d\mu \Rightarrow \exists \, \lim\limits_{n \to \infty}\ddint{E}{}f_n(x)d\mu = \ddint{E}{}f(x)d\mu
+	$$
+	поскольку верхний предел больше или равен нижнему пределу только в том случае, когда существует обычный предел. Заметим, что:
+	$$
+		\lim\limits_{n \to \infty}\ddint{X}{}f_n(x)d\mu = \lim\limits_{n \to \infty}\ddint{E}{}f_n(x)d\mu = \ddint{E}{}f(x)d\mu = \ddint{X}{}f(x)d\mu
+	$$
+\end{proof}
+
+\section*{Некоторые свойства интеграла Лебега}
+
+Пусть $(X,\MM,\mu)$ - измеримое пространство.
+
+\begin{theorem}
+	Пусть $f(x) \in \ML(X)$ и кроме того $X = \bigsqcup\limits_{n = 1}^{\infty}A_n$, где $A_n \in \MM$, тогда:
+	$$
+		\forall n, \, f(x) \in \ML(A_n), \, \ddint{X}{}f(x)d\mu = \ddsum{n = 1}{\infty}\ddint{A_n}{}f(x)d\mu
+	$$
+\end{theorem}
+\begin{proof}
+	По условию будет верно: 
+	$$
+		\forall n, \, |f(x){\cdot}\chi_{A_n}(x)| \leq |f(x)| \in \ML(X) \Rightarrow f(x){\cdot}\chi_{A_n}(x) \in \ML(X) \Leftrightarrow f(x) \in \ML(A_n)
+	$$
+	Пусть $F_N(x) = \sum_{k = 1}^{N}f(x){\cdot}\chi_{A_k}(x)$, тогда:
+	$$
+		|F_N(x)| = \left|f(x){\cdot}\chi_{\bigsqcup_{k = 1}^N A_k}(x)\right| \leq |f(x)|, \; \forall x \in X, \, F_N(x) \xrightarrow[N\to \infty]{}f(x)
+	$$
+	По теореме Лебега, получаем равенство:
+	$$
+		\ddint{X}{}f(x)d\mu = \lim\limits_{N \to \infty}\ddint{X}{}F_N(x)d\mu = \lim\limits_{N \to \infty}\ddsum{k = 1}{N}\ddint{X}{}f(x){\cdot}\chi_{A_k}(x)d\mu = \lim\limits_{N \to \infty}\ddsum{k = 1}{N}\ddint{A_k}{}f(x)d\mu = \ddsum{k = 1}{\infty}\ddint{A_k}{}f(x)d\mu
+	$$
+\end{proof}
+
+\begin{theorem}(\textbf{об абсолютной непрерывности интеграла Лебега})
+	Пусть $f(x) \in \ML(X)$, тогда: 
+	$$
+		\forall \VE > 0, \, \exists \, \delta > 0 \colon A \subset X, \, A \in \MM, \, \mu(A) < \delta \Rightarrow \left|\ddint{A}{}f(x)d\mu \right| < \VE
+	$$  
+\end{theorem}
+\begin{proof}
+	Поскольку верно: $\left|\int_X f(x)d\mu\right| \leq \int_A |f(x)| d\mu$, то достаточно доказать утверждение для $f(x) \geq 0$ (или для $|f(x)|$). Пусть задано $\VE > 0$, поскольку $f(x) \in \ML(X)$, то $\exists \, h(x) \in Q_f$ такая, что:
+	$$
+		\ddint{X}{}f(x)d\mu \geq \ddint{X}{}h(x)d\mu \geq \ddint{X}{}f(x)d\mu - \dfrac{\VE}{2}	
+	$$
+	поскольку интеграл от $f(x)$ есть верхняя грань интегралов от простых функций из $Q_f$ и $f(x) \in \ML(X)$, то есть интеграл существует. Так как $h(x)$ - простая и неотрицательная, то существует представление:
+	$$
+		h(x) = \ddsum{l = 1}{r}a_l{\cdot}\chi_{E_l}(x), \; 0 < a_1 < \dotsc < a_r, \, \forall l, \, E_l \in \MM, \, \forall l \neq j, \, E_l \cap E_j = \VN
+	$$
+	Тогда пусть $\delta = \tfrac{\VE}{2a_r}$ и $A \in \MM \colon \mu(A) < \delta$, тогда:
+	$$
+		\ddint{A}{}f(x)d\mu \leq \ddint{A}{}(\underbrace{f(x) - h(x)}_{\geq 0 })d\mu + \ddint{A}{}h(x)d\mu \leq \ddint{X}{}(f(x) - h(x))d\mu + \ddint{X}{}h(x){\cdot}\chi_A(x)d\mu
+	$$
+	где мы воспользовались неотрицательностью $f(x) - h(x)$ и тем, что область интегрирования увеличивается $\Rightarrow$ интеграл может только увеличится. Следовательно:
+	$$
+		\ddint{X}{}(f(x) - h(x))d\mu + \ddint{X}{}h(x){\cdot}\chi_A(x)d\mu < \dfrac{\VE}{2} + \ddint{X}{}\ddsum{l = 1}{r}a_l{\cdot}\chi_{A\cap E_l}(x)d\mu = \dfrac{\VE}{2} + \ddsum{l = 1}{r}a_l{\cdot}\mu(A\cap E_l) \leq 
+	$$
+	$$	
+		\leq \dfrac{\VE}{2} + a_r{\cdot}\ddsum{l = 1}{r}\mu(A \cap E_l) \leq \dfrac{\VE}{2} + a_r{\cdot}\mu(A) < \dfrac{\VE}{2} + a_r{\cdot}\dfrac{\VE}{2a_r} = \dfrac{\VE}{2} + \dfrac{\VE}{2} = \VE
+	$$
+	где мы воспользовались тем, что сумма пересечений с $A$ не больше, чем мера $A$.
+\end{proof}
+
+\begin{theorem}(\textbf{неравенство Чебышева})
+	Пусть $f(x) \in \ML(X), \, \lambda > 0$ и $E_\lambda = \{x \in X \colon |f(x)| > \lambda\}$, тогда:
+	$$
+		\mu(E_\lambda) \leq \dfrac{1}{\lambda}{\cdot}\ddint{X}{}|f(x)|d\mu
+	$$
+\end{theorem}
+\begin{proof}
+	Поскольку $|f(x)| \geq 0$, то мы имеем неравенства: 
+	$$
+		\ddint{X}{}|f(x)|d\mu \geq \ddint{E_\lambda}{}|f(x)|d\mu \geq \ddint{E_\lambda}{}\lambda d\mu= \lambda{\cdot}\mu(E_\lambda) \Rightarrow \dfrac{1}{\lambda}{\cdot}\ddint{X}{}|f(x)|d\mu\geq \mu(E_\lambda)
+	$$
+\end{proof}
+\begin{rem}
+	Заметим, что мера $E_\lambda$ всегда будет конечной, иначе интеграл был бы равен бесконечности.
+\end{rem}
+
+\begin{corollary}
+	Если $f(x) \in \ML(X),\, \forall x \in X,\, f(x) \geq 0$ и $\int_{X}f(x)d\mu = 0$, то $f(x) = 0$ п.в. на $X$.
+\end{corollary}
+\begin{proof}
+	Заметим, что по неравенству Чебышева верно:
+	$$
+		\forall n, \, \mu(\{x \in X \colon f(x) \geq \tfrac{1}{n}\}) \leq n{\cdot}\ddint{X}{}f(x)d\mu = 0
+	$$
+	$$
+		\{x \in X \colon f(x) > 0\} = \bigcup\limits_{n = 1}^{\infty} \{x \in X \colon f(x) > \tfrac{1}{n}\} \Rightarrow \mu(\{x \in X \colon f(x) > 0\}) = 0
+	$$ 
+	Это равносильно нашему утверждению, поскольку $f(x) \geq 0$ и мера множества, где она положительна равна $0$, значит всё остальное множество - это то, где она равна $0$.
+\end{proof}
+
+\subsection*{Критерий интегрируемости по Лебегу на множестве конечной меры}
+Если $f(x)$ измерима на $X$, то $\forall k \geq 1$ положим $F_k = \{x \in X\colon |f(x)| \geq k\}$.
+
+\begin{theorem}(\textbf{критерий интегрируемости по Лебегу на множестве конечной меры})
+	Пусть мера множества - конечна: $\mu(X) < \infty$, $f(x)$ измерима на $X$, тогда:
+	$$
+		f(x) \in \ML(X) \Leftrightarrow \ddsum{k = 1}{\infty}\mu(F_k) < \infty
+	$$
+\end{theorem}
+\begin{proof}
+	Рассмотрим функцию: 
+	$$
+		h(x) = \ddsum{k = 1}{\infty}\chi_{F_k}(x)
+	$$
+	Есть несколько случаев:
+	\begin{enumerate}[label=\arabic*)]
+		\item Если $x \colon k \leq |f(x)| < k + 1$, то $x \in F_1, \dotsc, F_k$ и $x \not\in F_{k+1} \Rightarrow h(x) = k$;
+		\item Если $|f(x)| = \infty$, то $\forall k, \, x \in F_k \Rightarrow h(x) = \infty$;
+	\end{enumerate}
+	Поэтому $\forall x \in X$ справедливо неравенство (как для конечного, так и для бесконечных значений):
+	$$
+		h(x) \leq |f(x)| \leq h(x) + 1
+	$$
+	Так как $\mu(X) < \infty$, то $1 \in \ML(X)$, поэтому $f(x) \in \ML(X) \Leftrightarrow h(x) \in \ML(X)$. По следствию $4$ предыдущей лекции, будет верно равенство:
+	$$
+		\ddint{X}{}h(x)d\mu = \ddsum{k = 1}{\infty}\ddint{X}{}\chi_{F_k}(x)d\mu = \ddsum{k = 1}{\infty}\mu(F_k)
+	$$
+	Из чего уже следует требуемое.
+\end{proof}
+
+\newpage
+\section*{Сравнение интегралов Римана и Лебега}
+\subsection*{Собственный интеграл Лебега и Римана}
+\begin{theorem}
+	Пусть $n \geq 1, \, n \in \MN$, $[a,b] = \prod\limits_{j = 1}^{n}[a_j, b_j] \subset \MR^n$ - параллелепипед в $\MR^n$, $\mu$ - это классическая мера Лебега на подмножествах $[a,b]$. Функция $f(x) \in \MCR([a,b])$ - интегрируема по Риману на $[a,b]$. Тогда: 
+	$$
+		f(x) \in \ML([a,b], \MM, \mu), \; (\ML) \ddint{[a,b]}{}f(x) d\mu = (\MCR) \ddint{[a,b]}{}f(x)dx
+	$$
+\end{theorem}
+\begin{rem}
+	Из этой теоремы будет вытекать, что интеграл Лебега обобщает интеграл Римана. Тот факт, что это не одно и тоже осознается уже из одномерной ситуации, например, на функции Дирихле. С точки зрения интеграла Римана она не интегрируема на $[0,1]$, а с точки зрения интеграла Лебега это простая функция, принимающая два значения: $0$ и $1$.
+\end{rem}
+\begin{proof}
+	Пусть $r \in \MN$, $s \in [1,n]$ - номер координаты, $k \in \{0,1,\dotsc, 2^r\}$. Тогда рассмотрим точки:
+	$$
+		x_s(k) = a_s + \dfrac{b_s - a_s}{2^r}{\cdot}k
+	$$
+	то есть, мы взяли равномерное разбиение отрезка $[a_s,b_s]$ с шагом $\tfrac{b_s - a_s}{2^r}$. Затем, при $1 \leq k < 2^r$ возьмем полуинтервал: $\Delta_s(k) = [x_s(k-1), x_s(k))$ и отрезок: $\Delta_s(2^r) = [x_s(2^r-1),x_s(2^r)]$. Заметим, что:
+	$$
+		[a_s,b_s] = \bigsqcup\limits_{k = 1}^{2^r}\Delta_s(k)
+	$$
+	Затем, если $\ovl{k} = (k_1,\dotsc, k_n)$, где $k_i \in [1,2^r]$, то определим множество:
+	$$
+		E_{\ovl{k}} = \prod\limits_{s = 1}^{n}\Delta_s(k_s) \Rightarrow [a,b] = \bigsqcup\limits_{k_1 = 1}^{2^r}\dotsc\bigsqcup\limits_{k_n = 1}^{2^r}E_{\ovl{k}}
+	$$
+	Определим переменные $M_{\ovl{k}}, m_{\ovl{k}}$ и две функции $\ovl{f}_r(x), \unl{f}_r(x)$: 
+	$$
+		\forall \ovl{k}, \, M_{\ovl{k}} = \sup\limits_{x \in E_{\ovl{k}}} f(x), \, m_{\ovl{k}} = \inf\limits_{x \in E_{\ovl{k}}} f(x)
+	$$
+	$$
+		\ovl{f}_r(x) = \ddsum{k_1 = 1}{2^r}\dotsc\ddsum{k_n = 1}{2^r}M_{\ovl{k}}{\cdot}\chi_{E_{\ovl{k}}}(x), \quad \unl{f}_r(x) = \ddsum{k_1 = 1}{2^r}\dotsc\ddsum{k_n = 1}{2^r}m_{\ovl{k}}{\cdot}\chi_{E_{\ovl{k}}}(x)
+	$$
+	Нетрудно заметить, что эти функции - простые: они принимают конечное число значений на $n$-мерных промежутках. Тогда:
+	$$
+		(\ML) \ddint{[a,b]}{}\ovl{f}_r(x)d\mu = \ddsum{k_1 = 1}{2^r}\dotsc\ddsum{k_n = 1}{2^r}M_{\ovl{k}}{\cdot}\mu(E_{\ovl{k}}) = \ddsum{k_1 = 1}{2^r}\dotsc\ddsum{k_n = 1}{2^r}M_{\ovl{k}}{\cdot}\prod\limits_{s = 1}^{n}\dfrac{b_s - a_s}{2^r}
+	$$
+	$$
+		(\ML) \ddint{[a,b]}{}\unl{f}_r(x)d\mu = \ddsum{k_1 = 1}{2^r}\dotsc\ddsum{k_n = 1}{2^r}m_{\ovl{k}}{\cdot}\mu(E_{\ovl{k}}) = \ddsum{k_1 = 1}{2^r}\dotsc\ddsum{k_n = 1}{2^r}m_{\ovl{k}}{\cdot}\prod\limits_{s = 1}^{n}\dfrac{b_s - a_s}{2^r}
+	$$
+	Можем заметить, что суммы выше это суммы Дарбу для интеграла Римана, и при измельчении разбиения и та, и другая сумма сходится к интегралу Римана:
+	$$
+		\ddsum{k_1 = 1}{2^r}\dotsc\ddsum{k_n = 1}{2^r}M_{\ovl{k}}{\cdot}\prod\limits_{s = 1}^{n}\dfrac{b_s - a_s}{2^r} \xrightarrow[r\to \infty]{} (\MCR) \ddint{[a,b]}{}f(x)dx = \MI
+	$$
+	$$
+		\ddsum{k_1 = 1}{2^r}\dotsc\ddsum{k_n = 1}{2^r}m_{\ovl{k}}{\cdot}\prod\limits_{s = 1}^{n}\dfrac{b_s - a_s}{2^r} \xrightarrow[r\to \infty]{} (\MCR) \ddint{[a,b]}{}f(x)dx = \MI
+	$$
+	Разбиение по степеням двойки мы взяли чтобы при увеличении $r$ каждое последующее разбиение получается разбиением предыдущего, то есть каждый из полуинтервалов предыдущего разбиения мы разобьем на два. Это приведет к тому, что:
+	$$
+		\forall r, \, \forall x \in [a,b], \, \ovl{f}_{r+1}(x) \leq \ovl{f}_r(x), \, \unl{f}_{r+1}(x) \geq \unl{f}_r(x)
+	$$
+	что верно в силу поведения верхней и нижней граней при более мелких разбиениях. Кроме того:
+	$$
+		\forall r, \, \forall x, \, \unl{f}_r(x) \leq f(x) \leq \ovl{f}_r(x)
+	$$
+	Следовательно, будет верно:
+	$$
+		\forall x \in [a,b], \, \ovl{f}_r(x) \downarrow \ovl{f}(x) \geq f(x) \wedge \unl{f}_r(x) \uparrow \unl{f}(x) \leq f(x)
+	$$
+	Функции $\ovl{f}(x)$ и $\unl{f}(x)$ измеримы по Лебегу как пределы измеримых функций. По теореме Беппо-Леви (а точнее её следствию):
+	$$
+		(\ML) \ddint{[a,b]}{}\ovl{f}(x)d\mu = \lim\limits_{r \to \infty}\ddint{[a,b]}{}\ovl{f}_r(x)d\mu = \MI, \quad (\ML) \ddint{[a,b]}{}\unl{f}(x)d\mu = \lim\limits_{r \to \infty}\ddint{[a,b]}{}\unl{f}_r(x)d\mu = \MI \Rightarrow (\ML) \ddint{[a,b]}{}(\ovl{f}(x) - \unl{f}(x))d\mu = 0
+	$$
+	Поскольку $\ovl{f}(x) - \unl{f}(x) \geq 0$, то применяя неравенство Чебышева, будет верно: $\ovl{f}(x) = \unl{f}(x)$ п.в. на $[a,b]$. В силу того, что верно неравенство: $\forall x \in [a,b], \, \unl{f}(x) \leq f(x) \leq \ovl{f}(x)$, то $f(x) = \ovl{f}(x) = \unl{f}(x)$ п.в. на $[a,b]$. Так как мера Лебега полна, то отсюда следует: $f(x) \in \ML([a,b])$ и её интеграл будет равен:
+	$$
+		(\ML) \ddint{[a,b]}{}f(x)d\mu = \ddint{[a,b]}{}\ovl{f}(x)d\mu = \MI = (\MCR) \ddint{[a,b]}{}f(x)dx
+	$$
+\end{proof}
+Таким образом, если мы в многих случаях можем понять чему равен интеграл Лебега. Если функция интегрируема по Риману и мы умеем брать интеграл Римана, то мы его просто берем и тем самым находим значение интеграла Лебега. В некоторых случаях интеграла Римана не существует, тогда мы можем разбить наше множество на некоторые куски и на каждом из кусков функция по Риману будет интегрируема, тогда там интеграл Лебега и Римана совпадают. Затем нужно будет как-то просуммировать эти значения и найти значение интеграла Лебега.
+
+
+\subsection*{Несобственный интеграл Лебега и Римана}
+Также заметим, что пока речь шла про собственный интеграл Римана и мы выяснили, что собственный интеграл Лебега более общий, чем собственный интеграл Римана. В несобственном случае же, всё немного сложнее.
+
+\textbf{Пример}: $f(x) = \tfrac{1}{x}\sin{\tfrac{1}{x}}$, она в несобственном смысле интегрируема по Риману: $f(x) \in \MCR(0+,1)$, где под $0+$ подразумевается несобственность вблизи точки $0$. В то же время: $f(x) \not\in \ML(0,1)$, относительно классической меры Лебега (без доказательства).
+
+\begin{theorem}
+	Пусть $f(x) \geq 0$ на $(a,b]$ и $f(x) \in \MCR((a+,b])$, где под $a+$ подразумевается несобственность вблизи точки $a$. Тогда $f(x) \in \ML((a,b))$ относительно классической меры Лебега и интеграл равен:
+	$$
+		(\ML) \ddint{a}{b}f(x)d\mu = (\MCR) \ddint{a}{b}f(x)dx =\lim\limits_{\VE \to 0+} \; (\MCR) \ddint{a + \VE}{b}f(x)dx
+	$$
+\end{theorem}
+\begin{rem}
+	Заметим, что здесь несущественно писать интервал или полуинтервал, поскольку для классической меры Лебега мера индивидуальной точки равна $0$.
+\end{rem}
+\begin{rem}
+	Таким образом, когда речь идет о неотрицательной функции, то здесь по-прежнему интеграл Лебега обобщает интеграл Римана, то есть если неотрицательная функция по Риману в несобственном смысле интегрируема, то она будет интегрируема и по Лебегу.
+\end{rem}
+\begin{proof}
+	Пусть $n_0$ таково, что: $\tfrac{1}{n_0} < b-a$, тогда при $n \geq n_0$ определим функции:
+	$$
+		f_n(x) = f(x){\cdot}\chi_{(a + \frac{1}{n}, b)}(x)
+	$$
+	Заметим, что: 
+	$$
+		f(x){\cdot}\chi_{(a + \frac{1}{n}, b)}(x) \in \MCR([a + \tfrac{1}{n}, b])
+	$$ 
+	Следовательно: $f_n(x) \in \ML((a,b))$ по теореме $7$, поскольку она равна $0$, вне промежутка выше и верно:
+	$$
+		(\ML) \ddint{(a,b)}{}f_n(x)d\mu = (\MCR) \ddint{a + \frac{1}{n}}{b}f(x)dx 
+	$$
+	Так как $f_n(x) \geq 0$, то $f_n(x) \uparrow f(x)$ на $(a,b)$. Кроме того:
+	$$
+		\ddint{(a,b)}{}f_n(x)d\mu \leq (\MCR) \ddint{a+}{b}f(x)dx = c
+	$$
+	По следствию $3$ лекции $9$ будет верно, что:
+	$$
+		(\ML) \ddint{(a,b)}{}f(x)d\mu = \lim\limits_{n \to \infty} \; (\ML) \ddint{(a,b)}{}f_n(x)d\mu = \lim\limits_{n \to \infty} \; (\MCR) \ddint{a + \frac{1}{n}}{b}f(x)dx = (\MCR) \ddint{a+}{b}f(x)dx
+	$$
+	Получилось равенство интегралов и автоматически функция оказалась интегрируемой.
+\end{proof}
+\begin{rem}
+	В случае, когда функция меняет знак, то возможны всякие неприятности и возможно ситуация, когда функция интегрируема по Риману, но не интегрируема по Лебегу. 
+	
+	Это непосредственно связано с тем, что функция интегрируема по Лебегу тогда и только тогда, когда у неё модуль интегрируем по Лебегу. В случае интеграла Римана, если несобственный интеграл существует, то не факт, что будет существовать несобственный интеграл от модуля функции (достаточно легко построить такой пример).
+\end{rem}
+
+\section*{Заряды. Теорема Радона-Никодима}
+\begin{defn}
+	Пусть $\MM$ - $\sigma$-алгебра, функция $\varphi \colon \MM \to \MR$ называется \uwave{зарядом} тогда и только тогда, когда:
+	$$
+		\forall A, A_1, \dotsc, A_n, \dotsc \in \MM \colon A = \bigsqcup\limits_{n = 1}^{\infty}A_n, \, \varphi(A) = \ddsum{n = 1}{\infty}\varphi(A_n)
+	$$
+\end{defn}
+\begin{rem}
+	В определение входит существование суммы этого ряда.
+\end{rem}
+
+Иными словами, заряд это знакопеременная мера. Вместе с этим, чтобы здесь всё было определено нет $\sigma$-конечного случая, в отличие от меры (когда мы можем допустить $\sigma$-конечность).
+
+\begin{rem}
+	Легко также понять, что если мы возьмем две $\sigma$-аддитивные различные меры на какой-то $\sigma$-алгебре, то если мы возьмем их разность, то вообще говоря это будет заряд, поскольку сохранится $\sigma$-аддитивность, но возможно, что мера какого-то множества будет отрицательной.
+\end{rem}
+
+\begin{defn}
+	Пусть $\MM$ - $\sigma$-алгебра, $\varphi$ - заряд на $\MM$ и $A \in \MM$, тогда $A$ называется \uwave{положительным} множеством относительно $\varphi$ тогда и только тогда, когда:
+	$$
+		\forall B \in \MM \colon B \subseteq A, \, \varphi(B) \geq 0
+	$$
+\end{defn}
+\begin{defn}
+	Пусть $\MM$ - $\sigma$-алгебра, $\varphi$ - заряд на $\MM$ и $A \in \MM$, тогда $A$ называется \uwave{отрицательным} множеством относительно $\varphi$ тогда и только тогда, когда:
+	$$
+		\forall B \in \MM \colon B \subseteq A, \,  \varphi(B) \leq 0
+	$$
+\end{defn}
+\begin{rem}
+	Заметим, что это не тоже самое, что и потребовать $\varphi(A) \geq 0$ или $\varphi(A) \leq 0$, поскольку внутри таких множеств может найтись подмножество $B$ у которого $\varphi(B) \leq  0$ или $\varphi(B) \geq 0$ соответственно.
+\end{rem}
+
+\end{document}

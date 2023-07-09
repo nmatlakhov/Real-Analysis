@@ -1,0 +1,521 @@
+\documentclass[12pt]{article}
+\usepackage[left=1cm, right=1cm, top=2cm,bottom=1.5cm]{geometry} 
+
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools,xcolor,accents}
+\usepackage{blkarray}
+
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{graphicx}
+\usepackage[figurename=Рис.]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+%%Наименование папки откуда забирать изображения
+\graphicspath{ {./images/} }
+
+%%Изменение формата для ввода доказательства
+\renewcommand{\proofname}{$\square$  \nopunct}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%%Изменение отступа на таблицах
+\addto\captionsrussian{%
+	\renewcommand{\proofname}{$\square$ \nopunct}%
+}
+%% Римские цифры
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%% Для удобства записи
+\newcommand{\MR}{\mathbb{R}}
+\newcommand{\MC}{\mathbb{C}}
+\newcommand{\MQ}{\mathbb{Q}}
+\newcommand{\MN}{\mathbb{N}}
+\newcommand{\MZ}{\mathbb{Z}}
+\newcommand{\MTB}{\mathbb{T}}
+\newcommand{\MTI}{\mathbb{I}}
+\newcommand{\MI}{\mathrm{I}}
+\newcommand{\MCI}{\mathcal{I}}
+\newcommand{\MCR}{\mathcal{R}}
+\newcommand{\MJ}{\mathrm{J}}
+\newcommand{\MH}{\mathrm{H}}
+\newcommand{\MT}{\mathrm{T}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MV}{\mathcal{V}}
+\newcommand{\MA}{\mathcal{A}}
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MF}{\mathcal{F}}
+\newcommand{\ME}{\mathcal{E}}
+\newcommand{\MW}{\mathcal{W}}
+\newcommand{\ML}{\mathcal{L}}
+\newcommand{\MM}{\mathcal{M}}
+\newcommand{\MCN}{\mathcal{N}}
+\newcommand{\MP}{\mathcal{P}}
+\newcommand{\VN}{\varnothing}
+\newcommand{\VE}{\varepsilon}
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dz}{\, dz}
+\newcommand{\dd}{\, d}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}{Опр:}
+\newtheorem{rem}{Rm:}
+\newtheorem{prop}{Утв.}
+\newtheorem{exrc}{Упр.}
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}
+
+\newenvironment{cusdefn}[1]
+{\renewcommand\thedefn{#1}\defn}
+{\enddefn}
+
+\DeclareRobustCommand{\divby}{%
+	\mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\DeclareRobustCommand{\ndivby}{\mkern-1mu\not\mathrel{\mkern4.5mu\divby}\mkern1mu}
+
+
+%Короткий минус
+\DeclareMathSymbol{\SMN}{\mathbin}{AMSa}{"39}
+%Длинная шапка
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%Функция знака
+\DeclareMathOperator{\sgn}{sgn}
+
+%Функция ранга
+\DeclareMathOperator{\rk}{\text{rk}}
+\DeclareMathOperator{\diam}{\text{diam}}
+
+
+%Обозначение константы
+\DeclareMathOperator{\const}{\text{const}}
+
+\DeclareMathOperator{\codim}{\text{codim}}
+
+\DeclareMathOperator*{\dsum}{\displaystyle\sum}
+\newcommand{\ddsum}[2]{\displaystyle\sum\limits_{#1}^{#2}}
+\newcommand{\ddssum}[2]{\displaystyle\smashoperator{\sum\limits_{#1}^{#2}}}
+\newcommand{\ddlsum}[2]{\displaystyle\smashoperator[l]{\sum\limits_{#1}^{#2}}}
+\newcommand{\ddrsum}[2]{\displaystyle\smashoperator[r]{\sum\limits_{#1}^{#2}}}
+
+%Интеграл в большом формате
+\DeclareMathOperator{\dint}{\displaystyle\int}
+\newcommand{\ddint}[2]{\displaystyle\int\limits_{#1}^{#2}}
+\newcommand{\ssum}[1]{\displaystyle \sum\limits_{n=1}^{\infty}{#1}_n}
+
+\newcommand{\smallerrel}[1]{\mathrel{\mathpalette\smallerrelaux{#1}}}
+\newcommand{\smallerrelaux}[2]{\raisebox{.1ex}{\scalebox{.75}{$#1#2$}}}
+
+\newcommand{\smallin}{\smallerrel{\in}}
+\newcommand{\smallnotin}{\smallerrel{\notin}}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.25}{\ensuremath{\cap}}}}%
+\newcommand*{\medcup}{\mathbin{\scalebox{1.25}{\ensuremath{\cup}}}}%
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3.5}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother
+
+%Промежуточное значение для sup\inf, поскольку они имеют разную высоту
+\newcommand{\newsup}{\mathop{\smash{\mathrm{sup}}}}
+\newcommand{\newinf}{\mathop{\mathrm{inf}\vphantom{\mathrm{sup}}}}
+
+%Скалярное произведение
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle }
+\newcommand{\linsp}[1]{\left\langle #1 \right\rangle }
+\newcommand{\linmer}[2]{\left\langle #1 \vert #2\right\rangle }
+
+%Подпись символов снизу
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+%%Шапка для букв сверху
+\newcommand{\wte}[1]{\widetilde{#1}}
+\newcommand{\wht}[1]{\widehat{#1}}
+\newcommand{\ovl}[1]{\overline{#1}}
+
+
+%%Трансформация Фурье
+\newcommand{\fourt}[1]{\mathcal{F}\left(#1\right)}
+\newcommand{\ifourt}[1]{\mathcal{F}^{-1}\left(#1\right)}
+
+%%Символ вектора
+\newcommand{\vecm}[1]{\overrightarrow{#1\,}}
+
+%%Пространстов матриц
+\newcommand{\matsq}[1]{\operatorname{Mat}_{#1}}
+\newcommand{\mat}[2]{\operatorname{Mat}_{#1, #2}}
+
+%Оператор для действ и мнимых чисел
+\DeclareMathOperator{\IM}{\operatorname{Im}}
+\DeclareMathOperator{\RE}{\operatorname{Re}}
+\DeclareMathOperator{\li}{\operatorname{li}}
+\DeclareMathOperator{\GL}{\operatorname{GL}}
+\DeclareMathOperator{\SL}{\operatorname{SL}}
+\DeclareMathOperator{\Char}{\operatorname{char}}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\ord{ord}
+
+%Оператор для образа
+\DeclareMathOperator{\Ima}{Im}
+
+%Делимость чисел
+\newcommand{\modn}[3]{#1 \equiv #2 \; (\bmod \; #3)}
+\newcommand{\nmodn}[3]{#1 \not\equiv #2 \; (\bmod \; #3)}
+
+%%Взятие в скобки, модули и норму
+\newcommand{\parfit}[1]{\left( #1 \right)}
+\newcommand{\modfit}[1]{\left| #1 \right|}
+\newcommand{\sqparfit}[1]{\left\{ #1 \right\}}
+\newcommand{\normfit}[1]{\left\| #1 \right\|}
+
+%%Функция для обозначения равномерной сходимости по множеству
+\newcommand{\uconv}[1]{\overset{#1}{\rightrightarrows}}
+\newcommand{\uconvm}[2]{\overset{#1}{\underset{#2}{\rightrightarrows}}}
+
+%% Функция для добавления круга сверху множества
+\newcommand{\Circ}[1]{\accentset{\circ}{#1}}
+
+%%Функция для обозначения нижнего и верхнего интегралов
+\def\upint{\mathchoice%
+	{\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	\int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+%%След матрицы
+\DeclareMathOperator*{\tr}{tr}
+
+\DeclareMathOperator*{\symdif}{\bigtriangleup}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+
+%% Переопределение функции хи, чтобы выглядела более приятно
+\makeatletter
+\@ifdefinable\@latex@chi{\let\@latex@chi\chi}
+\renewcommand*\chi{{\@latex@chi\smash[t]{\mathstrut}}} % want only bottom half of \mathstrut
+\makeatletter
+
+\setcounter{MaxMatrixCols}{20}
+
+\begin{document}
+\lhead{Действительный анализ}
+\chead{Дьяченко М.И.}
+\rhead{Лекция - 4}
+\section*{$\sigma$-конечная мера Лебега. Мера Бореля}
+
+\subsection*{Продолжение меры на произвольное множество}
+
+Пусть $S$ - полукольцо подмножеств некоторого множества $X$, причем существует представление:
+$$
+	X = \bigcup\limits_{n = 1}^{\infty}A_n^\prime, \, A_n^\prime \in S
+$$
+Например, можно рассмотреть полукольцо всех конечных промежутков на прямой, тогда $X = \MR$. Пусть также $m$ это $\sigma$-аддитивная мера на $S$, а $\nu$ это продолжение $m$ на кольцо $\MCR(S)$ (минимальное кольцо, содержащее $S$). Положим, что:
+$$
+	A_1 = A_1^\prime, \quad A_j = A_j^\prime \setminus \bigcup\limits_{i = 1}^{j-1}A_i^\prime, \, \forall j > 1
+$$
+получим, что все $A_j \in \MCR(S)$, поскольку кольцо выдерживает эти операции $\Rightarrow$ по определению $\MCR(S)$ (см. теорему $2$, лекцию $1$) будет верно:
+$$
+	\forall j, \, A_j = \bigsqcup\limits_{k = 1}^{k_j} L_{j,k}, \, \forall j,k, \,  L_{j,k} \in S
+$$
+$$
+	X = \bigcup\limits_{n = 1}^{\infty}A_n^\prime = \bigsqcup\limits_{j = 1}^{\infty}A_j = \bigsqcup\limits_{j = 1}^{\infty}\bigsqcup\limits_{k = 1}^{k_j} L_{j,k} \equiv \bigsqcup\limits_{r = 1}^{\infty}B_r, \, \forall r, \, B_r \in S
+$$
+То есть из факта, что $X$ было каким-то объединением счетных множеств из $S$ вытекает, что оно может быть представлено как счетное объединение уже непересекающихся множеств из $S$.
+\begin{rem}
+	Отметим, что здесь мы не говорим, что $X \subseteq S$, в противном случае всё уже разбиралось в предыдущих лекциях.
+\end{rem}
+
+\begin{defn}
+	При $r \in \MN$ обозначим через $\MM_r$ \uwave{Лебеговскую} $\sigma$-\uwave{алгебру} подмножеств $B_r$, полученную при продолжении меры $m$ с полукольца $S \cap B_r$ (где $B_r$ - единица) и $\mu_r$ - \uwave{мера Лебега} на $\MM_r$.
+\end{defn}
+
+\begin{defn}
+	Пусть $A \subseteq X$, тогда скажем, что множество $A$ \uwave{измеримо}: $A \in \MM \Leftrightarrow \forall r, \, A \cap B_r \in \MM_r $. При этом, если $A \in \MM$, то полагаем:
+	$$
+		\mu(A) = \sum\limits_{r = 1}^{\infty}\mu_r(A \cap B_r)
+	$$
+	где возможно, что $\mu(A) = \infty$, эта мера называется $\sigma$-\uwave{конечной мерой Лебега}.
+\end{defn}
+
+\begin{theorem}
+	$\MM$ - это $\sigma$-алгебра.
+\end{theorem}
+\begin{proof}
+	Заметим, что $X \in \MM$ поскольку мы имеем дизъюнктное представление из $B_r$, поэтому $X \cap B_r = B_r$. Пусть $A, C \in \MM$, тогда $\forall r, \, A \cap B_r, C \cap B_r \in \MM_r$ по определению, тогда:
+	$$
+		(A\cap C)\cap B_r = (A\cap B_r)\cap (C \cap B_r) \in \MM_r
+	$$
+	и аналогично:
+	$$
+		(A\Delta C) \cap B_r = (A \cap B_r) \Delta (C \cap B_r) \in \MM_r
+	$$
+	это верно в силу того, что $\MM_r$ это $\sigma$-алгебра. Следовательно $A \cap C, A \Delta C \in \MM \Rightarrow \MM$ - алгебра. Пусть верно следующее:
+	$$
+		A = \bigcup\limits_{n = 1}^{\infty}A_n, \, \forall n, \, A_n \in \MM \Rightarrow \forall r,n, \, A_n \cap B_r \in \MM_r \Rightarrow 
+	$$
+	$$	
+		\Rightarrow \forall r, \, \left(\bigcup\limits_{n = 1}^{\infty}A_n\right)\cap B_r = \bigcup\limits_{n = 1}^{\infty}(A_n \cap B_r) \in \MM_r \Rightarrow A \in \MM
+	$$
+	Таким образом, требуемое установлено.
+\end{proof}
+\begin{theorem}
+	$\mu$ - это $\sigma$-аддитивная мера на $\MM$ (с возможными бесконечными значениями).
+\end{theorem}
+\begin{rem}
+	Далее считаем, что $\forall c \in [0,\infty), \, c + \infty = \infty$, то есть правило действия сигма-аддитивности понимается в таком смысле.
+\end{rem}
+\begin{proof}
+	Пусть $A_1, \dotsc, A_n, \dotsc \in \MM$ и $A = \bigsqcup\limits_{n = 1}^{\infty}A_n$. Тогда: 
+	$$
+		\forall r, \, \mu_r(A \cap B_r) = \mu_r\left(\left(\bigsqcup\limits_{n = 1}^{\infty}A_n\right) \cap B_r \right) = \sum\limits_{n = 1}^{\infty}\mu_r(A_n \cap B_r) \Rightarrow 
+	$$
+	$$
+		\Rightarrow \mu(A) = \sum\limits_{r = 1}^{\infty}\mu_r(A \cap B_r) = \sum\limits_{r = 1}^{\infty}\sum\limits_{n = 1}^{\infty}\mu_r(A_n \cap B_r) = \sum\limits_{n = 1}^{\infty}\sum\limits_{r = 1}^{\infty}\mu_r(A_n \cap B_r) = \sum\limits_{n = 1}^{\infty} \mu(A_n)
+	$$
+	где перестановка двойных рядов возможна из-за неотрицательности слагаемых.
+\end{proof}
+\begin{rem}
+	Пусть $S$ - полукольцо с единицей $E$, $A \in S$, а соответственно $S^\prime = S \cap A = \{B \cap A \colon B \in S\}$. Тогда $S^\prime$ это тоже полукольцо, но с единицей $A$. Пусть также, $m$ это $\sigma$-аддитивная мера на $S$, тогда из процесса построения меры Лебега видно, что если $\MM_\mu$ это $\sigma$-алгебра подмножеств $E$ измеримых по Лебегу и $\mu$ - соответствующая мера Лебега на $\MM_\mu$, а $\MCN$ это $\sigma$-алгебра подмножеств $A$ измеримых по Лебегу, полученная с помощью продолжения меры $m$ с $S^\prime$ и $\nu$ - соответствующая мера Лебега на $\MCN$, то:
+	$$
+		\MCN = \MM_\mu \cap A \wedge \forall B \in \MCN,\, \nu(B) = \mu(B)
+	$$
+	Это видно, если отслеживать доказательства связанные с построением меры Лебега.
+\end{rem}
+
+\textbf{\uline{Обозначение}}: Построенная мера называется $\sigma$-\uwave{конечной мерой Лебега} ($\sigma$-конечная, потому что она может принимать бесконечные значения, но каждое измеримое множество представляется в виде не более, чем счетного объединения множеств конечной меры). 
+
+\textbf{\uline{Обозначение}}: Если изначально $m$ - это мера на промежутках в $\MR^n$ равная их $n$-мерному объему, то меру $\mu$ будем называть \uwave{классической} $\sigma$-\uwave{конечной мерой Лебега}.
+
+\begin{theorem}
+	Пусть $\exists$ два представления (по сути единицы) $X$:
+	$$
+		\bigsqcup\limits_{i = 1}^{\infty}B_i = X = \bigsqcup\limits_{j = 1}^{\infty}B_j^\prime, \, \forall i,j,\, B_i, B_j^\prime \in S 
+	$$
+	Пусть $\MM$ и $\MM^\prime$ - это $\sigma$-алгебры для соответствующих $\mu$ и $\mu^\prime$ - $\sigma$-конечных мер. Тогда $\MM = \MM^\prime$ и верно:
+	$$
+		\forall A \in \MM,\, \mu(A) = \mu^\prime(A)
+	$$
+\end{theorem}
+\begin{proof}
+	Пусть верно: 
+	$$
+		\forall i, j, \, C_{i,j} = B_i \cap B_j^\prime \in S
+	$$ 
+	Очевидно, что:  
+	$$
+		\forall i, \, B_i = \displaystyle \bigsqcup\limits_{j = 1}^{\infty}(B_i \cap B_j^\prime) = \bigsqcup\limits_{j = 1}^{\infty}C_{i,j}, \, \forall j, \, B_j^\prime = \displaystyle \bigsqcup\limits_{i = 1}^{\infty}(B_i \cap B_j^\prime) = \bigsqcup\limits_{i = 1}^{\infty}C_{i,j}
+	$$
+	Пусть $A \in \MM$, тогда $\forall i,\, A \cap B_i \in \MM_i$, а поскольку $C_{i,j} \subseteq B_i$, то: 
+	$$
+		\forall i, j, \, A \cap C_{i,j} \in \MM_i
+	$$ 
+	Но мера Лебега $\mu_{i,j}$ на подмножествах $C_{i,j}$ может быть получена (см. замечание $3$) с помощью Лебеговского продолжения меры $m$ с полукольца $S \cap C_{i,j}$, и таким образом: 
+	$$
+		\forall i,j, \, \MCN_{i,j} = \MM_i \cap C_{i,j} = C_{i,j}, \,  \forall D \in \MCN_{i,j}, \, \mu_{i,j}(D) = \mu_i(D)
+	$$
+	Поскольку:
+	$$
+		\forall i,j, \, A \cap C_{i,j} \in \MM_j^\prime 
+	$$ 
+	то, точно также обстоит дело с мерой $\mu_j^\prime $ на подмножествах $C_{i,j}$: 
+	$$
+			\forall i,j, \, \MCN'_{i,j} = \MM_j^\prime \cap C_{i,j} = C_{i,j}, \,  \forall D \in \MCN'_{i,j}, \, \mu_{i,j}(D) = \mu_j^\prime(D)
+	$$
+	Следовательно:
+	$$
+		\forall i,j, \, \forall D \in C_{i,j}, \, \mu_i(D) = \mu_{i,j}(D) = \mu_j^\prime(D), \quad \MCN_{i,j}  =C_{i,j} = \MCN'_{i,j}
+	$$
+	Кроме того, будет следовать, что $A \in \MM^\prime$ ($\MM^\prime$ - $\sigma$-алгебра), поскольку:
+	$$
+		A \in \MM \Rightarrow \forall i, j, \, A \cap C_{i,j} \in \MM_i \Rightarrow A \cap C_{i,j} \in \MM_j^\prime \Rightarrow  
+	$$
+	$$	
+		\Rightarrow \forall j,\, \bigsqcup\limits_{i = 1}^{\infty} \left(A \cap C_{i,j}\right) = A \cap \left(\bigsqcup\limits_{i = 1}^{\infty}C_{i,j}\right) = A \cap B_j^\prime \in \MM_j^\prime
+	$$
+	В силу произвольности обозначения мер, это будет верно и в обратную сторону. Если рассматриваем $\mu(A)$, то по определению и в силу неотрицательности мер:
+	$$
+		\mu(A) = \sum\limits_{i = 1}^{\infty}\mu_i(A \cap B_i) = \sum\limits_{i = 1}^{\infty}\sum\limits_{j = 1}^{\infty}\mu_i(A \cap C_{i,j}) = \sum\limits_{i = 1}^{\infty}\sum\limits_{j = 1}^{\infty}\mu_j^\prime(A \cap C_{i,j}) =  
+	$$
+	$$
+		= \sum\limits_{j = 1}^{\infty}\sum\limits_{i = 1}^{\infty}\mu_j^\prime(A \cap C_{i,j}) = \sum\limits_{j = 1}^{\infty}\mu_j^\prime(A \cap B_j^\prime) = \mu^\prime(A)
+	$$
+
+\end{proof}
+
+\subsection*{Мера Бореля}
+\begin{defn}
+	\uwave{Борелевской} $\sigma$-\uwave{алгеброй} $\MB_n$ будем называть минимальную $\sigma$-алгебру, содержащую все открытые подмножества $\MR^n$. Для $n = 1$ обозначим $\MB = \MB_1$.
+\end{defn}
+\begin{prop}
+	Пусть $\MM$ - Лебеговская $\sigma$-алгебра, соответствующая классической $\sigma$-конечной мере Лебега на подмножествах $\MR^n$, а открытое $G \subseteq \MR^n$. Тогда $G \in \MM$.
+\end{prop}
+\begin{proof}
+	Для $x \in G$ обозначим через $d_x$ соответствующее расстояние от $x$ до дополнения к множеству $G$:
+	$$
+		d_x = \inf\limits_{y \in \MR^n \setminus G}|x -y|
+	$$
+	где $|x|$ - Евклидова метрика. Если $P$ - совокупность всевозможных векторов:
+	$$
+		P = \{\overline{p} = (p_1,\dotsc, p_n) \in G \colon \forall i, \, p_i \in \MQ \}
+	$$
+	то множество $P$ - счетное. Легко заметить, что всё $G$ представимо в объединении $n$-мерных кубиков:
+	$$
+		G = \bigcup\limits_{\overline{p} \in P}\prod \limits_{j = 1}^n \left(p_j - \dfrac{d_{\overline{p}}}{n}, p_j + \dfrac{d_{\overline{p}}}{n} \right)
+	$$
+	Поскольку точки $P$ всюду плотны, то можно всегда для любой точки указать близкую точку из $P$, поскольку расстояние будет фиксированным, то наша точка войдет в этот кубик. Заметим, что:
+	$$
+		\forall \overline{p} \in P, \, \prod \limits_{j = 1}^n \left(p_j - \dfrac{d_{\overline{p}}}{n}, p_j + \dfrac{d_{\overline{p}}}{n} \right) \in \MM \Rightarrow G \in \MM
+	$$
+	где последнее верно, поскольку $\MM$ - $\sigma$-алгебра и $P$ - счетно.
+\end{proof}
+\begin{corollary}
+	Борелевская $\sigma$-алгебра $\subseteq$ Лебеговская $\sigma$-алгебра:
+	$$
+		\MB_n \subseteq \MM 
+	$$
+\end{corollary}
+\begin{rem}
+	Разбор этого следствия должен быть на семинарах.
+\end{rem}
+\begin{defn}
+	\uwave{Мерой Бореля} называется соответствующая (размерности) классическая $\sigma$-конечная мера Лебега, суженная на $\MB_n$.
+\end{defn}
+\begin{rem}
+	Отсюда очевидно, что мера Бореля будет $\sigma$-аддитивной.
+\end{rem}
+
+\newpage
+\section*{Непрерывность мер}
+\begin{defn}
+	Пусть $\MCR$ - это кольцо и $\nu$ - мера на $\MCR$ (не обязательно $\sigma$-аддитивная), тогда $\nu$ называется \uwave{непрерывной} на $\MCR$ в том и только в том случае, когда:
+	$$
+		\forall A, A_1,\dotsc , A_n, \dotsc \in \MCR \colon A_1 \supseteq A_2 \supseteq A_3 \supseteq \dotsc \wedge A = \bigcap\limits_{n = 1}^{\infty}A_n, \, \nu(A) = \lim\limits_{n \to \infty} \nu(A_n)
+	$$
+\end{defn}
+\begin{theorem}
+	Пусть $\MCR$ - кольцо и $\nu$ - конечная мера на $\MCR$, тогда $\nu$ - непрерывна $\Leftrightarrow \nu$ - $\sigma$-аддитивна.
+\end{theorem}
+\begin{proof}\hfill\\
+	$(\Leftarrow)$ Пусть множества $A, A_1,\dotsc , A_n, \dotsc \in \MCR, \, A_1 \supseteq A_2 \supseteq A_3 \supseteq \dotsc$ и $A = \bigcap\limits_{n = 1}^{\infty}A_n$. Тогда, заметим, что:
+	$$
+		A_1 = A \sqcup  \left(\bigsqcup\limits_{n = 1}^{\infty}\left( A_n \setminus A_{n+1}\right)\right) \Rightarrow \nu(A_1) = \nu(A) + \sum\limits_{n = 1}^{\infty}\nu(A_n \setminus A_{n+1}) = \nu(A) + \sum\limits_{n = 1}^{\infty}\left(\nu(A_n) - \nu(A_{n+1})\right)
+	$$
+	где последнее верно в силу включения $\forall n, \, A_n \supseteq A_{n+1}$. Воспользуемся суммой ряда:
+	$$
+		\nu(A_1) = \nu(A) + \lim\limits_{N \to \infty}\sum\limits_{n = 1}^{N-1} \left(\nu(A_n) - \nu(A_{n+1})\right) = \nu(A) + \nu(A_1) - \lim\limits_{N \to \infty} \nu(A_N) \Rightarrow \nu(A) = \lim\limits_{N \to \infty} \nu(A_N)
+	$$
+	
+	$(\Rightarrow)$ Пусть $A, A_1,\dotsc , A_n, \dotsc \in \MCR$ и $A =  \bigsqcup\limits_{n = 1}^{\infty}A_n$. Обозначим $\forall N$ через $B_N = \bigsqcup\limits_{n = N+1}^{\infty}A_n$, тогда:
+	$$
+	 	\forall, \,  B_N = \bigsqcup\limits_{n = N+1}^{\infty}A_n = A \setminus \bigsqcup\limits_{n = 1}^{N +1}A_n \in \MCR
+	$$ 
+	где последнее верно, поскольку $\MCR$ кольцо и выдерживает операции объединения и разности. При этом, по определению: $B_1 \supseteq B_2 \supseteq \dotsc$ и кроме того $\bigcap\limits_{N = 1}^{\infty} B_N = \VN$, тогда воспользуемся непрерывностью $\nu$:
+	$$
+		\nu(B_N) \xrightarrow[N \to \infty]{} \nu(\VN) = 0
+	$$
+	Но справедливо равенство (в силу того, что $\nu$ - мера):
+	$$
+		\forall N ,\, A = \left(\bigsqcup\limits_{n = 1}^{N}A_n\right)\sqcup B_N \Rightarrow \nu(A) = \sum\limits_{n = 1}^{N}\nu(A_n) + \nu(B_N) \Rightarrow \nu(A) - \nu(B_N) = \sum\limits_{n = 1}^{N}\nu(A_n)
+	$$
+	Устремляем в последнем равенстве $N$ к бесконечности:
+	$$
+		\lim\limits_{N \to \infty} \left(\nu(A) - \nu(B_N)\right) = \nu(A) \Rightarrow \exists \, \lim\limits_{N \to \infty} \left(\nu(A) - \nu(B_N)\right) \Rightarrow \exists \, \lim\limits_{N \to \infty} \sum\limits_{n = 1}^{N}\nu(A_n) = \sum\limits_{n = 1}^{\infty}\nu(A_n) = \nu(A)
+	$$
+\end{proof}
+
+\begin{rem}
+	Если $\MCR$ - кольцо, $\nu$ - $\sigma$-аддитивная конечная мера на $\MCR$, множества $A, A_1, A_2, \dotsc, A_n, \dotsc \in \MCR$ и верно вложение $A_1 \subseteq A_2 \subseteq \dotsc $, при этом $A = \bigcup\limits_{n = 1}^{\infty} A_n$, тогда тоже будет верно, что: 
+	$$
+		\nu(A) = \lim\limits_{n \to \infty} \nu(A_n)
+	$$
+\end{rem}
+\begin{proof}
+	Для этого достаточно рассмотреть множества $B_n = A \setminus A_n \in \MCR$ для которых будет верно: 
+	$$
+		B_1 \supseteq B_2 \supseteq \dotsc \wedge \bigcap\limits_{n = 1}^{\infty}B_n = \VN
+	$$ 
+	и применить теорему $4 \Rightarrow$ получим непрерывность.
+\end{proof}
+
+\begin{rem}
+	При доказательстве теоремы $4$ не использовалась неотрицательность $\nu$.
+\end{rem}
+
+\begin{corollary}
+	Пусть $\MCR$ - кольцо, $\mu$ - $\sigma$-конечная и $\sigma$-аддитивная мера на $\MCR$. Пусть $A, A_1, \dotsc, A_n, \dotsc \in \MCR$, имеют место включения: $A_1 \supseteq A_2 \supseteq \dotsc $ и верно $A = \bigcap\limits_{n = 1}^{\infty} A_n$. Пусть, кроме того, $\mu(A_1) < \infty$, тогда: 
+	$$
+		\mu(A) = \lim\limits_{n \to \infty} \mu(A_n)
+	$$
+\end{corollary}
+\begin{proof}
+	Пусть $\MCR_1 = \MCR \cap A_1$, тогда сужение $\mu$ на $\MCR_1$ это будет конечная $\sigma$-аддитивная мера (принимающая конечные, неотрицательные значения) и можем применить теорему $4 \Rightarrow$ мера непрерывна. 
+\end{proof}
+
+\begin{rem}
+	Пусть $\mu$ - классическая $\sigma$-конечная мера Лебега на подмножествах обычной прямой $\MR^1$, множества: $A_n = [n, \infty), \, n = 1,2,3 \dotsc$, $A = \VN$. Тогда очевидно, что $A_1 \supset A_2 \supset \dotsc$ и $A = \bigcap\limits_{n = 1}^{\infty}A_n$, но при этом получается, что  $\nu(A) = 0$, а предел $\lim\limits_{n \to \infty}\nu(A_n) = \infty$, поскольку они все имеют бесконечную меру. Таким образом, без ограничений, чтобы мера хоть какого-то $A_n$ была конечной, утверждение не верно.
+\end{rem}
+
+\begin{prop}
+	Пусть $\MCR$ - кольцо, $\mu$ - $\sigma$-конечная $\sigma$-аддитивная  мера на $\MCR$, множества $A, A_1, \dotsc, A_n, \dotsc \in \MCR$, причем $A_1 \subseteq A_2 \subseteq \dotsc $ и $A = \bigcup\limits_{n = 1}^{\infty} A_n$, тогда: 
+	$$
+		\mu(A) = \lim\limits_{n \to \infty} \mu(A_n)
+	$$
+\end{prop}
+\begin{proof}
+	Если $\exists \, n_0 \colon \mu(A_{n_0}) = \infty \Rightarrow \forall n > n_0, \, \mu(A_n) = \infty$ и разумеется $\mu(A) = A$, то есть теорема выполняется.
+	
+	Пусть $\forall n, \, \mu(A_n) < \infty$, тогда:
+	$$
+		A = A_1 \sqcup \left(\bigsqcup\limits_{n = 2}^{\infty} \left(A_n \setminus A_{n - 1}\right) \right) \Rightarrow \mu(A) = \mu(A_1) + \sum\limits_{n = 2}^{\infty} \mu(A_n \setminus A_{n-1})
+	$$
+	Поскольку меры конечны и $A_{n-1} \subseteq A_n$, то будет верно:
+	$$
+		\mu(A) = \mu(A_1) + \sum\limits_{n = 2}^{\infty}\left(\mu(A_n) - \mu(A_{n-1})\right) = \mu(A_1) + \lim\limits_{N \to \infty} \sum\limits_{n = 2}^N \left(\mu(A_n) - \mu(A_{n-1})\right)
+	$$
+	где последнее верно по определению суммы ряда. Тогда:
+	$$
+		\mu(A) = \mu(A_1) - \mu(A_1) + \lim\limits_{N \to \infty}\mu(A_N) = \lim\limits_{N \to \infty}\mu(A_N)
+	$$
+\end{proof}
+
+\section*{Полнота мер}
+\begin{defn}
+	Пусть $\MCR$ - кольцо и $\mu$ - мера на $\MCR$, тогда $\mu$ называется \uwave{полной} $\Leftrightarrow$ если $A \in \MCR,\, \mu(A) = 0$ и $B \subseteq A \Rightarrow B \in \MCR$ и $\mu(B) = 0$.
+\end{defn}
+\begin{rem}
+	То есть, полнота означает, что любое подмножество, множества меры ноль должно быть измеримо и его мера должна равняться нулю.
+\end{rem}
+\begin{rem}
+	Меры Лебега, Жордана, $\sigma$-конечная мера Лебега, мера Лебега-Стильтьеса - полны (вытекает сразу из соответствующих рассмотрений). А вот мера Бореля - не полна. 
+	
+	 Например, Канторовское множество имеет меру Лебега $0$, но оно измеримо по Борелю, потому что оно есть дополнение к некоторому открытому множеству. Мера Бореля это сужение меры Лебега и должна быть тоже $0$, но в Канторовском множестве есть подмножества неизмеримые по Борелю, там не выполняется требование $B \in \MCR$ определения полноты. 
+\end{rem}
+
+\end{document}

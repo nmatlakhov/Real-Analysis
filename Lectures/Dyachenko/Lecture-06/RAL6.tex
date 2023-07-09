@@ -1,0 +1,539 @@
+\documentclass[12pt]{article}
+\usepackage[left=1cm, right=1cm, top=2cm,bottom=1.5cm]{geometry} 
+
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools,xcolor,accents}
+\usepackage{blkarray}
+
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{graphicx}
+\usepackage[figurename=Рис.]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+%%Наименование папки откуда забирать изображения
+\graphicspath{ {./images/} }
+
+%%Изменение формата для ввода доказательства
+\renewcommand{\proofname}{$\square$  \nopunct}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%%Изменение отступа на таблицах
+\addto\captionsrussian{%
+	\renewcommand{\proofname}{$\square$ \nopunct}%
+}
+%% Римские цифры
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%% Для удобства записи
+\newcommand{\MR}{\mathbb{R}}
+\newcommand{\MC}{\mathbb{C}}
+\newcommand{\MQ}{\mathbb{Q}}
+\newcommand{\MN}{\mathbb{N}}
+\newcommand{\MZ}{\mathbb{Z}}
+\newcommand{\MTB}{\mathbb{T}}
+\newcommand{\MTI}{\mathbb{I}}
+\newcommand{\MI}{\mathrm{I}}
+\newcommand{\MCI}{\mathcal{I}}
+\newcommand{\MCR}{\mathcal{R}}
+\newcommand{\MJ}{\mathrm{J}}
+\newcommand{\MH}{\mathrm{H}}
+\newcommand{\MT}{\mathrm{T}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MV}{\mathcal{V}}
+\newcommand{\MA}{\mathcal{A}}
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MF}{\mathcal{F}}
+\newcommand{\ME}{\mathcal{E}}
+\newcommand{\MW}{\mathcal{W}}
+\newcommand{\ML}{\mathcal{L}}
+\newcommand{\MM}{\mathcal{M}}
+\newcommand{\MP}{\mathcal{P}}
+\newcommand{\VN}{\varnothing}
+\newcommand{\VE}{\varepsilon}
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dz}{\, dz}
+\newcommand{\dd}{\, d}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}{Опр:}
+\newtheorem{rem}{Rm:}
+\newtheorem{prop}{Утв.}
+\newtheorem{exrc}{Упр.}
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}
+
+\newenvironment{cusdefn}[1]
+{\renewcommand\thedefn{#1}\defn}
+{\enddefn}
+
+\DeclareRobustCommand{\divby}{%
+	\mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\DeclareRobustCommand{\ndivby}{\mkern-1mu\not\mathrel{\mkern4.5mu\divby}\mkern1mu}
+
+
+%Короткий минус
+\DeclareMathSymbol{\SMN}{\mathbin}{AMSa}{"39}
+%Длинная шапка
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%Функция знака
+\DeclareMathOperator{\sgn}{sgn}
+
+%Функция ранга
+\DeclareMathOperator{\rk}{\text{rk}}
+\DeclareMathOperator{\diam}{\text{diam}}
+
+
+%Обозначение константы
+\DeclareMathOperator{\const}{\text{const}}
+
+\DeclareMathOperator{\codim}{\text{codim}}
+
+\DeclareMathOperator*{\dsum}{\displaystyle\sum}
+\newcommand{\ddsum}[2]{\displaystyle\sum\limits_{#1}^{#2}}
+\newcommand{\ddssum}[2]{\displaystyle\smashoperator{\sum\limits_{#1}^{#2}}}
+\newcommand{\ddlsum}[2]{\displaystyle\smashoperator[l]{\sum\limits_{#1}^{#2}}}
+\newcommand{\ddrsum}[2]{\displaystyle\smashoperator[r]{\sum\limits_{#1}^{#2}}}
+
+%Интеграл в большом формате
+\DeclareMathOperator{\dint}{\displaystyle\int}
+\newcommand{\ddint}[2]{\displaystyle\int\limits_{#1}^{#2}}
+\newcommand{\ssum}[1]{\displaystyle \sum\limits_{n=1}^{\infty}{#1}_n}
+
+\newcommand{\smallerrel}[1]{\mathrel{\mathpalette\smallerrelaux{#1}}}
+\newcommand{\smallerrelaux}[2]{\raisebox{.1ex}{\scalebox{.75}{$#1#2$}}}
+
+\newcommand{\smallin}{\smallerrel{\in}}
+\newcommand{\smallnotin}{\smallerrel{\notin}}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.25}{\ensuremath{\cap}}}}%
+\newcommand*{\medcup}{\mathbin{\scalebox{1.25}{\ensuremath{\cup}}}}%
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3.5}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother
+
+%Промежуточное значение для sup\inf, поскольку они имеют разную высоту
+\newcommand{\newsup}{\mathop{\smash{\mathrm{sup}}}}
+\newcommand{\newinf}{\mathop{\mathrm{inf}\vphantom{\mathrm{sup}}}}
+
+%Скалярное произведение
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle }
+\newcommand{\linsp}[1]{\left\langle #1 \right\rangle }
+\newcommand{\linmer}[2]{\left\langle #1 \vert #2\right\rangle }
+
+%Подпись символов снизу
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+%%Шапка для букв сверху
+\newcommand{\wte}[1]{\widetilde{#1}}
+\newcommand{\wht}[1]{\widehat{#1}}
+\newcommand{\ovl}[1]{\overline{#1}}
+
+
+%%Трансформация Фурье
+\newcommand{\fourt}[1]{\mathcal{F}\left(#1\right)}
+\newcommand{\ifourt}[1]{\mathcal{F}^{-1}\left(#1\right)}
+
+%%Символ вектора
+\newcommand{\vecm}[1]{\overrightarrow{#1\,}}
+
+%%Пространстов матриц
+\newcommand{\matsq}[1]{\operatorname{Mat}_{#1}}
+\newcommand{\mat}[2]{\operatorname{Mat}_{#1, #2}}
+
+%Оператор для действ и мнимых чисел
+\DeclareMathOperator{\IM}{\operatorname{Im}}
+\DeclareMathOperator{\RE}{\operatorname{Re}}
+\DeclareMathOperator{\li}{\operatorname{li}}
+\DeclareMathOperator{\GL}{\operatorname{GL}}
+\DeclareMathOperator{\SL}{\operatorname{SL}}
+\DeclareMathOperator{\Char}{\operatorname{char}}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\ord{ord}
+
+%Оператор для образа
+\DeclareMathOperator{\Ima}{Im}
+
+%Делимость чисел
+\newcommand{\modn}[3]{#1 \equiv #2 \; (\bmod \; #3)}
+\newcommand{\nmodn}[3]{#1 \not\equiv #2 \; (\bmod \; #3)}
+
+%%Взятие в скобки, модули и норму
+\newcommand{\parfit}[1]{\left( #1 \right)}
+\newcommand{\modfit}[1]{\left| #1 \right|}
+\newcommand{\sqparfit}[1]{\left\{ #1 \right\}}
+\newcommand{\normfit}[1]{\left\| #1 \right\|}
+
+%%Функция для обозначения равномерной сходимости по множеству
+\newcommand{\uconv}[1]{\overset{#1}{\rightrightarrows}}
+\newcommand{\uconvm}[2]{\overset{#1}{\underset{#2}{\rightrightarrows}}}
+
+%% Функция для добавления круга сверху множества
+\newcommand{\Circ}[1]{\accentset{\circ}{#1}}
+
+%%Функция для обозначения нижнего и верхнего интегралов
+\def\upint{\mathchoice%
+	{\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	\int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+%%След матрицы
+\DeclareMathOperator*{\tr}{tr}
+
+\DeclareMathOperator*{\symdif}{\bigtriangleup}
+
+% Верхние\нижние пределы
+\DeclareMathOperator*\lowlim{\underline{lim}}
+\DeclareMathOperator*\uplim{\overline{lim}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+
+%% Переопределение функции хи, чтобы выглядела более приятно
+\makeatletter
+\@ifdefinable\@latex@chi{\let\@latex@chi\chi}
+\renewcommand*\chi{{\@latex@chi\smash[t]{\mathstrut}}} % want only bottom half of \mathstrut
+\makeatletter
+
+\setcounter{MaxMatrixCols}{20}
+
+\begin{document}
+\lhead{Действительный анализ}
+\chead{Дьяченко М.И.}
+\rhead{Лекция - 6}
+\section*{Измеримые функции}
+
+\begin{defn}
+	\uwave{Измеримым пространством} или ИП будем называть тройку $(X,\MM, \mu)$, где $\MM$ - $\sigma$-алгебра с единицей $X$, а $\mu$ - $\sigma$-аддитивная мера. Если $\mu$ - конечная, то пространство будем называть \uwave{конечным}, если $\mu$ - $\sigma$-конечна, то \uwave{$\sigma$-конечным}.
+\end{defn}
+
+\begin{defn}
+	Пусть $(X,\MM, \mu)$ - измеримое пространство (ИП), $E \in \MM$ - некоторое множество и задана функция: $f \colon E \to \MR^1 \cup \{-\infty\} \cup \{+\infty\}$, тогда она называется \uwave{измеримой} на $E$ (или можно сказать измеримом пространстве $(E, E \cap \MM, \mu)$) в том и только в том случае, если:
+	$$
+		\forall c \in \MR^1, \, f^{-1}((c,+\infty]) = \{x \in E \colon f(x) \in (c, + \infty]\} \in \MM 
+	$$
+\end{defn}
+\begin{rem}
+	Также можно сказать $f^{-1}((c,+\infty]) \in \MM \cap E$ вместо $f^{-1}((c,+\infty]) \in \MM$.
+\end{rem}
+\begin{rem}
+	Поскольку если $(X,\MM,\mu)$ это ИП и $E \in \MM$, то $(E, \MM \cap E, \mu)$ также ИП, в определении можно считать, что $f$ задана на $X$.
+\end{rem}
+\begin{rem}
+	Если $f(x)$ определена на открытом или замкнутом подмножестве $A \subseteq \MR^1$ и $f \in C(A)$, то есть $f$ непрерывна на $A$, то $f$ измерима на $(A, \MM \cap A, \mu)$, где $\MM$ это классическая Лебеговская $\sigma$-алгебра, а $\mu$ это классическая мера Лебега. Это следует из следующего факта:
+	$$
+		\forall c, \, f^{-1}((c,+\infty]) = f^{-1}((c,+ \infty)) = A \cap B
+	$$
+	где $B$ - открытое множество, а все открытые множества измеримы относительно классической меры Лебега (см. теорему с прошлой лекции, что любое открытое множество представимо в виде дизъюнктного объединения интервалов, которые измеримы относительно классической меры Лебега по её определению, смотри лекцию $3$).
+\end{rem}
+
+\begin{defn}
+	Пусть $(X, \MM, \mu)$ это ИП и $E \in \MM$, тогда будем говорить, что некоторое свойство $(*)$ выполнено \uwave{почти всюду} на $E$ (п.в. на $E$) $\Leftrightarrow \exists \, E_0 \in \MM, \, E_0\subseteq E \wedge \mu(E \setminus E_0) = 0$, а свойство $(*)$ выполнено $\forall x\in E_0$.
+\end{defn}
+
+\begin{defn}
+	Функции $f(x)$ и $g(x)$ совпадающие п.в. на $E \in \MM$ будем называть \uwave{эквивалентными} на $E$.
+\end{defn}
+
+Далее, везде $(X,\MM,\mu)$ это ИП и $f$ измеримая на $X \Leftrightarrow f$ измеримая на $(X,\MM,\mu)$
+
+\begin{lemma}
+	Пусть $f(x)$ измерима на ИП $(X,\MM, \mu)$, тогда: 
+	$$
+		f^{-1}(\{+\infty\}) \in \MM, \, f^{-1}(\{-\infty\}) \in \MM, \, f^{-1}(\MR^1) \in \MM, \, \forall a,b \in \MR^1, \, f^{-1}((a,b)) \in \MM
+	$$ 
+	то есть, все такие множества - измеримы.
+\end{lemma}
+\begin{proof}
+	Представим $f^{-1}(\{+\infty\})$ в виде:
+	$$
+		f^{-1}(\{+\infty\}) = \bigcap\limits_{n = 1}^{\infty}f^{-1}((n,+\infty])
+	$$ 
+	где $f^{-1}((n,+\infty])\in \MM$ по определению $\Rightarrow \bigcap\limits_{n = 1}^{\infty}f^{-1}((n,+\infty]) \in \MM$, поскольку $\MM$ это $\sigma$-алгебра. Аналогично, представим $f^{-1}(\{-\infty\})$ в виде:
+	$$
+		f^{-1}(\{-\infty\}) = X \setminus \bigcup\limits_{n = 1}^{\infty}f^{-1}((-n,+\infty])
+	$$
+	$$
+		\forall n, \, f^{-1}((-n,+\infty]) \in \MM \Rightarrow \bigcup\limits_{n = 1}^{\infty}f^{-1}((-n,+\infty]) \in \MM \Rightarrow X \setminus \bigcup\limits_{n = 1}^{\infty}f^{-1}((-n,+\infty]) \in \MM
+	$$
+	Аналогично, представим $f^{-1}(\MR^1)$ в виде:
+	$$
+		f^{-1}(\MR^1) = X \setminus \left(f^{-1}(\{+\infty\}) \cup f^{-1}(\{-\infty\})\right)
+	$$
+	$$
+		f^{-1}(\{+\infty\}) \cup f^{-1}(\{-\infty\}) \in \MM \Rightarrow X \setminus \left(f^{-1}(\{+\infty\}) \cup f^{-1}(\{-\infty\})\right) \in \MM
+	$$
+	Затем, $\forall b \in \MR^1$ рассмотрим полный прообраз: $f^{-1}([b,+\infty])$:
+	$$
+		f^{-1}([b,+\infty]) = \bigcap\limits_{n = 1}^{\infty}f^{-1}((b - \tfrac{1}{n},+\infty] ) \in \MM \Rightarrow f^{-1}((a,b)) = f^{-1}((a,+\infty])\setminus f^{-1}([b,+\infty]) \in \MM
+ 	$$
+ 	где измеримость первого слагаемого $f^{-1}((a,+\infty])$ вытекает из определения.
+\end{proof}
+\begin{theorem}
+	Пусть функция $f(x)$ измерима и конечна на $X$ ($f\colon X \to \MR^1$), тогда для любого борелевского множества $B \subseteq \MR^1$,  $f^{-1}(B)\in \MM$.
+\end{theorem}
+\begin{proof}
+	Рассмотрим $\Sigma = \{A \subseteq \MR^1 \colon f^{-1}(A) \in \MM\}$. По предыдущей лемме $\MR^1 \in \Sigma$. Если $A, C \in \Sigma$, то:
+	$$
+		f^{-1}(A \cap C) = f^{-1}(A) \cap f^{-1}(C), \,  f^{-1}(A) \in \MM, \, f^{-1}(C) \in \MM \Rightarrow f^{-1}(A) \cap f^{-1}(C) \in \MM
+	$$
+	Аналогично, получим:
+	$$
+		f^{-1}(A \Delta C) = f^{-1}(A) \Delta f^{-1}(C) , \,  f^{-1}(A) \in \MM, \, f^{-1}(C) \in \MM \Rightarrow f^{-1}(A) \Delta f^{-1}(C) \in \MM
+	$$
+	В результате, $A\cap C\in \Sigma, \, A \Delta C \in \Sigma \Rightarrow \Sigma$ это алгбера (поскольку $\MR^1 \in \Sigma$). Если $A_1, A_2, \dotsc, A_n, \dotsc  \in \Sigma$, то в этом случае:
+	$$
+		f^{-1}\left(\bigcup\limits_{i = 1}^{\infty} A_i\right) = \bigcup\limits_{i = 1}^{\infty} f^{-1}\left(A_i\right), \, \forall i, \, f^{-1}(A_i) \in \MM \Rightarrow \bigcup\limits_{i = 1}^{\infty} f^{-1}\left(A_i\right) \in \MM \Rightarrow f^{-1}\left(\bigcup\limits_{i = 1}^{\infty} A_i\right) \in \Sigma
+	$$
+	В результате, $\Sigma$ это $\sigma$-алгебра. Согласно предыдущей лемме любой интервал $(a,b) \in \Sigma \Rightarrow$ воспользуемся теоремой $4$ с прошлой лекции, получим, что любое открытое $G \in \Sigma \Rightarrow \Sigma$ это $\sigma$-алгебра, содержащая все открытые множества, а борелевская это минимальная $\sigma$-алгебра, содержащая все открытые, следовательно борелевская $\sigma$-алгебра $\MB \subset \Sigma$.
+\end{proof}
+\begin{rem}
+	Для любого измеримого по Лебегу, относительно классической меры Лебега, множества его полный прообраз не обязательно будет измеримым. Это не верно даже когда $f$ будет непрерывной. На семинарах разбирается пример непрерывной функции и измеримого по Лебегу множества, относительно классической меры Лебега такого, что его полный прообраз уже будет неизмерим.
+\end{rem}
+
+\begin{lemma}
+	Пусть $f(x)$ и $g(x)$ измеримы на $X$, тогда измеримы множества:
+	$$
+		A = \{x \in X \colon f(x) > g(x)\}, \, B = \{x\in X \colon f(x) = g(x)\}
+	$$
+\end{lemma}
+\begin{proof}
+	Пусть $\MQ$ - все рациональные числа на $\MR^1$, тогда множество $A$ можно представить так:
+	$$
+		A = \bigcup\limits_{r \in \MQ}f^{-1}((r,+\infty]) \cap g^{-1}([-\infty,r))
+	$$
+	Измеримость $f^{-1}((r,+\infty])$ вытекает из определения, измеримость $g^{-1}([-\infty,r))$ вытекает из того, что $g^{-1}([-\infty,r)) = X \setminus g^{-1}([r,+\infty)) \Rightarrow A \in \MM$. Аналогично, $B = X \setminus  (\{f > g\} \cup \{g > f\}) \Rightarrow B \in \MM$.
+\end{proof}
+
+\begin{theorem}
+	Пусть $f(x)$ измерима на $X$, открытое множество $G \subseteq \MR^1$, $f \colon X \to G$ и функция $\varphi(t)$ непрерывна на $G$, тогда композиция: $\varphi(f(x))$ измерима на $X$.
+\end{theorem}
+\begin{proof}
+	Пусть $c \in \MR^1$ и $B_c = \varphi^{-1}((c,+\infty)) = \{t \in G \colon \varphi(t) > c\}$, тогда в силу непрерывности $\varphi$ множество $B_c$ это открытое множество $\Rightarrow B_c$ - борелевское. Но при этом выполняется:
+	$$
+		(\varphi(f))^{-1}((c,+\infty]) = (\varphi(f))^{-1}((c,+\infty)) =\{x \in X \colon f(x) \in B_c\} = f^{-1}(B_c) \in \MM
+	$$
+	где последнее верно по теореме $1$.
+\end{proof}
+\begin{rem}
+	Заметим, что композиция двух измеримых функций не обязательно будет измеримой. Более того, если в теореме поменять ролями $f$ и $\varphi$, то композиция $f(\varphi)$ не обязана быть измеримой, поскольку есть непрерывные функции, которые множество меры нуль переводят не в множество меры нуль.
+\end{rem}
+\begin{corollary}
+	Пусть $f(x)$ измерима и конечна на $X$, тогда измеримы функции: 
+	$$
+		\forall a \in \MR^1, \, a{\cdot}f(x), \,  f^2(x), \, f(x) + a
+	$$
+	И если $f(x) \neq 0$ на $X$, то $\tfrac{1}{f(x)}$ тоже измерима.
+\end{corollary}
+\begin{proof}
+	Следует непосредственно из теоремы $2$ подбором непрерывных функций.
+\end{proof}
+
+\begin{corollary}
+	Если функции $f(x)$ и $g(x)$ измеримы на $X$ и конечны (запрещаем бесконечные значения), то верны следующие утверждения:
+	\begin{enumerate}[label = \arabic*)]
+		\item $f(x) + g(x)$ измерима на $X$;
+		\item $f(x){\cdot}g(x)$ измерима на $X$;
+		\item Если $g(x) \neq 0$ на $X$, то $\tfrac{f(x)}{g(x)}$ измерима на $X$;
+	\end{enumerate}
+\end{corollary}
+\begin{proof}\hfill
+	\begin{enumerate}[label =\arabic*)]
+		\item Пусть $c \in \MR^1$, тогда: 
+		$$
+			(f + g)^{-1}((c,+\infty)) = \{x \in X \colon f(x) + g(x) > c\} = \{x \in X \colon f(x) > c - g(x)\}
+		$$ 
+		поскольку $f(x)$ измерима и $c - g(x)$ измерима по следствию $1$, то $(f + g)^{-1}((c,+\infty))$ измеримо по лемме $2$;
+		\item Представим $f(x){\cdot}g(x)$ следующим образом:
+		$$
+			f(x){\cdot}g(x) = \dfrac{1}{4}((f(x) + g(x) )^2 - (f(x) - g(x))^2 )
+		$$
+		пользуясь леммой $2$ и следствием $1$ снова получаем измеримую функцию;
+		\item Представим $\tfrac{f(x)}{g(x)}$ следующим образом:
+		$$
+			\dfrac{f(x)}{g(x)} = f(x){\cdot}\dfrac{1}{g(x)}
+		$$
+		пользуясь следствием $1$ и вторым пунктом данной теоремы, снова получаем измеримую функцию;
+	\end{enumerate}
+\end{proof}
+\begin{rem}
+	Условия конечности функций $f(x)$ и $g(x)$ можно изменить на:
+	\begin{enumerate}[label=\arabic*)]
+		\item Определить операции с точками: $\pm \infty$, например, очевидные представления:
+		$$
+			a + \infty = + \infty, \quad a - \infty = - \infty, \quad a > 0, \, a{\cdot}(\pm\infty) = \pm \infty, \quad a < 0, \, a{\cdot}(\pm \infty) = \mp \infty
+		$$
+		Договорные представления:
+		$$
+			\infty - \infty = 0, \quad 0{\cdot}\infty = 0
+		$$
+		В этом случае можно не требовать конечности, подразумевая, что мы так определяем операции;
+		\item Если мера $\mu$ - полна, то можно потребовать конечности $f(x)$ и $g(x)$ п.в. на $X$. В этом случае неважно, как определены операции на множестве меры $0$.
+	\end{enumerate}
+\end{rem}
+
+\subsection*{Измеримость пределов и точных граней последовательности функций. Измеримость производной функции}
+\begin{theorem}
+	Пусть $\{f_n(x)\}_{n = 1}^{\infty}$ это последовательность измеримых функций на $X$, тогда следующие функции измеримы на $X$:
+	$$
+		\varphi(x) = \sup\limits_n f_n(x), \quad \psi(x) = \inf\limits_n f_n(x), \quad h(x) = \uplim\limits_{n \to \infty}f_n(x), \quad g(x) = \lowlim\limits_{n \to \infty}f_n(x)
+	$$
+	Кроме того, $f(x) = \lim\limits_{n \to \infty}f_n(x)$ измерима на множестве своего существования $E$, то есть на $(E, \MM \cap E, \mu)$.
+\end{theorem}
+\begin{rem}
+	Множество своего существования может оказаться пустым.
+\end{rem}
+\begin{proof}
+	Если $c \in \MR^1$, то будет верно:
+	$$
+		\{x \in X \colon \varphi(x) > c\} = \bigcup\limits_{n = 1}^{\infty}\{x \in X \colon f_n(x) > c\}
+	$$
+	$$	
+		\forall n \in \MN, \, \{x \in X \colon f_n(x) > c\} \in \MM \Rightarrow  \{x \in X \colon \varphi(x) > c\} \in \MM
+	$$
+	Аналогично для других функций:
+	$$
+		\{x \in X \colon \psi(x) > c\} = \bigcup\limits_{m = 1}^{\infty}\bigcap\limits_{n = 1}^{\infty}\{x \in X \colon f_n(x) > c + \tfrac{1}{m}\} \in \MM
+	$$
+	$$
+		h(x) = \inf\limits_{n \geq 1}\sup\limits_{k \geq n}f_k(x)
+	$$
+	Взятие верхней и нижней граней последовательности измеримых функций не изменяет измеримости, то отсюда будет вытекать измеримость $h(x)$. Аналогично для функции $g(x)$. Рассмотрим множество $E$:
+	$$
+		E = \{x \in X \colon \exists \, \lim\limits_{n \to \infty} f_n(x)\} = \{x\in X \colon h(x) = g(x)\} \in \MM
+	$$
+	Это то множество, где верхний предел совпадает с нижним, при этом две измеримые функции равны друг другу на измеримом множестве по лемме $2$. Кроме того, на $E$ функция $f(x) = h(x)$, а $h(x)$ измерима на $E$, поскольку она измерима на всём $X$.
+\end{proof}
+
+\begin{theorem}
+	Пусть $f(x) \in C((a,b))$, где $(a,b) \subset \MR^1$, тогда её производная измерима относительно классической меры Лебега на множестве своего существования.
+\end{theorem}
+\begin{proof}
+	Введем функции:
+	$$
+		\forall x \in (a,b), \, \ovl{f}'(x) = \uplim\limits_{h \to 0}\dfrac{f(x + h) - f(x)}{h}, \quad \underline{f}'(x) = \lowlim\limits_{h \to 0}\dfrac{f(x + h) - f(x)}{h}
+	$$
+	Тогда $\forall c \in \MR^1$ можем записать:
+	$$
+		\{x \in (a,b) \colon \ovl{f}' > c\} = \bigcup\limits_{m = 1}^{\infty}\bigcap\limits_{n = 1}^{\infty}\bigcup\limits_{0 < |h| < \frac{1}{n}}\{x \in (a,b) \colon x + h \in (a,b) \wedge \tfrac{1}{h}{\cdot}(f(x + h) - f(x)) > c + \tfrac{1}{m}\}
+	$$
+	Если обозначим множество в скобках за $E_{c,h,m}$, то так как $f(x) \in C((a,b)), \, \forall c,h,m, \, E_{c,h,m}$ - открытое множество $\Rightarrow  \bigcup\limits_{0 < |h| < \frac{1}{n}} E_{c,h,m}$ - тоже будет открытым, а далее операции - счётные и следовательно: 
+	$$
+		\{x \in (a,b) \colon \ovl{f}' > c\} \in \MM
+	$$
+	Аналогично проверяется непрерывность нижней производной. Тогда:
+	$$
+		A = \{x \in (a,b) \colon \exists \, f'(x)\} = \{x \in (a,b) \colon \ovl{f}'(x) = \underline{f}'(x)\}
+	$$
+	где последнее множество измеримо по лемме $2$. И отметим, что на $A$, $f'(x) = \ovl{f}'(x)$, которая измерима, поэтому на множестве существования наша функция измерима.
+\end{proof}
+\begin{rem}
+	Заметим, что под существованием производной полагаем существование любой производной: конечной или бесконечной. То есть $f'(x)$ может равняться $\pm \infty$, это не запрещено. Согласно лемме $1$, в частности измеримо то множество, на котором $f'(x)$ конечна (прообраз $\MR^1$) $\Rightarrow$ можно изменить эту теорему так, чтобы конечная $f'(x)$ была измеримой на множестве своего существования.
+\end{rem}
+\begin{rem}
+	Этот результат справедлив и для любой измеримой функции, вместо непрерывных функций.
+\end{rem}
+\begin{rem}
+	Равенство множеств проверяется тем, что если точка принадлежит левой части, то она принадлежит правой и наоборот.
+\end{rem}
+
+\section*{Сходимость по мере и её свойства}
+В теории вероятности эта  сходимость ещё называется сходимостью по вероятности. Пусть у нас есть измеримое пространство $(X,\MM,\mu)$.
+
+\begin{defn}
+	Пусть последовательность $\{f_n(x)\}_{n = 1}^{\infty}$ и $f(x)$ измеримы и конечны на $X$. Тогда говорят, что $f_n(x)$ \uwave{сходится по мере} на $X$ к $f(x)$ в том и только в том случае, когда:
+	$$
+		\forall \VE > 0, \, \lim\limits_{n \to \infty}\mu(\{x \in X \colon |f_n(x) - f(x)| > \VE\}) = 0
+	$$
+	Или подробнее:
+	$$
+		\forall \VE > 0, \, \gamma > 0, \, \exists \, N \colon \forall n \geq N, \, \mu(\{x \in X \colon |f_n(x) - f(x)| > \VE\}) < \gamma
+	$$
+	\textbf{\uline{Обозначение}}: $f_n \xRightarrow{\mu}f$ или $f_n \xRightarrow{\mu, X} f$.
+\end{defn}
+\begin{rem}
+	Здесь мы требуем конечности в каждой точке, но также возможно требовать измеримости функций на $X$ и конечности почти всюду на $X$, а мера у нас полна.
+\end{rem}
+
+\begin{prop}
+	Предел по мере единственен с точностью до эквивалентности, то есть если:
+	$$
+		f_n \xRightarrow{\mu} f, \, f_n \xRightarrow{\mu} g
+	$$
+	то $f$ эквивалентна $g$ (то есть они совпадают почти всюду).
+\end{prop}
+\begin{proof}
+	Пусть $k \in \MN$, рассмотрим множество: $E_k = \{x \in X \colon |f(x) - g(x)| > \tfrac{1}{k}\}$, можно сказать:
+	$$
+		\forall n, \, E_k \subseteq \{x \in X \colon |f_n(x) - f(x)| > \tfrac{1}{2k}\} \cup \{x \in X \colon |f_n(x) - g(x)| > \tfrac{1}{2k}\}
+	$$
+	Это вытекает из того, что в случае отрицания мы получаем, что обе разности меньше $\tfrac{1}{2k}$, тогда:
+	$$
+		|f(x) - g(x)| \leq |f_n(x) - f(x)| + |f_n(x) - g(x)| \leq \dfrac{1}{2k} + \dfrac{1}{2k} = \dfrac{1}{k}
+	$$
+	Следовательно, отсюда мы получим:
+	$$
+		\forall n, \, \mu(E_k) \leq \mu(\{x \in X \colon |f_n(x) - f(x)| > \tfrac{1}{2k}\}) + \mu (\{x \in X \colon |f_n(x) - g(x)| > \tfrac{1}{2k}\}) \xrightarrow[n \to \infty]{} 0
+	$$
+	Тогда $\mu(E_k) = 0$ и наконец:
+	$$
+		A = \{x \in X \colon |f(x) - g(x)| > 0\} = \bigcup\limits_{k = 1}^{\infty}E_k \Rightarrow \mu(A) = 0
+	$$
+	то есть функции отличаются друг от друга на множестве меры нуль $\Rightarrow$ эквивалентны.
+\end{proof}
+\begin{theorem}
+	Пусть $\{f_n(x)\}_{n = 1}^{\infty}, \, f(x), \, \{g_n(x)\}_{n = 1}^{\infty}, \, g(x)$ - измеримы и конечны на $X$, $f_n \xRightarrow{\mu}f$ и $g_n \xRightarrow{\mu}g$, тогда: $f_n(x) + g_n(x) \xRightarrow{\mu}f(x) + g(x)$.
+\end{theorem}
+\begin{proof}
+	Заметим, что $\forall \VE > 0$ имеет место включение множества:
+	$$
+		E_{f + g, \VE,n} = \{x \in X \colon |(f_n(x) + g_n(x)) - (f(x) + g(x))| > \VE\} \subseteq 
+	$$
+	$$
+		\subseteq \{x \in X \colon |f_n(x) -f(x)| > \tfrac{\VE}{2}\} \cup \{x \in X \colon |g_n(x) -g(x)| > \tfrac{\VE}{2}\} = E_{f,\frac{\VE}{2},n} \cup E_{g,\frac{\VE}{2},n} \Rightarrow
+	$$
+	$$
+		\Rightarrow \mu(E_{f + g, \VE,n}) \leq \mu(E_{f,\frac{\VE}{2},n}) + \mu(E_{g,\frac{\VE}{2},n}) \xrightarrow[n \to \infty]{} 0 \Rightarrow f_n + g_n \xRightarrow{\mu} f+ g
+	$$
+\end{proof}
+
+\textbf{Пример}: Пусть $f_n(x) = x + \tfrac{1}{n}, \, x \in \MR^1$, тогда $f_n(x) \uconv{\MR^1} f(x) = x \Rightarrow$ тем более $f_n(x) \xRightarrow{\mu,\MR^1} f(x)$, где $\mu$ это классическая мера Лебега.
+
+\textbf{Пример}: Рассмотрим $f_n^2(x) = x^2 + \tfrac{2x}{n} + \tfrac{1}{n^2}$ и $f^2(x) = x^2$, следовательно: $f_n^2(x) - f^2(x) = \tfrac{2x}{n} + \tfrac{1}{n^2}$, тогда:
+$$
+	\forall n \in \MN, \, \mu\left(\{x\in \MR^1 \colon |f_n^2(x) - f^2(x)| > 1\}\right) = \mu\left(\{x \in \MR^2 \colon |\tfrac{2x}{n} + \tfrac{1}{n^2}| > 1\}\right) = \infty
+$$
+где последнее верно в силу того, что независимо от отсечки, хвосты больше $1$ находятся на множестве бесконечной меры. Таким образом, этот пример показывает, что тривиальной теоремы о сходимости произведения последовательностей для сходимости по мере - нет.
+
+
+\end{document}

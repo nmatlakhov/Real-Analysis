@@ -1,0 +1,650 @@
+\documentclass[12pt]{article}
+\usepackage[left=1cm, right=1cm, top=2cm,bottom=1.5cm]{geometry} 
+
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools,xcolor,accents}
+\usepackage{blkarray}
+
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{graphicx}
+\usepackage[figurename=Рис.]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+%%Наименование папки откуда забирать изображения
+\graphicspath{ {./images/} }
+
+%%Изменение формата для ввода доказательства
+\renewcommand{\proofname}{$\square$  \nopunct}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%%Изменение отступа на таблицах
+\addto\captionsrussian{%
+	\renewcommand{\proofname}{$\square$ \nopunct}%
+}
+%% Римские цифры
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%% Для удобства записи
+\newcommand{\MR}{\mathbb{R}}
+\newcommand{\MC}{\mathbb{C}}
+\newcommand{\MQ}{\mathbb{Q}}
+\newcommand{\MN}{\mathbb{N}}
+\newcommand{\MZ}{\mathbb{Z}}
+\newcommand{\MTB}{\mathbb{T}}
+\newcommand{\MTI}{\mathbb{I}}
+\newcommand{\MI}{\mathrm{I}}
+\newcommand{\MCI}{\mathcal{I}}
+\newcommand{\MCR}{\mathcal{R}}
+\newcommand{\MJ}{\mathrm{J}}
+\newcommand{\MH}{\mathrm{H}}
+\newcommand{\MT}{\mathrm{T}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MV}{\mathcal{V}}
+\newcommand{\MA}{\mathcal{A}}
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MF}{\mathcal{F}}
+\newcommand{\ME}{\mathcal{E}}
+\newcommand{\MW}{\mathcal{W}}
+\newcommand{\ML}{\mathcal{L}}
+\newcommand{\MM}{\mathcal{M}}
+\newcommand{\MP}{\mathcal{P}}
+\newcommand{\VN}{\varnothing}
+\newcommand{\VE}{\varepsilon}
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dz}{\, dz}
+\newcommand{\dd}{\, d}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}{Опр:}
+\newtheorem{rem}{Rm:}
+\newtheorem{prop}{Утв.}
+\newtheorem{exrc}{Упр.}
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}
+
+\newenvironment{cusdefn}[1]
+{\renewcommand\thedefn{#1}\defn}
+{\enddefn}
+
+\DeclareRobustCommand{\divby}{%
+	\mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\DeclareRobustCommand{\ndivby}{\mkern-1mu\not\mathrel{\mkern4.5mu\divby}\mkern1mu}
+
+
+%Короткий минус
+\DeclareMathSymbol{\SMN}{\mathbin}{AMSa}{"39}
+%Длинная шапка
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%Функция знака
+\DeclareMathOperator{\sgn}{sgn}
+
+%Функция ранга
+\DeclareMathOperator{\rk}{\text{rk}}
+\DeclareMathOperator{\diam}{\text{diam}}
+
+
+%Обозначение константы
+\DeclareMathOperator{\const}{\text{const}}
+
+\DeclareMathOperator{\codim}{\text{codim}}
+
+\DeclareMathOperator*{\dsum}{\displaystyle\sum}
+\newcommand{\ddsum}[2]{\displaystyle\sum\limits_{#1}^{#2}}
+\newcommand{\ddssum}[2]{\displaystyle\smashoperator{\sum\limits_{#1}^{#2}}}
+\newcommand{\ddlsum}[2]{\displaystyle\smashoperator[l]{\sum\limits_{#1}^{#2}}}
+\newcommand{\ddrsum}[2]{\displaystyle\smashoperator[r]{\sum\limits_{#1}^{#2}}}
+
+%Интеграл в большом формате
+\DeclareMathOperator{\dint}{\displaystyle\int}
+\newcommand{\ddint}[2]{\displaystyle\int\limits_{#1}^{#2}}
+\newcommand{\ssum}[1]{\displaystyle \sum\limits_{n=1}^{\infty}{#1}_n}
+
+\newcommand{\smallerrel}[1]{\mathrel{\mathpalette\smallerrelaux{#1}}}
+\newcommand{\smallerrelaux}[2]{\raisebox{.1ex}{\scalebox{.75}{$#1#2$}}}
+
+\newcommand{\smallin}{\smallerrel{\in}}
+\newcommand{\smallnotin}{\smallerrel{\notin}}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.25}{\ensuremath{\cap}}}}%
+\newcommand*{\medcup}{\mathbin{\scalebox{1.25}{\ensuremath{\cup}}}}%
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3.5}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother
+
+%Промежуточное значение для sup\inf, поскольку они имеют разную высоту
+\newcommand{\newsup}{\mathop{\smash{\mathrm{sup}}}}
+\newcommand{\newinf}{\mathop{\mathrm{inf}\vphantom{\mathrm{sup}}}}
+
+%Скалярное произведение
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle }
+\newcommand{\linsp}[1]{\left\langle #1 \right\rangle }
+\newcommand{\linmer}[2]{\left\langle #1 \vert #2\right\rangle }
+
+%Подпись символов снизу
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+%%Шапка для букв сверху
+\newcommand{\wte}[1]{\widetilde{#1}}
+\newcommand{\wht}[1]{\widehat{#1}}
+\newcommand{\ovl}[1]{\overline{#1}}
+
+
+%%Трансформация Фурье
+\newcommand{\fourt}[1]{\mathcal{F}\left(#1\right)}
+\newcommand{\ifourt}[1]{\mathcal{F}^{-1}\left(#1\right)}
+
+%%Символ вектора
+\newcommand{\vecm}[1]{\overrightarrow{#1\,}}
+
+%%Пространстов матриц
+\newcommand{\matsq}[1]{\operatorname{Mat}_{#1}}
+\newcommand{\mat}[2]{\operatorname{Mat}_{#1, #2}}
+
+%Оператор для действ и мнимых чисел
+\DeclareMathOperator{\IM}{\operatorname{Im}}
+\DeclareMathOperator{\RE}{\operatorname{Re}}
+\DeclareMathOperator{\li}{\operatorname{li}}
+\DeclareMathOperator{\GL}{\operatorname{GL}}
+\DeclareMathOperator{\SL}{\operatorname{SL}}
+\DeclareMathOperator{\Char}{\operatorname{char}}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\ord{ord}
+
+%Оператор для образа
+\DeclareMathOperator{\Ima}{Im}
+
+%Делимость чисел
+\newcommand{\modn}[3]{#1 \equiv #2 \; (\bmod \; #3)}
+\newcommand{\nmodn}[3]{#1 \not\equiv #2 \; (\bmod \; #3)}
+
+%%Взятие в скобки, модули и норму
+\newcommand{\parfit}[1]{\left( #1 \right)}
+\newcommand{\modfit}[1]{\left| #1 \right|}
+\newcommand{\sqparfit}[1]{\left\{ #1 \right\}}
+\newcommand{\normfit}[1]{\left\| #1 \right\|}
+
+%%Функция для обозначения равномерной сходимости по множеству
+\newcommand{\uconv}[1]{\overset{#1}{\rightrightarrows}}
+\newcommand{\uconvm}[2]{\overset{#1}{\underset{#2}{\rightrightarrows}}}
+
+%% Функция для добавления круга сверху множества
+\newcommand{\Circ}[1]{\accentset{\circ}{#1}}
+
+%% Жирное подчеркивание
+\newcommand{\buline}[1]{\textbf{\uline{#1}}}
+
+%%Функция для обозначения нижнего и верхнего интегралов
+\def\upint{\mathchoice%
+	{\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	\int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+%%След матрицы
+\DeclareMathOperator*{\tr}{tr}
+
+\DeclareMathOperator*{\symdif}{\bigtriangleup}
+
+% Верхние\нижние пределы
+\DeclareMathOperator*\lowlim{\underline{lim}}
+\DeclareMathOperator*\uplim{\overline{lim}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+
+%% Переопределение функции хи, чтобы выглядела более приятно
+\makeatletter
+\@ifdefinable\@latex@chi{\let\@latex@chi\chi}
+\renewcommand*\chi{{\@latex@chi\smash[t]{\mathstrut}}} % want only bottom half of \mathstrut
+\makeatletter
+
+\setcounter{MaxMatrixCols}{20}
+
+
+\begin{document}
+\lhead{Действительный анализ}
+\chead{Дьяченко М.И.}
+\rhead{Лекция - 9}
+
+\section*{Интеграл Лебега}
+
+
+Пусть $(X, \MM,\mu)$ это измеримое пространство.
+
+\begin{defn}
+	Пусть $f(x)$ измерима и неотрицательна на $X$, тогда \uwave{множеством минорантных функций} для неё называется множество неотрицательных простых функций: 
+	$$
+		Q_f = \{\text{простые функции } \varphi(x) \colon 0 \leq \varphi(x) \leq f(x), \, \forall x \in X\}
+	$$
+\end{defn}
+
+\begin{rem}
+	Всегда функция $0 \in Q_f$ и следовательно: $Q_f  \neq \VN$.
+\end{rem}
+
+\begin{defn}
+	Пусть $f(x)$ измерима и неотрицательна на $X$, тогда \uwave{интегралом Лебега} функции $f(x)$ по множеству $X$ называется точная верхняя грань:
+	$$
+		(\ML) \ddint{X}{}f(x)d\mu = \ddint{X}{}f(x) d\mu = \sup\limits_{\varphi \in Q_f} \ddint{X}{}\varphi(x) d\mu
+	$$
+	При этом будем говорить, что $f(x) \in \ML(X)$ (\uwave{интегрируема по Лебегу на $X$}) тогда и только тогда, когда интеграл конечен, то есть:
+	$$
+		f(x) \in \ML(X) \Leftrightarrow \ddint{X}{}f(x)d\mu < \infty
+	$$
+\end{defn}
+
+Если функция $f(x)$ измерима на $X$, то определим функции:
+\begin{enumerate}[label=\arabic*)]
+	\item $f_{+}(x) = \max\{f(x), 0\}$;
+	\item $f_{-}(x) = - \min\{f(x),0\}$;
+\end{enumerate}
+Обе функции измеримые и неотрицательные. Заметим, что всегда будет верно равенство:
+$$
+	\forall x \in X, \, f(x) = f_{+}(x) - f_{-}(x)
+$$
+\begin{defn}
+	Пусть $f(x)$ измерима на $X$, тогда скажем, что $f(x)$ \uwave{интегрируема по Лебегу на $X$}, если интегрируемы функции: $f_{+}(x)$ и $f_{-}(x)$, то есть: 
+	$$
+		f(x) \in \ML(X) \Leftrightarrow f_{+}(x) \in \ML(X) \wedge f_{-}(x) \in \ML(X)
+	$$
+	Если это выполнено, то полагаем, что верно равенство:
+	$$
+		(\ML) \ddint{X}{}f(x)d\mu  = \ddint{X}{}f(x)d\mu = \ddint{X}{}f_{+}(x) d\mu - \ddint{X}{}f_{-}(x)d\mu
+	$$
+\end{defn}
+
+\begin{prop}
+	Пусть функция $f(x)$ измерима на $(X, \MM, \mu)$ (далее будем писать измерима на $X$). Тогда: 
+	$$
+		f(x) \in \ML(X) \Leftrightarrow |f(x)| \in \ML(X)
+	$$
+\end{prop}
+\begin{proof}
+	$$
+		f(x) = f_+(x) - f_{-}(x)
+	$$
+	По определению:
+	$$
+		f(x) \in \ML(X) \Leftrightarrow f_+(x) \in \ML(X) \wedge f_-(x) \in \ML(X)
+	$$
+	Когда условие выше выполнено, то верно:
+	$$
+		\ddint{X}{}f(x)d\mu = \ddint{X}{}f_+(x)d\mu - \ddint{X}{}f_-(x)d\mu
+	$$
+	Заметим, что: $|f(x)| = f_+(x) + f_-(x)$, тогда по теореме $3$ лекции $8$, будет верно:
+	$$
+		\ddint{X}{}|f(x)|d\mu = \ddint{X}{}f_+(x)d\mu + \ddint{X}{}f_-(x)d\mu \Rightarrow |f(x)| \in \ML(X) \Leftrightarrow f_+(x) \in \ML(X) \wedge f_-(x) \in \ML(X)
+	$$
+	где интеграл от модуля определен в любой ситуации, поскольку $|f(x)| \geq 0$. Следовательно:
+	$$
+		f(x) \in \ML(X) \Leftrightarrow f_+(x) \in \ML(X) \wedge f_-(x) \in \ML(X) \Leftrightarrow |f(x)| \in \ML(X)
+	$$
+\end{proof}
+
+\begin{prop}
+	Если функция $f(x), g(x)$ - измеримы и неотрицательны на $X$, $f(x) \in \ML(X)$ и  $\forall x \in X, \, g(x) \leq f(x)$, тогда будет верно, что $g(x) \in \ML(X)$ и $\int_X g(x) d\mu \leq \int_X f(x)d\mu$.
+\end{prop}
+\begin{proof}
+	По определению множества $Q_f$ будет верно:
+	$$
+		Q_g \subseteq Q_f \Rightarrow \ddint{X}{}g(x)d\mu = \sup\limits_{\varphi \in Q_g}  \ddint{X}{}\varphi(x) d\mu \leq \sup\limits_{\varphi \in Q_f}  \ddint{X}{}\varphi(x) d\mu = \ddint{X}{}f(x)d\mu < \infty
+	$$
+	где последнее верно по условию. Тогда получаем конечность интеграла от $g \Rightarrow g(x) \in \ML(X)$ и верно неравенство для интегралов.
+\end{proof}
+
+\begin{theorem}
+	Верны следующие утверждения:
+	\begin{enumerate}[label=\arabic*)]
+		\item Если $\mu(X) = 0$ и $f(x)$ измерима на $X$, то $f(x) \in \ML(X)$ и более того: 
+		$$
+			\ddint{X}{}f(x) d\mu = 0
+		$$
+		\item Если $g(x)$ измеримы на $X$, $f(x) \in \ML(X)$ и $g(x) = f(x)$ п.в. на $X$, тогда $g(x) \in \ML(X)$ и верно: 
+		$$
+			\ddint{X}{}g(x)d\mu = \ddint{X}{}f(x) d\mu
+		$$
+		\item Если $f(x) \in \ML(X)$, то $\mu(\{x \in X \colon f(x) = \pm \infty\}) = \mu(A) = 0$; 
+	\end{enumerate}
+\end{theorem}
+\begin{proof}\hfill
+	\begin{enumerate}[label=\arabic*)]
+		\item Достаточно проверить для $f(x) \geq 0$, поскольку любая функция разбивается не неотрицательные: $f(x) = f_+(x) - f_-(x)$. По условию:
+		$$
+			\mu(X) = 0 \Rightarrow \forall \varphi(x) \in Q_f, \, \ddint{X}{} \varphi(x)d\mu = 0 \Rightarrow \ddint{X}{}f(x)d\mu = 0
+		$$
+		\item Поскольку $f(x) = g(x)$ п.в. на $X$, то $f_+(x) = g_+(x), \, f_-(x) = g_-(x)$ п.в. на $X$, поэтому достаточно рассмотреть неотрицательные $f(x)$ и $g(x)$. Пусть $E = \{x \in X \colon f(x) = g(x)\}$, тогда $\mu(X \setminus E) = 0$ по условию (функции совпадают п.в.), рассмотрим интеграл:
+		$$
+			\ddint{X}{}g(x)d\mu = \ddint{E}{}g(x)d\mu + \ddint{X\setminus E}{}g(x)d\mu = \ddint{E}{}g(x)d\mu = \ddint{E}{}f(x)d\mu =  
+		$$
+		$$
+			= \ddint{E}{}f(x)d\mu + \ddint{X\setminus E}{}f(x)d\mu = \ddint{X}{}f(x)d\mu < \infty
+		$$
+		где используется представление из следствия $1$ лекции $8$: $g(x) = g(x){\cdot}\chi_E(x) + g(x){\cdot}\chi_{X\setminus E}(x)$ и первый пункт текущей теоремы. Из конечности $\int_X f(x)d\mu$ следует интегрируемость $\int_X g(x) d\mu$ и равенство этих интегралов;
+		\item Достаточно рассмотреть $f(x) \geq 0$, предположим, что $\mu(A) > 0$. Если $\mu(X) < \infty$, то и $\mu(A) < \infty$, но в общей ситуации пусть верна $\sigma$-конечность меры на $X$:
+		$$
+			X = \bigsqcup\limits_{n = 1}^{\infty}B_n,\, \forall n, \, B_n \in \MM, \, \mu(B_n) < \infty
+		$$
+		Тогда множество $A$ также можно представить в аналогичном виде:
+		$$
+			A = \bigsqcup\limits_{n = 1}^{\infty}(A \cap B_n), \, \mu(A) > 0 \Rightarrow \exists \, n_0 \colon \mu(A \cap B_{n_0}) > 0
+		$$
+		Поскольку при этом будет верно: $\mu(A \cap B_{n_0}) \leq \mu(B_{n_0}) < \infty$. Рассмотрим функции:
+		$$
+			\forall m \geq 1, \, h_m(x) = m{\cdot}\chi_{A \cap B_{n_0}}(x) \in Q_f
+		$$
+		Эта функция простая, поскольку она принимает всего $2$ значения: $0$ вне множества $A \cap B_{n_0}$ и $m$ в этом множестве, которое самое по себе - множество конечной меры. Кроме того, на этом множестве, как подмножестве $A$, функция $f(x) = +\infty \Rightarrow h_m(x) \leq f(x)$. Тогда:
+		$$
+			\ddint{X}{}f(x)d\mu \geq \ddint{X}{}h_m(x) d\mu = m{\cdot}\underbrace{\mu(A\cap B_{n_0})}_{> 0} \xrightarrow{m \to \infty} \infty
+		$$
+		Получили противоречие с тем, что $f(x) \in \ML(X) \Rightarrow \int_X f(x) d\mu < \infty$;
+	\end{enumerate}
+\end{proof}
+
+\subsection*{Линейность интеграла Лебега в общем случае}
+
+\begin{theorem}
+	Пусть $f(x) \in \ML(X)$ и $\alpha \in \MR^1$, тогда $\alpha{\cdot}f(x) \in \ML(X)$ и более того:
+	$$
+		\ddint{X}{}\alpha{\cdot}f(x)d\mu = \alpha{\cdot}\ddint{X}{}f(x)d\mu
+	$$
+\end{theorem}
+\begin{proof}
+	Пусть $\alpha = 0$, тогда: $\alpha{\cdot}f(x) = 0$, где действует соглашение: $0{\cdot}\infty = 0$. При этом $0$ - интегрируемая функция, тогда:
+	$$
+		0 = \ddint{X}{}0{\cdot}f(x)d\mu = 0{\cdot}\ddint{X}{}f(x)d\mu = 0
+	$$
+	Пусть $\alpha > 0$ (случай $\alpha < 0$ рассматривается аналогично), тогда: 
+	$$
+		(\alpha{\cdot}f)_+(x) = \alpha{\cdot}f_+(x), \; (\alpha{\cdot}f)_-(x) = \alpha{\cdot}f_-(x)
+	$$
+	Поэтому достаточно рассмотреть случай, когда: $f(x) \geq 0$. Отметим, что: 
+	$$
+		h(x) \in Q_f \Leftrightarrow \alpha{\cdot}h(x) \in Q_{\alpha{\cdot}f} 
+	$$
+	по определению $Q_f$. Поэтому:
+	$$
+		\ddint{X}{}f(x)d\mu = \sup\limits_{h \in Q_f}\ddint{X}{}h(x)d\mu = \sup\limits_{\alpha{\cdot}h \in Q_{\alpha f }}\ddint{X}{}h(x)d\mu = \dfrac{1}{\alpha}{\cdot}\sup\limits_{\alpha{\cdot}h \in Q_{\alpha f}}\ddint{X}{}\alpha{\cdot}h(x)d\mu = \dfrac{1}{\alpha}{\cdot}\ddint{X}{}\alpha{\cdot}f(x)d\mu
+	$$
+	где мы воспользовались линейностью по умножению для простой функции. В результате:
+	$$
+		\alpha{\cdot}\ddint{X}{}f(x)d\mu = \ddint{X}{}\alpha{\cdot}f(x)d\mu
+	$$
+\end{proof}
+\begin{rem}
+	У нас либо действовало соглашение, что $0{\cdot}\infty = 0$, либо можно было обратиться к ситуациям, когда мера полна и тогда по предыдущей теореме, поскольку $f(x) \in \ML(X)$, то $f(x)$ конечна почти всюду $\Rightarrow$ проблемы с умножением могли бы возникнуть лишь на множестве нулевой меры, а когда мера полна, то на множестве нулевой меры интеграл обязательно будет равен $0$.
+\end{rem}
+
+\begin{theorem}
+	Пусть $f(x), g(x) \in \ML(X)$, тогда $f(x) + g(x) \in \ML(X)$ и более того:
+	$$
+		\ddint{X}{}(f(x) + g(x))d\mu = \ddint{X}{}f(x)d\mu + \ddint{X}{}g(x)d\mu
+	$$
+\end{theorem}
+\begin{proof}
+	Поскольку $\forall x\in \ML(X), \, |f(x) + g(x)| \leq |f(x)| + |g(x)|$, и согласно утверждению $1$ этой лекции верно: $|f(x)| \in \ML(X), \, |g(x)|\in \ML(X)$, тогда по теореме $3$ предыдущей лекции верно, что: $|f(x)|+ |g(x)| \in \ML(X)$. Согласно утверждению $2$ верно, что: $|f(x) + g(x)| \in \ML(X) \Rightarrow f(x) + g(x) \in \ML(X)$. 
+	
+	Покажем теперь, что верно равенство. Предположим, что $f(x) \geq 0, \, g(x) \leq 0$ на $X$. Введём множества: 
+	$$
+		E_+ = \{x \in X\colon f(x) + g(x) \geq 0\}, \, E_- = \{x \in X \colon f(x) + g(x) < 0\}
+	$$
+	Согласно нашим рассмотрениям относительно поведения измеримых функций, верно: $E_-, E_+ \in \MM$, тогда:
+	$X = E_+\sqcup E_-$. При этом, будет верно:
+	$$
+		(f + g)_+(x) = (f(x) + g(x)){\cdot}\chi_{E_+}(x), \; (f + g)_-(x) = -(f(x) + g(x)){\cdot}\chi_{E_-}(x)
+	$$
+	Заметим, что на множестве $E_+$ функции $f(x), f(x) + g(x)$ и $-g(x)$ все неотрицательны, причем верно: $$
+		f(x) = (f(x) + g(x)) + (-g(x))
+	$$
+	По теореме $3$ предыдущей лекции мы получаем, что:
+	$$
+		\ddint{E_+}{}f(x)d\mu = \ddint{E_+}{}(f(x) + g(x))d\mu + \ddint{E_+}{}(-g(x))d\mu = \ddint{X}{}(f + g)_+(x)d\mu - \ddint{E_+}{}g(x)d\mu
+	$$
+	где мы воспользовались теоремой $2$. На множестве $E_-$ функции $-(f(x) + g(x)), \, -g(x), \, f(x)$ - неотрицательны, поэтому верно:
+	$$
+		\ddint{E_-}{}(-g(x))d\mu = \ddint{E_-}{}-(f(x) + g(x))d\mu + \ddint{E_-}{}f(x)d\mu = \ddint{X}{}(f + g)_-(x)d\mu + \ddint{E_-}{}f(x)d\mu
+	$$
+	Следовательно, мы получим следующее:
+	$$
+		\ddint{X}{}(f(x) + g(x))d\mu = \ddint{X}{}(f+g)_+(x)d\mu - \ddint{X}{}(f + g)_-(x)d\mu =
+	$$
+	$$
+		= \ddint{E_+}{}f(x)d\mu + \ddint{E_+}{}g(x)d\mu + \ddint{E_-}{}f(x)d\mu + \ddint{E_-}{}g(x)d\mu =
+	$$
+	$$
+		= \left(\;\ddint{E_+}{}f(x)d\mu + \ddint{E_-}{}f(x)d\mu\right) + \left( \; \ddint{E_+}{}g(x)d\mu +\ddint{E_-}{}g(x)d\mu \right) = \ddint{X}{}f(x)d\mu + \ddint{X}{}g(x)d\mu
+	$$
+	где мы воспользовались знакопостояннством функций - что справедливо для неотрицательных функций, то справедливо и для неположительных функций.
+	
+	В общем случае, мы можем представить сумму функций в виде:
+	$$
+		f(x) + g(x) = \underbrace{f_+(x) + g_+(x)}_{\geq 0} \underbrace{- (f_-(x) + g_-(x))}_{\leq 0}
+	$$
+	По доказанному выше, будет верно:
+	$$
+		\ddint{X}{}(f(x) + g(x))d\mu = \ddint{X}{}(f_+(x) + g_+(x))d\mu + \ddint{X}{}(-(f_-(x) + g_-(x)))d\mu = (*)
+	$$
+	Воспользуемся теоремой $3$ из прошлой лекции, вынесем знак минуса из-под интеграла и воспользуемся определением интеграла Лебега:
+	$$
+		(*) = \ddint{X}{}f_+(x)d\mu + \ddint{X}{}g_+(x)d\mu - \ddint{X}{}f_-(x)d\mu - \ddint{X}{}g_-(x)d\mu = \ddint{X}{}f(x)d\mu + \ddint{X}{}g(x)d\mu
+	$$
+\end{proof}
+
+\begin{corollary}
+	Если $f(x),g(x) \in \ML(X)$ и $\alpha,\beta \in \MR^1$, то $\alpha{\cdot}f(x) + \beta{\cdot}g(x) \in \ML(X)$ и верно:
+	$$
+		\ddint{X}{}(\alpha{\cdot}f(x) + \beta{\cdot}g(x))d\mu = \alpha{\cdot}\ddint{X}{}f(x)d\mu + \beta{\cdot}\ddint{X}{}g(x) d\mu
+	$$
+\end{corollary}
+\begin{proof}
+	Очевидно, как комбинация предыдущих двух теорем.
+\end{proof}
+
+\begin{corollary}
+	Если $f(x), g(x) \in \ML(X)$ и $\forall x \in X, \, f(x) \geq g(x)$, то будет верно: $\int_Xf(x)d\mu \geq \int_Xg(x)d\mu$.
+\end{corollary}
+\begin{proof}
+	Функция $f(x) - g(x) \geq 0, \, f(x) - g(x) \in \ML(X)$, тогда:
+	$$
+		0 \leq \ddint{X}{}(f(x) - g(x))d\mu	= \ddint{X}{}f(x) d\mu - \ddint{X}{}g(x) d\mu \Rightarrow \ddint{X}{}f(x)d\mu \geq \ddint{X}{}g(x) d\mu
+	$$
+\end{proof}
+
+\begin{prop}
+	Если $f(x) \in \ML(X), \, g(x)$ измерима на $X$ и $|g(x)| \leq |f(x)|$ п.в. на $X$, то $g(x) \in \ML(X)$.
+\end{prop}
+\begin{proof}
+	Пусть $E = \{x \in X \colon |g(x)| \leq |f(x)|\}$, тогда:
+	\begin{enumerate}[label=\arabic*)]
+		\item $\mu(X \setminus E) = 0 \Rightarrow g(x) \in \ML(X \setminus E)$ и $\int_{X \setminus E}g(x) d\mu = 0$; 
+		\item $|g(x)| \in \ML(E)$, поскольку $|f(x)| \in \ML(E)$, тогда $g(x) \in \ML(E)$;
+	\end{enumerate}
+	Из пунктов выше вытекает утверждение.
+\end{proof}
+
+\begin{rem}
+	Если функция $f(x) \in \ML(X)$, то тогда верно:
+	$$
+		\left|\ddint{X}{}\underbrace{f_+(x)}_{\geq 0}d\mu - \ddint{X}{}\underbrace{f_-(x)}_{\geq 0}d\mu\right| = \left|\ddint{X}{}f(x) d\mu \right| \leq \ddint{X}{}|f(x)|d\mu = \ddint{X}{}f_+(x)d\mu + \ddint{X}{}f_-(x)d\mu
+	$$
+\end{rem}
+
+\begin{rem}
+	Если $\mu(X) < \infty$ и $f(x)$ измерима на $X$ и кроме того $\forall x \in X, \, |f(x)| \leq c$, то в этом случае: 
+	$$
+		f(x) \in \ML(X), \, \ddint{X}{}|f(x)|d\mu \leq c{\cdot}\mu(X)
+	$$ 
+	Это частный случай утверждения $2$, где: $|f(x)| \leq  c{\cdot}\chi_X(x)$.
+\end{rem}
+
+\newpage
+\section*{Предельный переход под знаком интеграла Лебега}
+Пусть $(X,\MM,\mu)$ - измеримое пространство. Далее будем говорить измеримо на $X$.
+
+\begin{theorem}(\textbf{Беппо-Леви})
+	Пусть $\{f_n(x)\}_{n = 1}^{\infty}$ - измеримые и неотрицательные функции на $X$, кроме того $f_n(x) \uparrow f(x)$ на $X$. Тогда:
+	$$
+		\ddint{X}{}f(x)d\mu = \lim\limits_{n \to \infty}\ddint{X}{}f_n(x)d\mu
+	$$
+\end{theorem}
+\begin{rem}
+	$f(x)$ это предел измеримых функций $\Rightarrow$ она измерима. Её неотрицательность вытекает из неотрицательности $f_n(x)$, а также из того, что функции монотонно возрастают. Также допускаются бесконечные значения.
+\end{rem}
+\begin{proof}
+	Рассмотрим функции: $g_1(x) = f_1(x), \, \forall n \geq 2, \, g_n(x) = f_n(x) - f_{n-1}(x)$, при этом считаем:
+	$$
+		\infty - a = \infty, \; \infty - \infty = 0
+	$$
+	Тогда все функции $g_n(x)$ измеримы и неотрицательны на $X$. $\forall n$ построим по лемме $1$ предыдущей лекции последовательность простых неотрицательных функций $\psi_{n,k}(x) \uparrow g_n(x)$ на $X$. Введем функции: 
+	$$
+		F_k(x) = \ddsum{n = 1}{k}\psi_{n,k}(x), \, k = 1,2,\dotsc
+	$$
+	Все $F_k(x)$ - измеримые, неотрицательные и являются простыми функциями. Рассмотрим свойства этой последовательности:
+	\begin{enumerate}[label=\arabic*)]
+		\item Монотонность последовательности $F_k$ на $X$: 
+		$$
+			F_{k+1}(x) - F_k(x) = \psi_{k+1,k+1}(x) + \ddsum{n = 1}{k}(\underbrace{\psi_{n,k+1}(x) - \psi_{n,k}(x)}_{\geq 0}) \geq 0 \Rightarrow F_k(x) \uparrow
+		$$
+		\item Ограниченность сверху функциями $f_k(x)$ и $f(x)$:
+		$$
+			\forall k, \, F_k(x) = \ddsum{n = 1}{k}\psi_{n,k}(x) \leq \ddsum{n = 1}{k}g_n(x) = f_k(x)\leq f(x)
+		$$
+		\item Ограниченность снизу функциями $f_N(x)$:
+		$$
+			\forall N, \, \lim\limits_{k \to \infty}F_k(x) \geq \lim\limits_{k \to \infty}\ddsum{n = 1}{N}\psi_{n,k}(x) = \ddsum{n = 1}{N}\lim\limits_{k \to \infty}\psi_{n,k}(x) = \ddsum{n = 1}{N}g_n(x) = f_N(x)
+		$$
+		где предел и сумму можно менять, поскольку число $N$ - фиксированное. Поскольку это верно для любого $N$, то можно взять предел по $N$:
+		$$
+			\lim\limits_{k \to \infty}F_k(x) \geq \lim\limits_{N\to \infty}f_N(x) = f(x)
+		$$
+	\end{enumerate}
+	Из пунктов выше, поскольку $F_k(x)$ монотонно возрастает и ограничена сверху, то у неё есть предел и согласно пунктам $2)$ и $3)$ этот предел будет равен:
+	$$
+		\lim\limits_{k \to \infty}F_k(x) = f(x) 
+	$$
+	Тогда согласно утверждению $7$ предыдущей лекции:
+	$$
+		\lim\limits_{k \to \infty}\ddint{X}{}F_k(x)d\mu = \ddint{X}{}f(x)d\mu
+	$$
+	Заметим также, что верно следующее:
+	$$
+		\forall k, \, F_k(x) \leq f_k(x) \Rightarrow \lim\limits_{k \to \infty}\ddint{X}{}f_k(x)d\mu \geq \lim\limits_{k \to \infty}\ddint{X}{}F_k(x)d\mu = \ddint{X}{}f(x)d\mu
+	$$
+	С другой стороны:
+	$$
+		\forall k, \, f_k(x) \leq f(x) \Rightarrow \lim\limits_{k \to \infty}\ddint{X}{}f_k(x)d\mu \leq \ddint{X}{}f(x)d\mu
+	$$
+	Тогда из полученных неравенств мы имеем равенство:
+	$$
+		\lim\limits_{k \to \infty}\ddint{X}{}f_k(x)d\mu = \ddint{X}{}f(x)d\mu
+	$$
+\end{proof}
+
+\begin{corollary}(\textbf{теорема Беппо-Леви})
+	Пусть задана последовательность: $\{f_n(x)\}_{n = 1}^{\infty}\subset \ML(X)$ и она монотонно сходится к $f(x)$: $f_n(x) \uparrow f(x)$ на $X$. Пусть кроме того, $\exists \, c > 0$ такая, что:
+	$$
+		\forall n, \, \ddint{X}{}f_n(x)d\mu \leq c 
+	$$
+	Тогда $f(x) \in \ML(X)$ и будет верно:
+	$$
+		\lim\limits_{k \to \infty}\ddint{X}{}f_k(x)d\mu = \ddint{X}{}f(x)d\mu
+	$$
+\end{corollary}
+\begin{rem}
+	Поскольку функции интегрируемы, то они конечны п.в., но всё же нужно либо использовать соглашения о действиях с бесконечными величинами, либо считать, что мера $\mu$ полна $\Rightarrow$ из конечности функций п.в. нам не важно, что происходит на множестве меры $0$, либо считать, что функции конечный в каждой точке.
+\end{rem}
+\begin{proof}
+	Рассмотрим функции: $g_n(x) = f_n(x) - f_1(x), \, n = 1,2, \dotsc$. Тогда $\forall n, \, g_n(x) \in \ML(X)$, как разность интегрируемых функций, $g_n(x) \geq 0$ на $X$, поскольку последовательность монотонно не убывает и кроме того $g_n(x) \uparrow (f(x) - f_1(x))$. По предыдущей теореме будет верно:
+	$$
+		\ddint{X}{}(f(x) - f_1(x))d\mu = \lim\limits_{n \to \infty}\ddint{X}{}g_n(x)d\mu = \lim\limits_{n \to \infty}\ddint{X}{}f_n(x)d\mu - \ddint{X}{}f_1(x)d\mu \leq c -  \ddint{X}{}f_1(x)d\mu < \infty
+	$$
+	Таким образом $(f(x) - f_1(x)) \in \ML(X) \Rightarrow$ поскольку к одной интегрируемой функции мы можем прибавить другую интегрируемую функцию, а конкретно $f_1(x)$, то: 
+	$$
+		(f(x) - f_1(x)) + f_1(x) = f(x) \in \ML(X) \Rightarrow \ddint{X}{}(f(x) - f_1(x))d\mu = \ddint{X}{}f(x)d\mu - \ddint{X}{}f_1(x)d\mu \Rightarrow
+	$$
+	$$
+		\Rightarrow \ddint{X}{}f(x)d\mu - \ddint{X}{}f_1(x)d\mu =  \lim\limits_{n \to \infty}\ddint{X}{}f_n(x)d\mu - \ddint{X}{}f_1(x)d\mu \Rightarrow \ddint{X}{}f(x)d\mu  =  \lim\limits_{n \to \infty}\ddint{X}{}f_n(x)d\mu
+	$$
+\end{proof}
+\begin{corollary}
+	Пусть $\{f_n(x)\}_{n = 1}^{\infty}$ - измеримы и неотрицательны на $X$, тогда:
+	$$
+		\ddint{X}{}\ddsum{n = 1}{\infty}f_n(x)d\mu = \ddsum{n = 1}{\infty}\ddint{X}{}f_n(x)d\mu
+	$$
+\end{corollary}
+\begin{rem}
+	Допускаются бесконечные значения (как интегралов, так и сумм).
+\end{rem}
+\begin{proof}
+	Пусть $g_k(x) = \sum_{n = 1}^{k}f_n(x)$, тогда в силу неотрицательности $f_n(x)$: $g_k(x) \uparrow \sum_{n = 1}^{\infty}f_n(x)$, следовательно по теореме Беппо-Леви:
+	$$
+		\ddint{X}{}\ddsum{n = 1}{\infty}f_n(x)d\mu = \lim\limits_{k \to \infty}\ddint{X}{}\ddsum{n = 1}{k}f_n(x)d\mu
+	$$
+	В силу теоремы $3$ предыдущей лекции поскольку сумма конечна, то мы получим:
+	$$
+		\lim\limits_{k \to \infty}\ddint{X}{}\ddsum{n = 1}{k}f_n(x)d\mu = \lim\limits_{k \to \infty}\ddsum{n = 1}{k}\ddint{X}{}f_n(x)d\mu = \ddsum{n = 1}{\infty}\ddint{X}{}f_n(x)d\mu
+	$$
+\end{proof}
+
+\begin{theorem}(\textbf{теорема Фату})
+	Пусть $\{f_n(x)\}_{n = 1}^{\infty}$ - измеримы и неотрицательны на $X$, предположим, что $\mu$ - полна и функция $f_n(x) \xrightarrow{as, X} f(x)$, где $f(x) \geq 0$ на $X$, тогда:
+	$$
+		\ddint{X}{}f(x)d\mu \leq \lowlim\limits_{n \to \infty}\ddint{X}{}f_n(x)d\mu
+	$$
+\end{theorem}
+\begin{rem}
+	Заметим, что из сходимости $f_n(x)$, пусть даже всюду, не вытекает существование предела у последовательности интегралов, но нижний предел всегда существует у них. Интегралы также могут принимать бесконечные значения.
+\end{rem}
+
+\begin{proof}
+	Рассмотрим следующие функции: 
+	$$
+		\forall k, \, \varphi_k(x) = \inf\limits_{n \geq k}f_n(x) \Rightarrow \forall x \in X, \, \varphi_k(x) \uparrow \wedge \; \varphi_k(x) \xrightarrow{as, X} f(x)
+	$$
+	где сходимость п.в. есть на измеримом множестве $E \colon \mu(X \setminus E) = 0$. 
+	$$
+		\forall x \in E, \, \lim\limits_{k \to \infty}\varphi_k(x) = \lim\limits_{k \to \infty} \inf\limits_{n \geq k}f_n(x) = \lowlim\limits_{k \to \infty}f_k(x)  = f(x)
+	$$
+	Тогда:
+	$$
+		\ddint{X}{}f(x)d\mu = \ddint{E}{}f(x)d\mu = \lim\limits_{k \to \infty}\ddint{E}{}\varphi_k(x)d\mu = \lim\limits_{k \to \infty}\ddint{X}{}\varphi_k(x)d\mu
+	$$
+	Но поскольку: $\forall k, \, \varphi_k(x) \leq f_k(x)$, то выберем последовательность, которая реализует нижний предел: 
+	$$
+		\{k_i\}_{i = 1}^{\infty} \colon \lowlim\limits_{k \to \infty}\ddint{X}{}f_k(x)d\mu = \lim\limits_{i \to \infty}\ddint{X}{}f_{k_i}(x)d\mu \Rightarrow
+	$$
+	$$
+		\Rightarrow \lim\limits_{k \to \infty}\ddint{X}{}\varphi_k(x)d\mu = \lim\limits_{i \to \infty}\ddint{X}{}\varphi_{k_i}(x)d\mu \leq \lim\limits_{i \to \infty}\ddint{X}{}f_{k_i}d\mu = \lowlim\limits_{k \to \infty}\ddint{X}{}f_k(x)d\mu
+	$$
+\end{proof}
+
+\end{document}

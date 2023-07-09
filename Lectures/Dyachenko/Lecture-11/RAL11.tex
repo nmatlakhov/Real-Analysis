@@ -1,0 +1,349 @@
+\documentclass[12pt]{article}
+\usepackage[left=1cm, right=1cm, top=2cm,bottom=1.5cm]{geometry} 
+
+\usepackage[parfill]{parskip}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{enumitem}
+\usepackage[normalem]{ulem}
+\usepackage{amsfonts, amsmath, amsthm, amssymb, mathtools,xcolor,accents}
+\usepackage{blkarray}
+
+\usepackage{tabularx}
+\usepackage{hhline}
+
+\usepackage{accents}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{1.5pt}
+\renewcommand{\footrulewidth}{1pt}
+
+\usepackage{graphicx}
+\usepackage[figurename=Рис.]{caption}
+\usepackage{subcaption}
+\usepackage{float}
+
+%%Наименование папки откуда забирать изображения
+\graphicspath{ {./images/} }
+
+%%Изменение формата для ввода доказательства
+\renewcommand{\proofname}{$\square$  \nopunct}
+\renewcommand\qedsymbol{$\blacksquare$}
+
+%%Изменение отступа на таблицах
+\addto\captionsrussian{%
+	\renewcommand{\proofname}{$\square$ \nopunct}%
+}
+%% Римские цифры
+\newcommand{\RN}[1]{%
+	\textup{\uppercase\expandafter{\romannumeral#1}}%
+}
+
+%% Для удобства записи
+\newcommand{\MR}{\mathbb{R}}
+\newcommand{\MC}{\mathbb{C}}
+\newcommand{\MQ}{\mathbb{Q}}
+\newcommand{\MN}{\mathbb{N}}
+\newcommand{\MZ}{\mathbb{Z}}
+\newcommand{\MTB}{\mathbb{T}}
+\newcommand{\MTI}{\mathbb{I}}
+\newcommand{\MI}{\mathrm{I}}
+\newcommand{\MCI}{\mathcal{I}}
+\newcommand{\MCR}{\mathcal{R}}
+\newcommand{\MJ}{\mathrm{J}}
+\newcommand{\MH}{\mathrm{H}}
+\newcommand{\MT}{\mathrm{T}}
+\newcommand{\MU}{\mathcal{U}}
+\newcommand{\MV}{\mathcal{V}}
+\newcommand{\MA}{\mathcal{A}}
+\newcommand{\MB}{\mathcal{B}}
+\newcommand{\MF}{\mathcal{F}}
+\newcommand{\ME}{\mathcal{E}}
+\newcommand{\MW}{\mathcal{W}}
+\newcommand{\ML}{\mathcal{L}}
+\newcommand{\MM}{\mathcal{M}}
+\newcommand{\MP}{\mathcal{P}}
+\newcommand{\VN}{\varnothing}
+\newcommand{\VE}{\varepsilon}
+\newcommand{\dx}{\, dx}
+\newcommand{\dy}{\, dy}
+\newcommand{\dz}{\, dz}
+\newcommand{\dd}{\, d}
+
+
+\theoremstyle{definition}
+\newtheorem{defn}{Опр:}
+\newtheorem{rem}{Rm:}
+\newtheorem{prop}{Утв.}
+\newtheorem{exrc}{Упр.}
+\newtheorem{problem}{Задача}
+\newtheorem{lemma}{Лемма}
+\newtheorem{theorem}{Теорема}
+\newtheorem{corollary}{Следствие}
+
+\newenvironment{cusdefn}[1]
+{\renewcommand\thedefn{#1}\defn}
+{\enddefn}
+
+\DeclareRobustCommand{\divby}{%
+	\mathrel{\text{\vbox{\baselineskip.65ex\lineskiplimit0pt\hbox{.}\hbox{.}\hbox{.}}}}%
+}
+\DeclareRobustCommand{\ndivby}{\mkern-1mu\not\mathrel{\mkern4.5mu\divby}\mkern1mu}
+
+
+%Короткий минус
+\DeclareMathSymbol{\SMN}{\mathbin}{AMSa}{"39}
+%Длинная шапка
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%Функция знака
+\DeclareMathOperator{\sgn}{sgn}
+
+%Функция ранга
+\DeclareMathOperator{\rk}{\text{rk}}
+\DeclareMathOperator{\diam}{\text{diam}}
+
+
+%Обозначение константы
+\DeclareMathOperator{\const}{\text{const}}
+
+\DeclareMathOperator{\codim}{\text{codim}}
+
+\DeclareMathOperator*{\dsum}{\displaystyle\sum}
+\newcommand{\ddsum}[2]{\displaystyle\sum\limits_{#1}^{#2}}
+\newcommand{\ddssum}[2]{\displaystyle\smashoperator{\sum\limits_{#1}^{#2}}}
+\newcommand{\ddlsum}[2]{\displaystyle\smashoperator[l]{\sum\limits_{#1}^{#2}}}
+\newcommand{\ddrsum}[2]{\displaystyle\smashoperator[r]{\sum\limits_{#1}^{#2}}}
+
+%Интеграл в большом формате
+\DeclareMathOperator{\dint}{\displaystyle\int}
+\newcommand{\ddint}[2]{\displaystyle\int\limits_{#1}^{#2}}
+\newcommand{\ssum}[1]{\displaystyle \sum\limits_{n=1}^{\infty}{#1}_n}
+
+\newcommand{\smallerrel}[1]{\mathrel{\mathpalette\smallerrelaux{#1}}}
+\newcommand{\smallerrelaux}[2]{\raisebox{.1ex}{\scalebox{.75}{$#1#2$}}}
+
+\newcommand{\smallin}{\smallerrel{\in}}
+\newcommand{\smallnotin}{\smallerrel{\notin}}
+
+\newcommand*{\medcap}{\mathbin{\scalebox{1.25}{\ensuremath{\cap}}}}%
+\newcommand*{\medcup}{\mathbin{\scalebox{1.25}{\ensuremath{\cup}}}}%
+
+\makeatletter
+\newcommand{\vast}{\bBigg@{3.5}}
+\newcommand{\Vast}{\bBigg@{5}}
+\makeatother
+
+%Промежуточное значение для sup\inf, поскольку они имеют разную высоту
+\newcommand{\newsup}{\mathop{\smash{\mathrm{sup}}}}
+\newcommand{\newinf}{\mathop{\mathrm{inf}\vphantom{\mathrm{sup}}}}
+
+%Скалярное произведение
+\newcommand{\inner}[2]{\left\langle #1, #2 \right\rangle }
+\newcommand{\linsp}[1]{\left\langle #1 \right\rangle }
+\newcommand{\linmer}[2]{\left\langle #1 \vert #2\right\rangle }
+
+%Подпись символов снизу
+\newcommand{\ubar}[1]{\underaccent{\bar}{#1}}
+
+%%Шапка для букв сверху
+\newcommand{\wte}[1]{\widetilde{#1}}
+\newcommand{\wht}[1]{\widehat{#1}}
+\newcommand{\ovl}[1]{\overline{#1}}
+\newcommand{\unl}[1]{\underline{#1}}
+
+
+%%Трансформация Фурье
+\newcommand{\fourt}[1]{\mathcal{F}\left(#1\right)}
+\newcommand{\ifourt}[1]{\mathcal{F}^{-1}\left(#1\right)}
+
+%%Символ вектора
+\newcommand{\vecm}[1]{\overrightarrow{#1\,}}
+
+%%Пространстов матриц
+\newcommand{\matsq}[1]{\operatorname{Mat}_{#1}}
+\newcommand{\mat}[2]{\operatorname{Mat}_{#1, #2}}
+
+%Оператор для действ и мнимых чисел
+\DeclareMathOperator{\IM}{\operatorname{Im}}
+\DeclareMathOperator{\RE}{\operatorname{Re}}
+\DeclareMathOperator{\li}{\operatorname{li}}
+\DeclareMathOperator{\GL}{\operatorname{GL}}
+\DeclareMathOperator{\SL}{\operatorname{SL}}
+\DeclareMathOperator{\Char}{\operatorname{char}}
+\DeclareMathOperator\Arg{Arg}
+\DeclareMathOperator\ord{ord}
+
+%Оператор для образа
+\DeclareMathOperator{\Ima}{Im}
+
+%Делимость чисел
+\newcommand{\modn}[3]{#1 \equiv #2 \; (\bmod \; #3)}
+\newcommand{\nmodn}[3]{#1 \not\equiv #2 \; (\bmod \; #3)}
+
+%%Взятие в скобки, модули и норму
+\newcommand{\parfit}[1]{\left( #1 \right)}
+\newcommand{\modfit}[1]{\left| #1 \right|}
+\newcommand{\sqparfit}[1]{\left\{ #1 \right\}}
+\newcommand{\normfit}[1]{\left\| #1 \right\|}
+
+%%Функция для обозначения равномерной сходимости по множеству
+\newcommand{\uconv}[1]{\overset{#1}{\rightrightarrows}}
+\newcommand{\uconvm}[2]{\overset{#1}{\underset{#2}{\rightrightarrows}}}
+
+%% Функция для добавления круга сверху множества
+\newcommand{\Circ}[1]{\accentset{\circ}{#1}}
+
+%% Жирное подчеркивание
+\newcommand{\buline}[1]{\textbf{\uline{#1}}}
+
+%%Функция для обозначения нижнего и верхнего интегралов
+\def\upint{\mathchoice%
+	{\mkern13mu\overline{\vphantom{\intop}\mkern7mu}\mkern-20mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	{\mkern7mu\overline{\vphantom{\intop}\mkern7mu}\mkern-14mu}%
+	\int}
+\def\lowint{\mkern3mu\underline{\vphantom{\intop}\mkern7mu}\mkern-10mu\int}
+
+%%След матрицы
+\DeclareMathOperator*{\tr}{tr}
+
+\DeclareMathOperator*{\symdif}{\bigtriangleup}
+
+% Верхние\нижние пределы
+\DeclareMathOperator*\lowlim{\underline{lim}}
+\DeclareMathOperator*\uplim{\overline{lim}}
+
+\makeatletter
+\renewcommand*\env@matrix[1][*\c@MaxMatrixCols c]{%
+	\hskip -\arraycolsep
+	\let\@ifnextchar\new@ifnextchar
+	\array{#1}}
+\makeatother
+
+
+%% Переопределение функции хи, чтобы выглядела более приятно
+\makeatletter
+\@ifdefinable\@latex@chi{\let\@latex@chi\chi}
+\renewcommand*\chi{{\@latex@chi\smash[t]{\mathstrut}}} % want only bottom half of \mathstrut
+\makeatletter
+
+\setcounter{MaxMatrixCols}{20}
+
+
+\begin{document}
+\lhead{Действительный анализ}
+\chead{Дьяченко М.И.}
+\rhead{Лекция - 11}
+\section*{Заряды. Теорема Радона-Никодима}
+
+\begin{defn}
+	Пусть $\MM$ - $\sigma$-алгебра, функция $\varphi \colon \MM \to \MR$ называется \uwave{зарядом} тогда и только тогда, когда:
+	$$
+		\forall A, A_1, \dotsc, A_n, \dotsc \in \MM \colon A = \bigsqcup\limits_{n = 1}^{\infty}A_n, \, \varphi(A) = \ddsum{n = 1}{\infty}\varphi(A_n)
+	$$
+\end{defn}
+\begin{rem}
+	В определение входит существование суммы этого ряда, то есть это конечная функция.
+\end{rem}
+
+Иными словами, заряд это знакопеременная мера. Вместе с этим, чтобы здесь всё было определено нет $\sigma$-конечного случая, в отличие от меры (когда мы можем допустить $\sigma$-конечность).
+
+\begin{rem}
+	Легко также понять, что если мы возьмем две $\sigma$-аддитивные различные меры на какой-то $\sigma$-алгебре, то если мы возьмем их разность, то вообще говоря это будет заряд, поскольку сохранится $\sigma$-аддитивность, но возможно, что мера какого-то множества будет отрицательной.
+\end{rem}
+
+\begin{defn}
+	Пусть $\MM$ - $\sigma$-алгебра, $\varphi$ - заряд на $\MM$ и $A \in \MM$, тогда $A$ называется \uwave{положительным} множеством относительно $\varphi$ тогда и только тогда, когда:
+	$$
+		\forall B \in \MM \colon B \subseteq A, \, \varphi(B) \geq 0
+	$$
+\end{defn}
+\begin{defn}
+	Пусть $\MM$ - $\sigma$-алгебра, $\varphi$ - заряд на $\MM$ и $A \in \MM$, тогда $A$ называется \uwave{отрицательным} множеством относительно $\varphi$ тогда и только тогда, когда:
+	$$
+		\forall B \in \MM \colon B \subseteq A, \,  \varphi(B) \leq 0
+	$$
+\end{defn}
+\begin{rem}
+	Заметим, что это не тоже самое, что и потребовать $\varphi(A) \geq 0$ или $\varphi(A) \leq 0$, поскольку внутри таких множеств может найтись подмножество $B$ у которого $\varphi(B) \leq  0$ или $\varphi(B) \geq 0$ соответственно.
+\end{rem}
+
+\begin{lemma}
+	Пусть $\MM$ - $\sigma$-алгебра, $\varphi$ - заряд на $\MM$, $B_1 \in \MM$ и $\varphi(B_1) < 0$. Тогда: $\exists \, B_0 \in \MM \colon B_0 \subseteq B_1$, где $B_0$ - отрицательное, а при этом $\varphi(B_0) \leq \varphi(B_1)$.
+\end{lemma}
+\begin{proof}
+	$\forall C \in \MM$ введём величину: 
+	$$
+		\gamma(C) = \sup\limits_{\substack{A \in \MM, \\ A \subseteq C}} \varphi(A)
+	$$
+	Заметим, поскольку $\VN \in C, \, C \in \MM$, то $\gamma(C) \geq 0$. Аналогично, пока мы не доказали обратное, $\gamma(C)$ не обязана быть конечной. Рассмотрим величину $\gamma(B_1)$. Если $\gamma(B_1) = 0$, то $B_1$ - само отрицательно и всё доказано. Предположим, что $\gamma(B_1) = \infty$, тогда выберем множество $A_1$: 
+	$$
+		A_1 \in \MM \colon A_1 \subset B_1, \, \varphi(A_1) > 1 
+	$$
+	и положим $B_2 = B_1 \setminus A_1 \in \MM$. При этом: 
+	$$
+		\varphi(B_2) = \varphi(B_1) - \varphi(A_1) < \varphi(B_1)
+	$$
+	Затем рассмотрим $\gamma(B_2)$, если $\gamma(B_2) = \infty$, то повторим процесс $\Rightarrow$ выберем $A_2$:
+	$$
+		A_2 \in \MM \colon A_2 \subset B_2, \, \varphi(A_2) > 1
+	$$
+	и положим $B_3 = B_2 \setminus A_2 \in \MM$ и так далее. Продолжая процесс дальше, либо на некотором шаге будет: $\gamma(B_{i_0}) < \infty$, либо мы построим последовательность попарно непересекающихся множеств $A_i$:
+	$$
+		\{A_i\}_{i = 1}^{\infty} \subset \MM \colon \varphi(A_i) > 1 \Rightarrow \varphi\left(\bigcup\limits_{i = 1}^{\infty}A_i\right) = \ddsum{i = 1}{\infty}\varphi(A_i) = \infty
+	$$
+	Получаем противоречие с тем, что $\varphi$ - конечная функция на $\MM$. Действительно, тогда:
+	$$
+		\exists \, i_0 \colon \gamma(B_{i_0}) < \infty \Rightarrow \gamma(B_{i_0}) > 0
+	$$
+	Не ограничивая общности, будем считать, что: $i_0 = 1$. Тогда выберем $A_1$:
+	$$
+		A_1 \in \MM \colon A_1 \subset B_1, \, \varphi(A_1) > \dfrac{\gamma(B_1)}{2} > 0
+	$$
+	Положим $B_2 = B_1 \setminus A_1 \in \MM$, тогда $\varphi(B_2) < \varphi(B_1)$ и $\gamma(B_2) < \tfrac{\gamma(B_1)}{2}$, иначе мы могли бы найти подмножество $D \subset B_2$ такое, что: $\varphi(A_1) + \varphi(D) > \gamma(B_1)$, что невозможно в силу определения $\gamma$. Если $\gamma(B_2) = 0$, то полагаем $B_0 = B_2$ и лемма доказана, иначе выберем $A_2$:
+	$$
+		A_2 \in \MM \colon A_2 \subset B_2, \, \varphi(A_2) > \dfrac{\gamma(B_2)}{2} 
+	$$
+	И положим $B_3 = B_2 \setminus A_2$, при этом $\varphi(B_3) < \varphi(B_2) < \varphi(B_1)$ и кроме того:
+	$$
+		\gamma(B_3) < \dfrac{\gamma(B_2)}{2} < \dfrac{\gamma(B_1)}{4}
+	$$
+	И так далее. В результате, либо $\gamma(B_{i_0}) = 0$ на некотором шаге $i_0$ и тогда полагаем $B_0 = B_{i_0} \Rightarrow$ в силу неравенств: $\varphi(B_0) \leq \varphi(B_1)$ и оно будет отрицательным из-за $\gamma(B_{i_0}) = 0$, либо получим:
+	$$
+		B_1 \subset B_2 \subset B_3 \subset \dotsc \; \colon \forall i, \, \varphi(B_i) < \varphi(B_1), \, \gamma(B_i) \leq \dfrac{\gamma(B_1)}{2^{i-1}}
+	$$
+	Пусть $B_0 = \cap_{i = 1}^{\infty}B_i \Rightarrow B_0 \in \MM$ (поскольку $\sigma$-алгебра это автоматически и $\delta$-алгебра), кроме того, согласно замечанию к теореме о непрерывности меры:
+	$$
+		\varphi(B_0) = \lim\limits_{i \to \infty}\varphi(B_i) \leq \varphi(B_1)
+	$$
+	Вдобавок, если $A \in \MM, \, A \subseteq B_0$, то $\forall i, \, A \subseteq B_i$, тогда:
+	$$
+		\varphi(A) \leq \gamma(B_i) \leq \dfrac{\gamma(B_1)}{2^{i-1}}
+	$$
+	Так как $i$ - произвольное, то $\varphi(A) \leq 0 \Rightarrow B_0$ это отрицательное множество.
+\end{proof}
+
+\begin{theorem}(\textbf{о разложении Хана})
+	Пусть $\MM$ - $\sigma$-алгебра с единицей $X$, $\varphi$ - заряд на $X$, тогда: 
+	$$
+		\exists \, X_+, X_- \in \MM \colon X = X_+ \sqcup X_-
+	$$
+	причём $X_+$ - положительно, а $X_-$ - отрицательно относительно $\varphi$.
+\end{theorem}
+\begin{rem}
+	То есть мы раскладываем единицу $\sigma$-алегбры относительно заряда $\varphi$.
+\end{rem}
+\begin{proof}
+	Заметим, что если $\{A_i\}_{i = 1}^{\infty} \subset \MM \colon \forall i, \, A_i$ - отрицательна относительно заряда $\varphi$, то $\cup_{i = 1}^{\infty}A_i$ также отрицательно относительно $\varphi$. Действительно:
+	$$
+		\bigcup\limits_{i = 1}^{\infty}A_i = A_1 \sqcup \left(A_2 \setminus A_1 \right) \sqcup \left(A_3 \setminus \left(A_2 \setminus A_1 \right) \right) \sqcup \dotsc \equiv \bigsqcup\limits_{i = 1}^{\infty}B_i
+	$$
+	При этом $\forall i, \, B_i$ - отрицательно как подмножество отрицательного множества $A_i$. Тогда: 
+	$$
+		C \in \MM, \, \bigcup\limits_{i = 1}^{\infty}A_i \Rightarrow C = \bigsqcup\limits_{i = 1}^{\infty}(C \cap B_i) \Rightarrow \varphi(C) = \ddsum{i = 1}{\infty}\varphi(C \cap B_i) \leq 0
+	$$
+\end{proof}
+	
+\end{document}
